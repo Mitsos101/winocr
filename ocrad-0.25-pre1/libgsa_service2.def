@@ -1,0 +1,4 @@
+; dlltool --base-file C:\Users\GSA\AppData\Local\Temp\cca05376.base --output-exp gsa_service2.exp --dllname gsa_service2.dll --output-def libgsa_service2.def --exclude-symbol=DllMainCRTStartup@12 --def C:\Users\GSA\AppData\Local\Temp\cca05376.def --output-lib libgsa_service2.a
+EXPORTS
+;	DoJob(char*, char*)
+	_Z5DoJobPcS_ @ 1

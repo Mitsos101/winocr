@@ -1,0 +1,26 @@
+
+                                  GSA-Win-OCR
+                                 ============= 
+Description
+-----------
+                             
+ This is a tool that shows how to use the DLLs of the modified sources from GOCR 
+ and OCRAD on Windows OSs. GOCR has an windows executable but opening it and 
+ getting results from stdin/stdout was a bit unconfortable so I applied some 
+ modifications to make DLLs from it that can be used in any windows program.
+ OCRAD however never had any windwos build when I checked it out.
+
+ Both OCRs work a bit different and combining the results can improve your final 
+ result.
+
+ I hope this is useful for someone experimenting with OCR.
+
+Installation
+------------
+
+ Please read the file "INSTALL" for details.                                
+ 
+License
+-------
+
+ GNU GENERAL PUBLIC LICENSE - Please read the file "COPYING" for details.

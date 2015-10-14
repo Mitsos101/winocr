@@ -1,0 +1,9 @@
+History: (Changes,ChangeLog)
+
+ 1.00 2015-10-08
+      first release with the sample code in object pascal to call the
+      two dll's (gocr.dll and ocrad.dll)
+
+     * OCRAD as been modified to compile as dll
+     * GOCR has been modified to compile as dll + some minor changes to avoid
+       division by zero exceptions

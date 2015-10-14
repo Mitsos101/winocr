@@ -1,0 +1,4 @@
+; dlltool --base-file cca05376.base --output-exp ocrad.exp --dllname ocrad.dll --output-def libocrad.def --exclude-symbol=DllMainCRTStartup@12 --def cca05376.def --output-lib libocrad.a
+EXPORTS
+;	DoJob(char*, char*)
+	_Z5DoJobPcS_ @ 1

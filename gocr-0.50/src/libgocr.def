@@ -1,0 +1,4 @@
+; dlltool --base-file cca07208.base --output-exp gocr.exp --dllname gocr.dll --output-def libgocr.def --no-export-all-symbols --add-stdcall-alias --exclude-symbol=DllMainCRTStartup@12 --def cca07208.def --output-lib libgocr.a
+EXPORTS
+	DoJob_ext @ 1
+	DoJob @ 2

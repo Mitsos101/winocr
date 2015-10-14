@@ -1,0 +1,108 @@
+# Project: ocrad_dll
+# Makefile created by Dev-C++ 5.4.0
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = page_image.o page_image_io.o profile.o rational.o rectangle.o textblock.o textline.o textline_r2.o textpage.o track.o ucs.o arg_parser.o bitmap.o blob.o character.o character_r11.o character_r12.o character_r13.o common.o feats.o feats_test0.o feats_test1.o main.o mask.o ocradlib.o segment.o $(RES)
+LINKOBJ  = page_image.o page_image_io.o profile.o rational.o rectangle.o textblock.o textline.o textline_r2.o textpage.o track.o ucs.o arg_parser.o bitmap.o blob.o character.o character_r11.o character_r12.o character_r13.o common.o feats.o feats_test0.o feats_test1.o main.o mask.o ocradlib.o segment.o $(RES)
+LIBS     = -L"./MinGW32/lib" -static-libstdc++ -static-libgcc
+INCS     = -I"./MinGW32/include"
+CXXINCS  = -I"./MinGW32/include"
+BIN      = ocrad.dll
+CXXFLAGS = $(CXXINCS)  -Ofast -w -pedantic
+CFLAGS   = $(INCS)  -Ofast -w -pedantic
+RM       = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+DLLWRAP=dllwrap.exe
+DEFFILE=libocrad.def
+STATICLIB=libocrad.a
+
+$(BIN): $(LINKOBJ)
+	$(DLLWRAP) --output-def $(DEFFILE) --driver-name c++ --implib $(STATICLIB) $(LINKOBJ) $(LIBS) -o $(BIN)
+
+page_image.o: page_image.cc
+	$(CPP) -c page_image.cc -o page_image.o $(CXXFLAGS)
+
+page_image_io.o: page_image_io.cc
+	$(CPP) -c page_image_io.cc -o page_image_io.o $(CXXFLAGS)
+
+profile.o: profile.cc
+	$(CPP) -c profile.cc -o profile.o $(CXXFLAGS)
+
+rational.o: rational.cc
+	$(CPP) -c rational.cc -o rational.o $(CXXFLAGS)
+
+rectangle.o: rectangle.cc
+	$(CPP) -c rectangle.cc -o rectangle.o $(CXXFLAGS)
+
+textblock.o: textblock.cc
+	$(CPP) -c textblock.cc -o textblock.o $(CXXFLAGS)
+
+textline.o: textline.cc
+	$(CPP) -c textline.cc -o textline.o $(CXXFLAGS)
+
+textline_r2.o: textline_r2.cc
+	$(CPP) -c textline_r2.cc -o textline_r2.o $(CXXFLAGS)
+
+textpage.o: textpage.cc
+	$(CPP) -c textpage.cc -o textpage.o $(CXXFLAGS)
+
+track.o: track.cc
+	$(CPP) -c track.cc -o track.o $(CXXFLAGS)
+
+ucs.o: ucs.cc
+	$(CPP) -c ucs.cc -o ucs.o $(CXXFLAGS)
+
+arg_parser.o: arg_parser.cc
+	$(CPP) -c arg_parser.cc -o arg_parser.o $(CXXFLAGS)
+
+bitmap.o: bitmap.cc
+	$(CPP) -c bitmap.cc -o bitmap.o $(CXXFLAGS)
+
+blob.o: blob.cc
+	$(CPP) -c blob.cc -o blob.o $(CXXFLAGS)
+
+character.o: character.cc
+	$(CPP) -c character.cc -o character.o $(CXXFLAGS)
+
+character_r11.o: character_r11.cc
+	$(CPP) -c character_r11.cc -o character_r11.o $(CXXFLAGS)
+
+character_r12.o: character_r12.cc
+	$(CPP) -c character_r12.cc -o character_r12.o $(CXXFLAGS)
+
+character_r13.o: character_r13.cc
+	$(CPP) -c character_r13.cc -o character_r13.o $(CXXFLAGS)
+
+common.o: common.cc
+	$(CPP) -c common.cc -o common.o $(CXXFLAGS)
+
+feats.o: feats.cc
+	$(CPP) -c feats.cc -o feats.o $(CXXFLAGS)
+
+feats_test0.o: feats_test0.cc
+	$(CPP) -c feats_test0.cc -o feats_test0.o $(CXXFLAGS)
+
+feats_test1.o: feats_test1.cc
+	$(CPP) -c feats_test1.cc -o feats_test1.o $(CXXFLAGS)
+
+main.o: main.cc
+	$(CPP) -c main.cc -o main.o $(CXXFLAGS)
+
+mask.o: mask.cc
+	$(CPP) -c mask.cc -o mask.o $(CXXFLAGS)
+
+ocradlib.o: ocradlib.cc
+	$(CPP) -c ocradlib.cc -o ocradlib.o $(CXXFLAGS)
+
+segment.o: segment.cc
+	$(CPP) -c segment.cc -o segment.o $(CXXFLAGS)

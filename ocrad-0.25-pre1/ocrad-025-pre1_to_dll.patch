@@ -1,0 +1,190 @@
+diff B character.cc character.cc
+21a22
+> #include <cstring>
+400a402,415
+>   
+> void Character::out( const Control & control, char *Output ) const 
+> {
+>   int ls=strlen(Output);
+>   if (ls<100) {
+>     unsigned char ch = '_';
+>     if( guesses() ) {
+>       ch = UCS::map_to_byte( gv[0].code );
+>       if( !ch ) ch='_';
+>     }
+>     Output[ls] = ch;
+>     Output[ls+1] = '\0';
+>   }
+> }  
+diff B character.h character.h
+86a87
+>   void out( const Control & control, char *Output ) const;
+diff B common.cc common.cc
+82c82
+<   std::fprintf( stderr, "ocrad: internal error: %s\n", msg );
+---
+> //  std::fprintf( stderr, "ocrad: internal error: %s\n", msg );
+diff B main.cc main.cc
+45c45,47
+< 
+---
+> //added for dll
+> #include "dll.h"
+> #include "windows.h"
+119a122
+> /*
+173c176
+< 
+---
+> */
+183c186,187
+< int process_file( FILE * const infile, const char * const infile_name,
+---
+> int process_file( FILE * const infile, 
+>                   const char * const infile_name,
+185,188c189,193
+<                   const Control & control )
+<   {
+<   if( verbosity >= 1 )
+<     std::fprintf( stderr, "processing file '%s'\n", infile_name );
+---
+>                   const Control & control,
+> 				  char * Output) 
+> {
+> //  if( verbosity > 0 )
+> //    std::fprintf( stderr, "processing file '%s'\n", infile_name );
+190c195
+<     {
+---
+>   {
+192,208d196
+< 
+<     if( input_control.cut )
+<       {
+<       if( page_image.cut( input_control.ltwh ) )
+<         {
+<         if( verbosity >= 1 )
+<           std::fprintf( stderr, "file cut to %dw x %dh\n",
+<                         page_image.width(), page_image.height() );
+<         }
+<       else
+<         {
+<         if( verbosity >= 1 )
+<           std::fprintf( stderr, "file '%s' totally cut away\n", infile_name );
+<         return 1;
+<         }
+<       }
+< 
+212,225d199
+<     if( verbosity >= 1 )
+<       {
+<       const Rational th( page_image.threshold(), page_image.maxval() );
+<       std::fprintf( stderr, "maxval = %d, threshold = %d (%s)\n",
+<                     page_image.maxval(), page_image.threshold(),
+<                     th.to_decimal( 1, -3 ).c_str() );
+<       }
+< 
+<     if( input_control.copy )
+<       {
+<       if( control.outfile ) page_image.save( control.outfile, control.filetype );
+<       return 0;
+<       }
+< 
+228,232c202,205
+<     if( control.debug_level == 0 )
+<       {
+<       if( control.outfile ) textpage.print( control );
+<       if( control.exportfile ) textpage.xprint( control );
+<       }
+---
+>     textpage.out( control, Output);
+>   }
+>     catch( Page_image::Error e ) { 
+>       return 2; 
+234,236c207
+<   catch( Page_image::Error e ) { show_error( e.msg ); return 2; }
+<   if( verbosity >= 1 ) std::fputs( "\n", stderr );
+<   return 0;
+---
+>     return 0;
+247a220
+> /*
+414a388,429
+> */
+> 
+> int DLLIMPORT DoJob(char *InputFile,char *Output) { 
+> 
+>   Input_control input_control;
+>   Control control;
+>   
+>   const char * outfile_name = 0, * exportfile_name = 0;
+>   bool append = false, force = false;
+>   
+>   verbosity = -1;
+>   strcpy(Output,"");
+> 
+>   // process any remaining command line arguments (input files)
+>   FILE * infile = std::fopen( InputFile, "rb" );
+>   if( infile ) {
+>     process_file( infile, InputFile, input_control, control, Output );
+>     fclose(infile);
+>   }  
+> }    
+> 
+> BOOL APIENTRY DllMain (HINSTANCE hInst     /* Library instance handle. */ ,
+>                        DWORD reason        /* Reason this function is being called. */ ,
+>                        LPVOID reserved     /* Not used. */ )
+> {
+>     switch (reason)
+>     {
+>       case DLL_PROCESS_ATTACH:
+>         break;
+> 
+>       case DLL_PROCESS_DETACH:
+>         break;
+> 
+>       case DLL_THREAD_ATTACH:
+>         break;
+> 
+>       case DLL_THREAD_DETACH:
+>         break;
+>     }
+>     /* Returns TRUE on success, FALSE on failure */
+>     return TRUE;
+> }  
+diff B textblock.cc textblock.cc
+479a480,487
+>   
+> void Textblock::out( const Control & control, char *Output ) const 
+>   {
+>   for( int i = 0; i < textlines(); ++i )
+>     tlpv[i]->out( control, Output );
+>   }
+>   
+>   
+diff B textblock.h textblock.h
+39a40
+>   void out( const Control & control, char *Output ) const;
+diff B textline.cc textline.cc
+383a384,389
+> void Textline::out( const Control & control, char *Output ) const 
+>   {
+>   for( int i = 0; i < characters(); ++i ) character( i ).out( control,Output );
+>   }
+>   
+>   
+diff B textline.h textline.h
+64a65
+>   void out( const Control & control, char *Output ) const;
+diff B textpage.cc textpage.cc
+533a534,538
+> void Textpage::out( const Control & control, char *Output) const 
+> {
+>     for( int i = 0; i < textblocks(); ++i )
+>       tbpv[i]->out( control, Output );
+> }   
+diff B textpage.h textpage.h
+37c37
+< 
+---
+>   void out( const Control & control, char *Output) const;

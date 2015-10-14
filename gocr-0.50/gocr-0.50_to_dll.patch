@@ -1,0 +1,4465 @@
+diff B src/barcode.c src/barcode.c
+41c41
+< # define g_debug(a)  if (OCR_JOB->cfg.verbose&1) { a }
+---
+> # define g_debug(a)  //if (JOB->cfg.verbose&1) { a }
+180c180
+<     else fprintf(stderr," %s=%02d? ",buf,i5);
+---
+>     //else fprintf(stderr," %s=%02d? ",buf,i5);
+726c726,727
+<   if(job->cfg.verbose)  
+---
+>   /*
+>   if(JOB->cfg.verbose)  
+727a729
+>   */  
+855,856c856,857
+<   g_debug(fprintf(stderr,"\n# init_rs symsize= %d gfpoly=0x%04x necc= %4d\n# ",
+<      symsize, gfpoly, nroots);)
+---
+>   //g_debug(fprintf(stderr,"\n# init_rs symsize= %d gfpoly=0x%04x necc= %4d\n# ",
+>   //   symsize, gfpoly, nroots);)
+868c869
+<   if (x!=1) fprintf(stderr,"init_rs failed, bad primitive gfpoly x=%d\n# ",x);
+---
+>   //if (x!=1) fprintf(stderr,"init_rs failed, bad primitive gfpoly x=%d\n# ",x);
+889a891
+> /*
+898c900
+<    }
+---
+>    }*/
+903a906
+> /*
+909a913
+>    */
+933a938
+> /*
+943a949
+> */   
+956a963
+>   /*
+958c965
+<     fprintf(stderr,"# barcode.c detect_barcode ");
+---
+>     fprintf(stderr,"# barcode.c detect_barcode ");*/
+1036a1044
+>            /*
+1038c1046
+<              bx0,by0,bx1-bx0+1,by1-by0+1,nbars,j);
+---
+>              bx0,by0,bx1-bx0+1,by1-by0+1,nbars,j);             
+1040a1049
+>           */
+1050a1060
+>          /*
+1052c1062
+<            fprintf(stderr,"\n# ... decoded as: %s", code);
+---
+>            fprintf(stderr,"\n# ... decoded as: %s", code);*/
+1071a1082
+>          /*
+1073c1084
+<            fprintf(stderr,"\n# ... removed boxes: %d", rm);
+---
+>            fprintf(stderr,"\n# ... removed boxes: %d", rm);*/
+1089c1100,1101
+<   if(job->cfg.verbose)  
+---
+>   if(job->cfg.verbose)
+>     /*
+1091c1103
+<             j2, job->res.numC);
+---
+>             j2, job->res.numC);*/
+1109a1122
+>    /*
+1111c1124
+<     fprintf(stderr,"# barcode.c detect_barcode search datamatrix ");
+---
+>     fprintf(stderr,"# barcode.c detect_barcode search datamatrix ");*/
+1120c1133
+< //  g_debug(fprintf(stderr,"\n# datamatrix box size %4d %4d", bdx, bdy);)
+---
+>     g_debug(fprintf(stderr,"\n# datamatrix box size %4d %4d", bdx, bdy);)
+1167c1180
+<        g_debug(fprintf(stderr,"\n# datamatrix box size %4d %4d ncross %d %d %d %d bb %d %d", bdx, bdy, x, y, bx1, by1, bbx, bby);)
+---
+>        //g_debug(fprintf(stderr,"\n# datamatrix box size %4d %4d ncross %d %d %d %d bb %d %d", bdx, bdy, x, y, bx1, by1, bbx, bby);)
+1175c1188
+<        g_debug(fprintf(stderr," mark%03d %dx%d reg %d %d bb %d %d bytes %d",
+---
+>        //g_debug(fprintf(stderr," mark%03d %dx%d reg %d %d bb %d %d bytes %d",
+1185c1198,1201
+<          if (!dm_bitmap) { fprintf(stderr," ERROR: mallocDM1 failed\n"); continue; }
+---
+>          if (!dm_bitmap) { 
+>            //fprintf(stderr," ERROR: mallocDM1 failed\n"); 
+>            continue; 
+>          }
+1195a1212
+>          /*
+1197c1214
+<            fprintf(stderr,"\n#      ");
+---
+>            //fprintf(stderr,"\n#      ");
+1228a1246
+>          */
+1233c1251,1254
+<          if (!code) { fprintf(stderr," ERROR: mallocDM2 failed\n"); continue; }
+---
+>          if (!code) { 
+>            //fprintf(stderr," ERROR: mallocDM2 failed\n"); 
+>            continue; 
+>          }
+1279a1301
+>              /*
+1281,1284c1303,1307
+<                      x, y, dm_byte, dm_byte, dm_d, cpos);
+<              if (dm_byte>=' '+1 && dm_byte<=128)
+<                { code[cpos++]=(char)(dm_byte-1);
+<                  fprintf(stderr,"%c", dm_byte-1); }
+---
+>                      x, y, dm_byte, dm_byte, dm_d, cpos);*/
+>              if (dm_byte>=' '+1 && dm_byte<=128) { 
+>                  code[cpos++]=(char)(dm_byte-1);
+>                  //fprintf(stderr,"%c", dm_byte-1); 
+>              }
+1288c1311,1312
+<                  fprintf(stderr,"%02d", dm_byte-130); }
+---
+>                  //fprintf(stderr,"%02d", dm_byte-130); 
+>              }
+1290a1315
+>                /*
+1299a1325
+>                */
+1317,1318c1343,1344
+<            fprintf(stderr,"\n# datamatrix at %3d %3d size %3d %3d npix %d*%d unit %d*%d",
+<              box2->x0,box2->y0,bdx,bdy,2*bx1,2*by1,bbx,bby);
+---
+>            //fprintf(stderr,"\n# datamatrix at %3d %3d size %3d %3d npix %d*%d unit %d*%d",
+>            //  box2->x0,box2->y0,bdx,bdy,2*bx1,2*by1,bbx,bby);
+1326c1352
+<            if (code) strncpy(code,"<barcode type=\"unknown datamatrix\" />",128);
+---
+>            if(code) strncpy(code,"<barcode type=\"unknown datamatrix\" />",128);
+1327a1354
+>          /*
+1329c1356
+<            fprintf(stderr,"\n# ... decoded as: %s", code);
+---
+>            fprintf(stderr,"\n# ... decoded as: %s", code);*/
+1348a1376
+>          /*
+1350c1378
+<            fprintf(stderr,"\n# ... removed boxes: %d", rm);
+---
+>            fprintf(stderr,"\n# ... removed boxes: %d", rm);*/
+1470,1471c1497,1498
+<   if(job->cfg.verbose)  
+<     fprintf(stderr,"#\n# barcode.c detect_barcode search qrcode ");
+---
+>   //if(job->cfg.verbose)  
+>   //  fprintf(stderr,"#\n# barcode.c detect_barcode search qrcode ");
+1474,1481c1501,1508
+<   for (i=0;i<40;i++)
+<     if (qrConst[i][2+j]%(qrConst[i][6+2*j+0]+qrConst[i][6+2*j+1])!=0)
+<       fprintf(stderr,"ERROR qrcode L%04d i=%d j=%d\n", __LINE__,i,j);
+<   for (j=0;j<4;j++) // LMQH:  rawbytes % (b1+b2) == b2
+<   for (i=0;i<40;i++)
+<     if (qrConst[i][0]%(qrConst[i][6+2*j+0]+qrConst[i][6+2*j+1])
+<                                          !=qrConst[i][6+2*j+1])
+<       fprintf(stderr,"ERROR qrcode L%04d i=%d j=%d\n", __LINE__,i,j);
+---
+>   //for (i=0;i<40;i++)
+>   //  if (qrConst[i][2+j]%(qrConst[i][6+2*j+0]+qrConst[i][6+2*j+1])!=0)
+>   //    fprintf(stderr,"ERROR qrcode L%04d i=%d j=%d\n", __LINE__,i,j);
+>   //for (j=0;j<4;j++) // LMQH:  rawbytes % (b1+b2) == b2
+>   //for (i=0;i<40;i++)
+>   //  if (qrConst[i][0]%(qrConst[i][6+2*j+0]+qrConst[i][6+2*j+1])
+>   //                                       !=qrConst[i][6+2*j+1])
+>   //    fprintf(stderr,"ERROR qrcode L%04d i=%d j=%d\n", __LINE__,i,j);
+1549c1576
+<     g_debug(fprintf(stderr,"\n# qrcode marker %d %4d %4d at %4d %4d",num_marker,dx2,dy2,x02,y02);)
+---
+>     //g_debug(fprintf(stderr,"\n# qrcode marker %d %4d %4d at %4d %4d",num_marker,dx2,dy2,x02,y02);)
+1587c1614
+<     g_debug(fprintf(stderr,"\n# qrcode at %4d %4d %4d %4d px %d %d = %d %d %d v= %d ",
+---
+>     //g_debug(fprintf(stderr,"\n# qrcode at %4d %4d %4d %4d px %d %d = %d %d %d v= %d ",
+1618c1645
+<     g_debug(fprintf(stderr,"\n# qrcode v= %2d dist= %2d %2d * %d  rawbits= %5d bytes= %5d",
+---
+>     //g_debug(fprintf(stderr,"\n# qrcode v= %2d dist= %2d %2d * %d  rawbits= %5d bytes= %5d",
+1639c1666
+<             g_debug(fprintf(stderr,"\n# qrcode bad finder bit at %d %d",7+i,6);)
+---
+>             //g_debug(fprintf(stderr,"\n# qrcode bad finder bit at %d %d",7+i,6);)
+1643c1670
+<             g_debug(fprintf(stderr,"\n# qrcode bad finder bit at %d %d",6,7+i);)
+---
+>             //g_debug(fprintf(stderr,"\n# qrcode bad finder bit at %d %d",6,7+i);)
+1649c1676
+<           g_debug(fprintf(stderr,"\n# qrcode bad bit at %d %d",8,x-7);)
+---
+>           //g_debug(fprintf(stderr,"\n# qrcode bad bit at %d %d",8,x-7);)
+1675c1702
+<         g_debug(fprintf(stderr,"\n# qrcode h-format bits 0..14: ");)
+---
+>         //g_debug(fprintf(stderr,"\n# qrcode h-format bits 0..14: ");)
+1678c1705
+<           g_debug(fprintf(stderr,"%d",(fbits>>i)&1);) // bit0 first
+---
+>           //g_debug(fprintf(stderr,"%d",(fbits>>i)&1);) // bit0 first
+1682c1709
+<         g_debug(fprintf(stderr,"\n# qrcode v-format bits 0..14: ");)
+---
+>         //g_debug(fprintf(stderr,"\n# qrcode v-format bits 0..14: ");)
+1686c1713
+<           g_debug(fprintf(stderr,"%d",j);)  // bit0 first
+---
+>           //g_debug(fprintf(stderr,"%d",j);)  // bit0 first
+1689c1716
+<         g_debug(if(qrcode<0)fprintf(stderr,"\n# qrcode error %d ",qrcode);)
+---
+>         //g_debug(if(qrcode<0)fprintf(stderr,"\n# qrcode error %d ",qrcode);)
+1692c1719
+<         g_debug(fprintf(stderr,"\n# qrcode   format bits 0..14: ");)
+---
+>         //g_debug(fprintf(stderr,"\n# qrcode   format bits 0..14: ");)
+1694,1696c1721,1723
+<         for (i=0;i<15;i++) {
+<           g_debug(fprintf(stderr,"%d",(fbits>>i)&1);)  // bit0 first
+<         }
+---
+>         //for (i=0;i<15;i++) {
+>         //  g_debug(fprintf(stderr,"%d",(fbits>>i)&1);)  // bit0 first
+>         //}
+1710c1737
+<           g_debug(fprintf(stderr,"\n# qrcode ECC check: 0x%04x == 0x%04x",fbits,data);)
+---
+>           //g_debug(fprintf(stderr,"\n# qrcode ECC check: 0x%04x == 0x%04x",fbits,data);)
+1715,1717c1742,1744
+<         g_debug(fprintf(stderr,"\n# qrcode errorlevel^1 = %d (2bit)",qr_ecclevel);)
+<         g_debug(fprintf(stderr,"\n# qrcode mask pattern = %d (3bit)",qr_mask);)
+<         g_debug(fprintf(stderr,"\n# qrcode 10bit-ECC = 0x%04x",1023&(fbits>>0));)
+---
+>         //g_debug(fprintf(stderr,"\n# qrcode errorlevel^1 = %d (2bit)",qr_ecclevel);)
+>         //g_debug(fprintf(stderr,"\n# qrcode mask pattern = %d (3bit)",qr_mask);)
+>         //g_debug(fprintf(stderr,"\n# qrcode 10bit-ECC = 0x%04x",1023&(fbits>>0));)
+1720,1721c1747,1748
+<           g_debug(if (i%x==0) fprintf(stderr,"\n# qrcode ");)
+<           g_debug(fprintf(stderr,"%c",xx[bits[i]&3]);)
+---
+>           //g_debug(if (i%x==0) fprintf(stderr,"\n# qrcode ");)
+>           //g_debug(fprintf(stderr,"%c",xx[bits[i]&3]);)
+1754,1755c1781,1782
+<         g_debug(fprintf(stderr,"\n# qrcode rawbits= %5d bytes= %5d", i, i/8);)
+< #if 1
+---
+>         //g_debug(fprintf(stderr,"\n# qrcode rawbits= %5d bytes= %5d", i, i/8);)
+> #if 1   /*
+1761c1788
+<         }
+---
+>         } */
+1782c1809
+<         g_debug(fprintf(stderr,"\n# qrcode v%d numbytes= %4d == %4d = %4d data + %4d ecc",
+---
+>       /*g_debug(fprintf(stderr,"\n# qrcode v%d numbytes= %4d == %4d = %4d data + %4d ecc",
+1787c1814
+<                                  qrConst[qr_version-1][6+2*qr_ecclevel+1]);)
+---
+>                                  qrConst[qr_version-1][6+2*qr_ecclevel+1]);)*/
+1798c1825
+<             g_debug(fprintf(stderr,"%d",bits[i2]);)
+---
+>             //g_debug(fprintf(stderr,"%d",bits[i2]);)
+1826,1829c1853,1856
+<               g_debug(fprintf(stderr," %3d %02x ",idx,bbits);)
+<               g_debug(if (nbits/8==num_data_bytes) fprintf(stderr,"\n# end_data\n#");)
+<               g_debug(fprintf(stderr,(((nbits/8)%interleave==0)?"\n# ":" "));)
+<               if (nbits/8==num_data_bytes - b2)
+---
+>               //g_debug(fprintf(stderr," %3d %02x ",idx,bbits);)
+>               //g_debug(if (nbits/8==num_data_bytes) fprintf(stderr,"\n# end_data\n#");)
+>               //g_debug(fprintf(stderr,(((nbits/8)%interleave==0)?"\n# ":" "));)
+>               /*if (nbits/8==num_data_bytes - b2)
+1832c1859
+<                 }
+---
+>                 }*/
+1872,1875c1899,1902
+<           g_debug(for(j=0;j<el;j++)fprintf(stderr," %02x ",qr_ecc[j]);fprintf(stderr,"\n# ");)
+<           g_debug(for(j=0;j<el;j++)fprintf(stderr," %02x ",qrbytes[i_ecc+j]);fprintf(stderr,"\n# ");)
+<           for (j=0;j<el;j++) if (qr_ecc[j]!=qrbytes[i_ecc+j])
+<             {qrcode=-3;g_debug(fprintf(stderr," ECC-Error ");)break;}
+---
+>           //g_debug(for(j=0;j<el;j++)fprintf(stderr," %02x ",qr_ecc[j]);fprintf(stderr,"\n# ");)
+>           //g_debug(for(j=0;j<el;j++)fprintf(stderr," %02x ",qrbytes[i_ecc+j]);fprintf(stderr,"\n# ");)
+>           //for (j=0;j<el;j++) if (qr_ecc[j]!=qrbytes[i_ecc+j])
+>           //  {qrcode=-3;g_debug(fprintf(stderr," ECC-Error ");)break;}
+1893,1894c1920,1921
+<         g_debug(fprintf(stderr,"\n# qrcode bytes: %02x %02x %02x ...\n# qr new_block ",
+<             255&(int)qrbytes[0], 255&(int)qrbytes[1], 255&(int)qrbytes[2]);)
+---
+>         //g_debug(fprintf(stderr,"\n# qrcode bytes: %02x %02x %02x ...\n# qr new_block ",
+>         //    255&(int)qrbytes[0], 255&(int)qrbytes[1], 255&(int)qrbytes[2]);)
+1904c1931
+<           g_debug(fprintf(stderr,"%d",1&(qrbytes[nbits/8]>>(7-nbits%8)));)
+---
+>           //g_debug(fprintf(stderr,"%d",1&(qrbytes[nbits/8]>>(7-nbits%8)));)
+1913c1940
+<             g_debug(fprintf(stderr," mode=%d numbits=%d wordbits=%d wchr=%d\n"
+---
+>             /*g_debug(fprintf(stderr," mode=%d numbits=%d wordbits=%d wchr=%d\n"
+1916c1943
+<                                       word_nchr[qr_mode]);)
+---
+>                                       word_nchr[qr_mode]);)*/
+1927c1954
+<             g_debug(fprintf(stderr," nchars=%d\n# qr data ", nchars);)
+---
+>             //g_debug(fprintf(stderr," nchars=%d\n# qr data ", nchars);)
+1936c1963
+<             { fprintf(stderr,"qrcode.unexpected_overflow\n");break; }
+---
+>             { /*fprintf(stderr,"qrcode.unexpected_overflow\n");*/break; }
+2003c2030
+<           if ((job->cfg.verbose&1) && block_dchars < nchars+word_nchr[qr_mode])
+---
+>         /*  if ((job->cfg.verbose&1) && block_dchars < nchars+word_nchr[qr_mode])
+2006c2033
+<             fprintf(stderr,"\n# qr data ");
+---
+>             fprintf(stderr,"\n# qr data ");*/
+2011c2038
+<             g_debug(fprintf(stderr,"\n# qr new_block ");)
+---
+>             //g_debug(fprintf(stderr,"\n# qr new_block ");)
+2015c2042
+<       } else fprintf(stderr,"qrcode.malloc failed\n");
+---
+>       } //else fprintf(stderr,"qrcode.malloc failed\n");
+2018c2045
+<     g_debug(fprintf(stderr,"\n# qr dchars=%d nbits=%d ", dchars, nbits);)
+---
+>     //g_debug(fprintf(stderr,"\n# qr dchars=%d nbits=%d ", dchars, nbits);)
+2086,2087c2113,2114
+<     if (job->cfg.verbose)  
+<       fprintf(stderr,"\n# ... removed boxes: %d", rm);
+---
+>     //if (job->cfg.verbose)  
+>     //  fprintf(stderr,"\n# ... removed boxes: %d", rm);
+2102,2104c2129,2131
+<   if(job->cfg.verbose)  
+<     fprintf(stderr,"\n# ... boxes %d nC %d\n",
+<             j2, job->res.numC);
+---
+>   //if(job->cfg.verbose)  
+>   //  fprintf(stderr,"\n# ... boxes %d nC %d\n",
+>   //          j2, job->res.numC);
+diff B src/box.c src/box.c
+58c58
+<     fprintf(stderr, " error-copybox x=%5d %5d  d=%5d %5d\n", x0, y0, dx, dy);
+---
+>     //fprintf(stderr, " error-copybox x=%5d %5d  d=%5d %5d\n", x0, y0, dx, dy);
+143,144c143,144
+<   double  sprod, maxsprod=-1;
+<   if (mode!=1) fprintf(stderr,"ERR not supported yet, ToDo\n");
+---
+>   double  sprod, maxsprod=-1, temp; /* *GSA* */
+>   //if (mode!=1) fprintf(stderr,"ERR not supported yet, ToDo\n");
+156,157c156,162
+<       sprod = /* fabs */(abs(nx*mx+ny*my)*(nx*mx+ny*my)
+<                        /(1.*(nx*nx+ny*ny)*(mx*mx+my*my))-1);
+---
+>       temp = (1.*(nx*nx+ny*ny)*(mx*mx+my*my))-1; /* *GSA* -> div by zero sometimes */
+>       if (temp>0) {  
+>         sprod = /* fabs */abs(nx*mx+ny*my)*(nx*mx+ny*my) / temp;
+>       } else {
+>         sprod = 0;
+>       }
+>       
+191c196
+<   fprintf(stderr,"\nDBG merge_boxes_input:"); out_x(box1); out_x(box2);
+---
+>   //fprintf(stderr,"\nDBG merge_boxes_input:"); out_x(box1); out_x(box2);
+247,248c252,254
+<       if (OCR_JOB->cfg.verbose)
+<         fprintf(stderr,"\nDBG merge_boxes MaxNumFrames reached");
+---
+>       /*
+>       if (JOB->cfg.verbose)
+>         fprintf(stderr,"\nDBG merge_boxes MaxNumFrames reached");*/
+263c269,270
+<   if ((OCR_JOB->cfg.verbose&48)==48) {
+---
+>   /*
+>   if ((JOB->cfg.verbose&48)==48) {
+264a272
+>     */
+335c343
+<   if (dbg) fprintf(stderr,"\n cut box x= %3d %3d", box1->x0, box1->y0);
+---
+>   //if (dbg) fprintf(stderr,"\n cut box x= %3d %3d", box1->x0, box1->y0);
+338c346
+<     if (dbg>2) fprintf(stderr,"\n checking frame %d ", i1);
+---
+>     //if (dbg>2) fprintf(stderr,"\n checking frame %d ", i1);
+365c373
+<           /* search other frames for near outside_to_inside and copy frame in */
+---
+>           /* search other frames for near outside_to_inside and copy frame in */   
+389c397
+<   if (dbg>2) { fprintf(stderr,"\nDBG cut_box_result:"); out_x(box1); }
+---
+>   //if (dbg>2) { fprintf(stderr,"\nDBG cut_box_result:"); out_x(box1); }
+398c406
+<   if (dbg) fprintf(stderr,"\n cut box x= %3d %3d", box1->x0, box1->y0);
+---
+>   //if (dbg) fprintf(stderr,"\n cut box x= %3d %3d", box1->x0, box1->y0);
+401c409
+<     if (dbg>2) fprintf(stderr,"\n checking frame %d ", i1);
+---
+>     //if (dbg>2) fprintf(stderr,"\n checking frame %d ", i1);
+414c422
+<        || y< box1->y0 || y> box1->y1) box1->frame_per[i1]|=2;
+---
+>        || y< box1->y0 || y> box1->y1) box1->frame_per[i1]|=2;  
+416c424
+<     if (dbg>2) fprintf(stderr,"in1+out2= %d", box1->frame_per[i1]);
+---
+>     //if (dbg>2) fprintf(stderr,"in1+out2= %d", box1->frame_per[i1]);
+418c426
+<       if (dbg>1) fprintf(stderr," remove frame %d",i1);
+---
+>       //if (dbg>1) fprintf(stderr," remove frame %d",i1);
+443c452
+<     if (dbg>2) fprintf(stderr,"\n check cutting vectors on frame %d", i1);
+---
+>     //if (dbg>2) fprintf(stderr,"\n check cutting vectors on frame %d", i1);
+465c474
+<           if (dbg>1) fprintf(stderr,"\n remove vector[%d][%d] x= %2d %2d",i1,i2,x-box1->x0,y-box1->y0);
+---
+>           //if (dbg>1) fprintf(stderr,"\n remove vector[%d][%d] x= %2d %2d",i1,i2,x-box1->x0,y-box1->y0);
+493c502
+<   if (dbg>2) { fprintf(stderr,"\nDBG cut_box_result:"); out_x(box1); }
+---
+>   //if (dbg>2) { fprintf(stderr,"\nDBG cut_box_result:"); out_x(box1); }
+diff B src/database.c src/database.c
+46a47
+>   /*
+48a50
+>   */
+51c53
+<   f1 = fopen(s2, "r");
+---
+>   f1 = fopen(s2, "r");  
+53c55
+<     fprintf(stderr, " DB %s not found\n",s2);
+---
+>     //fprintf(stderr, " DB %s not found\n",s2);
+75c77
+<     if( !pp ) fprintf(stderr,"malloc error in load_db pix\n");
+---
+>     //if( !pp ) fprintf(stderr,"malloc error in load_db pix\n");
+79,80c81,82
+<       fprintf(stderr,"\ndatabase error: readpgm %s\n", s2);
+<       exit(-1);
+---
+>       //fprintf(stderr,"\ndatabase error: readpgm %s\n", s2);
+>       return(-1);
+84c86
+<     if(!box1) fprintf(stderr,"malloc error in load_db box1\n");
+---
+>     //if(!box1) fprintf(stderr,"malloc error in load_db box1\n");
+102c104
+<         if (!s3) fprintf (stderr, "malloc error in load_db s3\n");
+---
+>         //if (!s3) fprintf (stderr, "malloc error in load_db s3\n");
+109c111
+<       } else { fprintf(stderr,"load_db: string parse error L%d\n",line); }
+---
+>       } //else { fprintf(stderr,"load_db: string parse error L%d\n",line); }
+131a134
+>   /*
+133c136
+<     fprintf(stderr, " %d chars loaded\n", ii);
+---
+>     fprintf(stderr, " %d chars loaded\n", ii);*/
+165c168
+<     fprintf(stderr, " could not access %s\n",s2);
+---
+>     //fprintf(stderr, " could not access %s\n",s2);
+171a175
+>   /*
+174c178
+<       "\n#",s3, box1->num_ac, c_out);
+---
+>       "\n#",s3, box1->num_ac, c_out);*/
+180c184
+<     fprintf( stderr, "\nFATAL: malloc failed, skip store_db" );
+---
+>     //fprintf( stderr, "\nFATAL: malloc failed, skip store_db" );
+197c201
+<   } else {
+---
+>   } else {  
+236a241
+>     /*
+240,241c245,247
+< 	  px->x - px->x0, px->y - px->y0);
+<     if (px->num_ac){ /* output table of chars and its probabilities */
+---
+> 	  px->x - px->x0, px->y - px->y0);*/
+> 	  /*
+>     if (px->num_ac){ // output table of chars and its probabilities
+244c250
+<       /* output the (xml-)string (picture position, barcodes, glyphs, ...) */
+---
+>       // output the (xml-)string (picture position, barcodes, glyphs, ...)
+250a257
+>     */
+254c261,262
+<   ty=dy/40+1; // step, usually 1, but greater on large maps 
+---
+>   ty=dy/40+1; // step, usually 1, but greater on large maps
+>   /* 
+256c264
+<                  x0,y0,dx,dy,tx,ty);
+---
+>                  x0,y0,dx,dy,tx,ty);*/
+269c277
+<       fprintf(stderr,"%c", c1 );
+---
+>       //fprintf(stderr,"%c", c1 );
+276c284
+<     fprintf(stderr,"%c%c\n",c1,c2);
+---
+>     //fprintf(stderr,"%c%c\n",c1,c2);
+300,301c308,310
+<   if (vvv)
+<     fprintf(stderr," DEBUG: distance2\n");
+---
+>   /*
+>   if(job->cfg.verbose)
+>     fprintf(stderr," DEBUG: distance2\n");*/
+338c347
+<      fprintf(stderr," distance2 rc=%d rgood=%d rbad=%d\n",rc,rgood,rbad);
+---
+>      //fprintf(stderr," distance2 rc=%d rgood=%d rbad=%d\n",rc,rgood,rbad);
+357a367
+>     /*
+359c369
+<       fprintf(stderr,"\n#DEBUG: ocr_db (%d,%d) ",box1->x0, box1->y0);
+---
+>       fprintf(stderr,"\n#DEBUG: ocr_db (%d,%d) ",box1->x0, box1->y0);*/
+378a389
+>           /*
+382c393
+<                (int)box3->c, ((box3->tas[0])?box3->tas[0]:""), box3->wac[0]);
+---
+>                (int)box3->c, ((box3->tas[0])?box3->tas[0]:""), box3->wac[0]);*/
+396a408
+>     /*
+400c412
+<     );  /* ToDo: empty + alt-return (0x1b 0x0a) for help? ^a for skip all */
+---
+>     );*/  /// ToDo: empty + alt-return (0x1b 0x0a) for help? ^a for skip all
+419a432
+>     /*
+425a439
+>     */
+459c473
+<         store_db(box1, job);  /* store to disk for 2 */
+---
+>          store_db(box1, job);  /* store to disk for 2 */ 
+460a475
+>       /*
+463c478
+<            ((c>32 && c<127)?(char)c:'.'), (int)c, buf);
+---
+>            ((c>32 && c<127)?(char)c:'.'), (int)c, buf);*/
+diff B src/detect.c src/detect.c
+129a131
+>   /*
+132a135
+>   */
+147,148c150,152
+<     if (job->cfg.verbose & 16)
+<       fprintf(stderr,"searching new line %d\n#  ",i /* lines->num */);
+---
+>     //if (job->cfg.verbose & 16)
+>     //  fprintf(stderr,"searching new line %d\n#  ",i /* lines->num */);
+>     
+178a183
+>     /*
+181c186
+<        box3->x0, box3->y0, box3->x1-box3->x0, box3->y1-box3->y0);
+---
+>        box3->x0, box3->y0, box3->x1-box3->x0, box3->y1-box3->y0);*/
+199,200c204
+<                 else yy = 0;
+<       
+---
+>       else yy = 0;
+220,223c224,227
+<       if (      box2->y0 >= y + yy 			// lower than y
+< 	&& 3 * (box2->y1 - box2->y0 + 1) > 2 * my  // right size ?
+< 	&&     (box2->y1 - box2->y0 + 1) < 3 * my  // font mix, size = 2.6*my
+< 	&& (box2->y1 - box2->y0 + 1) > 3           // 4x6 lowercase=4
+---
+>       if ( box2->y0 >= y + yy 			// lower than y
+>       	&& 3 * (box2->y1 - box2->y0 + 1) > 2 * my  // right size ?
+>       	&&     (box2->y1 - box2->y0 + 1) < 3 * my  // font mix, size = 2.6*my
+>       	&& (box2->y1 - box2->y0 + 1) > 3           // 4x6 lowercase=4
+233,258c237,259
+<         jj++;  // count chars for debugging purpose
+<         if (box2->y0 > m2 + yy) {
+<           m2 = box2->y0 - yy;  /* highest upper boundary */
+<           if (job->cfg.verbose & 16)
+<             fprintf(stderr," set m2= %3d %+3d yy= %d  reason1 xy= %4d %4d\n#  ",
+<                     m2, m2-m1, yy, box2->x0, box2->y0);
+<         }
+<         if (box2->y1 > m4 + yy && (my>6 || box2->y1 < m3+my)) {
+<           m4 = box2->y1 - yy;  /* lowest lower boundary, small font lines can touch */
+<           if (job->cfg.verbose & 16)
+<             fprintf(stderr," set m4= %3d %+3d yy= %d  reason1 xy= %4d %4d\n#  ",
+<                     m4, m4-m1, yy, box2->x0, box2->y0);
+<         }
+<         if (   box2->y1 < m3 + yy
+<           && ( ( 2*box2->y1 > m2+  m4+yy && m2>m1)
+<             || ( 4*box2->y1 > m1+3*m4+yy) ) )  // care for TeX: \(^1\)Footnote 2003
+<         /* "'!?" could cause trouble here, therefore this lines */
+<         /* ToDo: get_bw costs time, check pre and next */
+<         if( get_bw(box2->x0,box2->x1,box2->y1+1   ,box2->y1+my/2,box2->p,job->cfg.cs,1) == 0
+<          || get_bw(box2->x0,box2->x1,box2->y1+my/2,box2->y1+my/2,box2->p,job->cfg.cs,1) == 1
+<          || num_cross(box2->x0,box2->x1,(box2->y0+box2->y1)/2,(box2->y0+box2->y1)/2,box2->p,job->cfg.cs)>2 )
+<         {
+<           m3 = box2->y1 - yy;  /* highest lower boundary */
+<           if (job->cfg.verbose & 16)
+<             fprintf(stderr," set m3= %3d %+3d yy= %d  reason1 xy= %4d %4d\n#  ",
+<                     m3, m3-m1, yy, box2->x0, box2->y0);
+---
+>           jj++;  // count chars for debugging purpose
+> 	  if (box2->y0 > m2 + yy) {
+> 	    m2 = box2->y0 - yy;  /* highest upper boundary */
+>       /*
+>       if (job->cfg.verbose & 16)
+> 	      fprintf(stderr," set m2= %d yy= %d\n#  ",m2, yy);*/
+> 	  }
+> 	  if (box2->y1 > m4 + yy && (my>6 || box2->y1 < m3+my)) {
+> 	    m4 = box2->y1 - yy;  /* lowest lower boundary, small font lines can touch */
+> 	  }
+> 	  if (   box2->y1 < m3 + yy
+> 	    && ( ( 2*box2->y1 > m2+  m4+yy && m2>m1)
+>               || ( 4*box2->y1 > m1+3*m4+yy) ) )  // care for TeX: \(^1\)Footnote 2003
+>  	  /* "'!?" could cause trouble here, therefore this lines */
+>  	  /* ToDo: get_bw costs time, check pre and next */
+> 	  if( get_bw(box2->x0,box2->x1,box2->y1+1   ,box2->y1+my/2,box2->p,job->cfg.cs,1) == 0
+> 	   || get_bw(box2->x0,box2->x1,box2->y1+my/2,box2->y1+my/2,box2->p,job->cfg.cs,1) == 1
+>            || num_cross(box2->x0,box2->x1,(box2->y0+box2->y1)/2,(box2->y0+box2->y1)/2,box2->p,job->cfg.cs)>2 )
+> 	  {
+> 	    m3 = box2->y1 - yy;  /* highest lower boundary */
+>           //if (job->cfg.verbose & 16)
+>           //  fprintf(stderr," set m3= %3d %+3d yy= %d  reason1 xy= %4d %4d\n#  ",
+>           //          m3, m3-m1, yy, box2->x0, box2->y0);
+268,270c269,271
+<           if (job->cfg.verbose & 16)
+<             fprintf(stderr," set m3= %3d %+3d yy= %d  reason2 xy= %4d %4d\n#  ",
+<                     m3, m3-m1, yy, box2->x0, box2->y0);
+---
+>           //if (job->cfg.verbose & 16)
+>           //  fprintf(stderr," set m3= %3d %+3d yy= %d  reason2 xy= %4d %4d\n#  ",
+>           //          m3, m3-m1, yy, box2->x0, box2->y0);
+290,294c291,296
+<     if (job->cfg.verbose & 16)
+<       fprintf(stderr," L%02d step 1 y=%4d m= %4d %+3d %+3d %+3d x= %3d %+3d"
+<                      " my=%2d chars=%3d\n#  ",
+<                      i, y, m1, m2-m1, m3-m1, m4-m1, lines->x0[i], 
+<                      lines->x1[i] - lines->x0[i], my, jj);
+---
+>     //if (job->cfg.verbose & 16)
+>     //  fprintf(stderr," L%02d step 1 y=%4d m= %4d %+3d %+3d %+3d x= %3d %+3d"
+>     //                 " my=%2d chars=%3d\n#  ",
+>     //                 i, y, m1, m2-m1, m3-m1, m4-m1, lines->x0[i], 
+>     //                 lines->x1[i] - lines->x0[i], my, jj);
+> 
+361,364c363,366
+<     if (job->cfg.verbose & 16)
+<       fprintf(stderr," L%02d step 2 y=%4d m= %4d %+3d %+3d %+3d x= %3d %+3d\n#  ",
+<         i, y, m1, m2-m1, m3-m1, m4-m1,
+<         lines->x0[i], lines->x1[i]-lines->x0[i]);
+---
+>     //if (job->cfg.verbose & 16)
+>     //  fprintf(stderr," L%02d step 2 y=%4d m= %4d %+3d %+3d %+3d x= %3d %+3d\n#  ",
+>     //    i, y, m1, m2-m1, m3-m1, m4-m1,
+>     //    lines->x0[i], lines->x1[i]-lines->x0[i]);
+376a379
+>     /*
+383a387
+>      */
+405a410
+>     /*
+409c414,415
+<      }
+---
+>     }
+>      */
+419a426
+>       /*
+421,423c428,429
+< 	fprintf(stderr, " L%02d final  y= %3d m= %4d %+3d %+3d %+3d x= %3d %+3d w= %d\n#  ",
+< 		i, y, m1, m2 - m1, m3 - m1, m4 - m1, lines->x0[i],
+< 		lines->x1[i] - lines->x0[i], lines->wt[i]);
+---
+>       	fprintf(stderr, " m= %4d %+3d %+3d %+3d w= %d (line=%d)\n#  ",
+>       		m1, m2 - m1, m3 - m1, m4 - m1, lines->wt[i], i);*/
+427c433
+< 	fprintf(stderr, "Warning: lines>MAXlines\n");
+---
+> 	//fprintf(stderr, "Warning: lines>MAXlines\n");
+435a442
+>   /*
+437c444
+<     fprintf(stderr, " num_lines= %d", lines->num-1);
+---
+>     fprintf(stderr, " num_lines= %d", lines->num-1);*/
+455c462
+<     if(job->cfg.verbose)fprintf(stderr,"\n# r=%2d ",r);
+---
+>     //if(job->cfg.verbose)fprintf(stderr,"\n# r=%2d ",r);
+553c560
+<       if(job->cfg.verbose)fprintf(stderr," i=%d",i);
+---
+>       //if(job->cfg.verbose)fprintf(stderr," i=%d",i);
+554a562
+>       /*
+556c564
+<         ((i)?( (i==1)?"x":"y" ):"?"),x2,y2,x3,y3);
+---
+>         ((i)?( (i==1)?"x":"y" ):"?"),x2,y2,x3,y3);*/
+568c576
+<     if(job->cfg.verbose) if(dx<5 || dy<7)fprintf(stderr," empty box");
+---
+>     //if(job->cfg.verbose) if(dx<5 || dy<7)fprintf(stderr," empty box");
+570c578
+<     if(job->cfg.verbose)fprintf(stderr, " box detected at %4d %4d %4d %4d",x0,y0,dx,dy);
+---
+>     //if(job->cfg.verbose)fprintf(stderr, " box detected at %4d %4d %4d %4d",x0,y0,dx,dy);
+622a631
+>   double tmp; //GSA
+669,672c678,686
+<           re =(int) ((1.*(x3-x2)*dx[pass-1]+(y3-y2)*dy[pass-1])
+<               *(1.*(x3-x2)*dx[pass-1]+(y3-y2)*dy[pass-1])*INorm
+<               /(1.*((x3-x2)*(x3-x2)+(y3-y2)*(y3-y2))
+<                *(1.*dx[pass-1]*dx[pass-1]+dy[pass-1]*dy[pass-1])));
+---
+>           tmp=(1.*((x3-x2)*(x3-x2)+(y3-y2)*(y3-y2))
+>                *(1.*dx[pass-1]*dx[pass-1]+dy[pass-1]*dy[pass-1]));
+>           if(tmp>0) {               
+>             re =(int) ((1.*(x3-x2)*dx[pass-1]+(y3-y2)*dy[pass-1])
+>                 *(1.*(x3-x2)*dx[pass-1]+(y3-y2)*dy[pass-1])*INorm
+>                 /tmp);
+>           } else {
+>             re=0;
+>           }
+716,720c730,738
+<         re = INorm-(int)((1.*(x3-x2)*dx[pass-1]+(y3-y2)*dy[pass-1])
+<                     *(1.*(x3-x2)*dx[pass-1]+(y3-y2)*dy[pass-1])*INorm
+<                     /((1.*(x3-x2)*(x3-x2)+(y3-y2)*(y3-y2))
+<                      *(1.*dx[pass-1]*dx[pass-1]+dy[pass-1]*dy[pass-1]))
+<                     );
+---
+>         tmp=((1.*(x3-x2)*(x3-x2)+(y3-y2)*(y3-y2))
+>                      *(1.*dx[pass-1]*dx[pass-1]+dy[pass-1]*dy[pass-1]));
+>         if(tmp>0) {                     
+>           re = INorm-(int)((1.*(x3-x2)*dx[pass-1]+(y3-y2)*dy[pass-1])
+>                       *(1.*(x3-x2)*dx[pass-1]+(y3-y2)*dy[pass-1])*INorm
+>                       /tmp);
+>         } else {
+>           re=0;
+>         }
+723a742
+>       /*
+726a746
+>       */
+735a756
+>     /*
+739a761
+>     */
+740a763
+>   /*
+742a766
+>   */
+751d774
+<   int vvv=OCR_JOB->cfg.verbose; /* fixme (global var) */
+753c776,777
+<   if (vvv)
+---
+>   /*
+>   if (job->cfg.verbose)
+754a779
+>   */
+756c781
+<     if (vvv) fprintf(stderr, "# zoning\n# ... ");
+---
+>     //if (job->cfg.verbose) fprintf(stderr, "# zoning\n# ... ");
+761c786
+<   if (vvv) fprintf(stderr,"\n");
+---
+>   //if(job->cfg.verbose) fprintf(stderr,"\n");
+776a802
+>   /*
+778c804,805
+<     fprintf(stderr, "# detect.c adjust_text_lines() ");
+---
+>     fprintf(stderr, "# adjust text lines ");
+>   */
+780c807
+<   if (!m) { fprintf(stderr," malloc failed\n"); return 0;}
+---
+>   if (!m) { /*fprintf(stderr," malloc failed\n");*/ return 0;}
+858c885,886
+<                    
+---
+>               
+>     /*               
+867a896
+> 	   */
+903c932
+<   if(job->cfg.verbose) fprintf(stderr,"\n#  changed_chars= %d\n",diff);
+---
+>   //if(job->cfg.verbose) fprintf(stderr,"\n#  changed_chars= %d\n",diff);
+941a971
+>   /*
+945a976
+>   */
+956a988
+>     /*
+958c990
+<       "# detect.c L%d Warning: numC=0\n", __LINE__);
+---
+>       "# detect.c L%d Warning: numC=0\n", __LINE__);*/
+964a997
+>   /*
+967a1001
+>   */
+997a1032
+>   /*
+1000a1036
+>   */
+diff B src/gocr.c src/gocr.c
+27c27
+< #include "config.h"
+---
+> //#include "config.h"
+44c44
+< #include "version.h"
+---
+> //#include "version.h"
+46,120c46,47
+< static void out_version(int v) {
+<   fprintf(stderr, " Optical Character Recognition --- gocr "
+<           version_string " " release_string "\n"
+<           " Copyright (C) 2001-2010 Joerg Schulenburg  GPG=1024D/53BDFBE3\n"
+<           " released under the GNU General Public License\n");
+<   /* as recommended, (c) and license should be part of the binary */
+<   /* no email because of SPAM, see README for contacting the author */
+<   if (v)
+<     fprintf(stderr, " use option -h for help\n");
+<   if (v & 2)
+<     exit(1);
+<   return;
+< }
+< 
+< static void help(void) {
+<   out_version(0);
+<   /* output is shortened to essentials, see manual page for details */
+<   fprintf(stderr,
+< 	  " using: gocr [options] pnm_file_name  # use - for stdin\n"
+< 	  " options (see gocr manual pages for more details):\n"
+< 	  " -h, --help\n"
+< 	  " -i name   - input image file (pnm,pgm,pbm,ppm,pcx,...)\n"
+< 	  " -o name   - output file  (redirection of stdout)\n"
+< 	  " -e name   - logging file (redirection of stderr)\n"
+< 	  " -x name   - progress output to fifo (see manual)\n"
+< 	  " -p name   - database path including final slash (default is ./db/)\n");
+<   fprintf(stderr, /* string length less than 509 bytes for ISO C89 */
+< 	  " -f fmt    - output format (ISO8859_1 TeX HTML XML UTF8 ASCII)\n"
+< 	  " -l num    - threshold grey level 0<160<=255 (0 = autodetect)\n"
+< 	  " -d num    - dust_size (remove small clusters, -1 = autodetect)\n"
+< 	  " -s num    - spacewidth/dots (0 = autodetect)\n"
+< 	  " -v num    - verbose (see manual page)\n"
+< 	  " -c string - list of chars (debugging, see manual)\n"
+< 	  " -C string - char filter (ex. hexdigits: ""0-9A-Fx"", only ASCII)\n"
+< 	  " -m num    - operation modes (bitpattern, see manual)\n");
+<   fprintf(stderr, /* string length less than 509 bytes for ISO C89 */
+< 	  " -a num    - value of certainty (in percent, 0..100, default=95)\n"
+< 	  " -u string - output this string for every unrecognized character\n");
+<   fprintf(stderr, /* string length less than 509 bytes for ISO C89 */
+< 	  " examples:\n"
+< 	  "\tgocr -m 4 text1.pbm                   # do layout analyzis\n"
+< 	  "\tgocr -m 130 -p ./database/ text1.pbm  # extend database\n"
+< 	  "\tdjpeg -pnm -gray text.jpg | gocr -    # use jpeg-file via pipe\n"
+< 	  "\n");
+<   fprintf(stderr, " webpage: http://jocr.sourceforge.net/ (may out of date)\n");
+<   fprintf(stderr, " mirror:  http://www-e.uni-magdeburg.de/jschulen/ocr/\n");
+<   exit(0);
+< }
+< 
+< #ifdef HAVE_GETTIMEOFDAY
+< /* from the glibc documentation */
+< static int timeval_subtract (struct timeval *result, struct timeval *x, 
+<     struct timeval *y) {
+< 
+<   /* Perform the carry for the later subtraction by updating Y. */
+<   if (x->tv_usec < y->tv_usec) {
+<     int nsec = (y->tv_usec - x->tv_usec) / 1000000 + 1;
+<     y->tv_usec -= 1000000 * nsec;
+<     y->tv_sec += nsec;
+<   }
+<   if (x->tv_usec - y->tv_usec > 1000000) {
+<     int nsec = (x->tv_usec - y->tv_usec) / 1000000;
+<     y->tv_usec += 1000000 * nsec;
+<     y->tv_sec -= nsec;
+<   }
+< 
+<   /* Compute the time remaining to wait.
+<      `tv_usec' is certainly positive. */
+<   result->tv_sec = x->tv_sec - y->tv_sec;
+<   result->tv_usec = x->tv_usec - y->tv_usec;
+< 
+<   /* Return 1 if result is negative. */
+<   return x->tv_sec < y->tv_sec;
+< }
+< #endif
+---
+> #include <windows.h>
+> #include "dll.h" 
+122c49,51
+< static void process_arguments(job_t *job, int argn, char *argv[])
+---
+> BOOL APIENTRY DllMain (HINSTANCE hInst     /* Library instance handle. */ ,
+>                        DWORD reason        /* Reason this function is being called. */ ,
+>                        LPVOID reserved     /* Not used. */ )
+124,125c53,56
+<   int i;
+<   char *s1;
+---
+>     switch (reason)
+>     {
+>       case DLL_PROCESS_ATTACH:
+>         break;
+127c58,59
+<   assert(job);
+---
+>       case DLL_PROCESS_DETACH:
+>         break;
+129,187c61
+<   if (argn <= 1) {
+<     out_version(1);
+<     exit(0);
+<   }
+< #ifdef HAVE_PGM_H
+<   pnm_init(&argn, &argv);
+< #endif
+<   
+<   /* process arguments */
+<   for (i = 1; i < argn; i++) {
+<     if (strcmp(argv[i], "--help") == 0)
+<       help(); /* and quits */
+<     if (argv[i][0] == '-' && argv[i][1] != 0) {
+<       s1 = "";
+<       if (i + 1 < argn)
+< 	s1 = argv[i + 1];
+<       switch (argv[i][1]) {
+<       case 'h': /* help */
+< 	help();
+< 	break;
+<       case 'i': /* input image file */
+< 	job->src.fname = s1;
+< 	i++;
+< 	break;
+<       case 'e': /* logging file */
+< 	if (s1[0] == '-' && s1[1] == '\0') {
+< #ifdef HAVE_UNISTD_H
+<           dup2(STDOUT_FILENO, STDERR_FILENO); /* -e /dev/stdout  works */
+< #else
+< 	  fprintf(stderr, "stderr redirection not possible without unistd.h\n");
+< #endif           
+< 	}
+< 	else if (!freopen(s1, "w", stderr)) {
+< 	  fprintf(stderr, "stderr redirection to %s failed\n", s1);
+< 	}
+< 	i++;
+< 	break;
+<       case 'p': /* database path */
+< 	job->cfg.db_path=s1;
+< 	i++;
+< 	break;
+<       case 'o': /* output file */
+< 	if (s1[0] == '-' && s1[1] == '\0') {	/* default */
+< 	}
+< 	else if (!freopen(s1, "w", stdout)) {
+< 	  fprintf(stderr, "stdout redirection to %s failed\n", s1);
+< 	};
+< 	i++;
+< 	break;
+<       case 'f': /* output format */
+<         if (strcmp(s1, "ISO8859_1") == 0) job->cfg.out_format=ISO8859_1; else
+<         if (strcmp(s1, "TeX")       == 0) job->cfg.out_format=TeX; else
+<         if (strcmp(s1, "HTML")      == 0) job->cfg.out_format=HTML; else
+<         if (strcmp(s1, "XML")       == 0) job->cfg.out_format=XML; else
+<         if (strcmp(s1, "SGML")      == 0) job->cfg.out_format=SGML; else
+<         if (strcmp(s1, "UTF8")      == 0) job->cfg.out_format=UTF8; else
+<         if (strcmp(s1, "ASCII")     == 0) job->cfg.out_format=ASCII; else
+<         fprintf(stderr,"Warning: unknown format (-f %s)\n",s1);
+<         i++;
+---
+>       case DLL_THREAD_ATTACH:
+189,232c63,64
+<       case 'c': /* list of chars (_ = not recognized chars) */
+< 	job->cfg.lc = s1;
+< 	i++;
+< 	break;
+<       case 'C': /* char filter, default: NULL (all chars) */
+<         /* ToDo: UTF8 input, wchar */
+< 	job->cfg.cfilter = s1;
+< 	i++;
+< 	break;
+<       case 'd': /* dust size */
+< 	job->cfg.dust_size = atoi(s1);
+< 	i++;
+< 	break;
+<       case 'l': /* grey level 0<160<=255, 0 for autodetect */
+< 	job->cfg.cs = atoi(s1);
+< 	i++;
+< 	break;
+<       case 's': /* spacewidth/dots (0 = autodetect) */
+< 	job->cfg.spc = atoi(s1);
+< 	i++;
+< 	break;
+<       case 'v': /* verbose mode */
+< 	job->cfg.verbose |= atoi(s1);
+< 	i++;
+< 	break;
+<       case 'm': /* operation modes */
+< 	job->cfg.mode |= atoi(s1);
+< 	i++;
+< 	break;
+<       case 'n': /* numbers only */
+< 	job->cfg.only_numbers = atoi(s1);
+< 	i++;
+< 	break;
+<       case 'x': /* initialize progress output s1=fname */
+< 	ini_progress(s1);
+< 	i++;
+< 	break;
+<       case 'a': /* set certainty */
+< 	job->cfg.certainty = atoi(s1);;
+< 	i++;
+< 	break;
+<       case 'u': /* output marker for unrecognized chars */
+<         job->cfg.unrec_marker = s1;
+<         i++;
+---
+> 
+>       case DLL_THREAD_DETACH:
+234,237d65
+<       default:
+< 	fprintf(stderr, "# unknown option use -h for help\n");
+<       }
+<       continue;
+239,247d66
+<     else /* argument can be filename v0.2.5 */ if (argv[i][0] != '-'
+< 						   || argv[i][1] == '\0' ) {
+<       job->src.fname = argv[i];
+<     }
+<   }
+< }
+< 
+< static void mark_start(job_t *job) {
+<   assert(job);
+249,286c68,69
+<   if (job->cfg.verbose) {
+<     out_version(0);
+<     /* insert some helpful info for support */
+<     fprintf(stderr, "# compiled: " __DATE__ );
+< #if defined(__GNUC__)
+<     fprintf(stderr, " GNUC-%d", __GNUC__ );
+< #endif
+< #ifdef __GNUC_MINOR__
+<     fprintf(stderr, ".%d", __GNUC_MINOR__ );
+< #endif
+< #if defined(__linux)
+<     fprintf(stderr, " linux");
+< #elif defined(__unix)
+<     fprintf(stderr, " unix");
+< #endif
+< #if defined(__WIN32) || defined(__WIN32__)
+<     fprintf(stderr, " WIN32");
+< #endif
+< #if defined(__WIN64) || defined(__WIN64__)
+<     fprintf(stderr, " WIN64");
+< #endif
+< #if defined(__VERSION__)
+<     fprintf(stderr, " version " __VERSION__ );
+< #endif
+<     fprintf(stderr, "\n");
+<     fprintf(stderr,
+<       "# options are: -l %d -s %d -v %d -c %s -m %d -d %d -n %d -a %d -C \"%s\"\n",
+<       job->cfg.cs, job->cfg.spc, job->cfg.verbose, job->cfg.lc, job->cfg.mode, 
+<       job->cfg.dust_size, job->cfg.only_numbers, job->cfg.certainty,
+<       job->cfg.cfilter);
+<     fprintf(stderr, "# file: %s\n", job->src.fname);
+< #ifdef USE_UNICODE
+<     fprintf(stderr,"# using unicode\n");
+< #endif
+< #ifdef HAVE_GETTIMEOFDAY
+<     gettimeofday(&job->tmp.init_time, NULL);
+< #endif
+<   }
+---
+>     /* Returns TRUE on success, FALSE on failure */
+>     return TRUE;
+289,290d71
+< static void mark_end(job_t *job) {
+<   assert(job);
+292,302d72
+< #ifdef HAVE_GETTIMEOFDAY
+<   /* show elapsed time */
+<   if (job->cfg.verbose) {
+<     struct timeval end, result;
+<     gettimeofday(&end, NULL);
+<     timeval_subtract(&result, &end, &job->tmp.init_time);
+<     fprintf(stderr,"Elapsed time: %d:%02d:%3.3f.\n", (int)result.tv_sec/60,
+< 	(int)result.tv_sec%60, (float)result.tv_usec/1000);
+<   }
+< #endif
+< }
+307c77
+< 
+---
+> /*
+310a81
+> */  
+315,335d85
+< /* subject of change, we need more output for XML (ToDo) */
+< void print_output(job_t *job) {
+<   int linecounter = 0;
+<   const char *line;
+< 
+<   assert(job);
+<         
+< /* TODO: replace getTextLine-loop(line) by output_text() (libs have to use pipes)
+<    simplify code 2010-09-26
+< */
+<   linecounter = 0;
+<   line = getTextLine(&(job->res.linelist), linecounter++);
+<   while (line) {
+<     /* notice: decode() is shiftet to getTextLine since 0.38 */
+<     fputs(line, stdout);
+<     if (job->cfg.out_format==HTML) fputs("<br />",stdout);
+<     if (job->cfg.out_format!=XML)  fputc('\n', stdout);
+<     line = getTextLine(&(job->res.linelist), linecounter++);
+<   }
+<   free_textlines(&(job->res.linelist));
+< }
+341,345c91,92
+< /* -------------------------------------------------------------
+< // ------   MAIN - replace this by your own aplication! 
+< // ------------------------------------------------------------- */
+< int main(int argn, char *argv[]) {
+<   int multipnm=1;
+---
+> int DLLIMPORT DoJob(char *InputFile,int certainty,char *Output)
+> {
+347a95,99
+>   
+>   job_init(job); /* init cfg and db */ 
+>   
+>   char ValidChars[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+-?=";
+>   job1.cfg.cfilter = ValidChars;
+349c101,102
+<   setvbuf(stdout, (char *) NULL, _IONBF, 0);	/* not buffered */
+---
+>   /* set certainty */
+>   job1.cfg.certainty = certainty;
+351c104,108
+<   job_init(job); /* init cfg and db */
+---
+>   /* input image file */
+>   job1.src.fname = InputFile;  
+> 
+>   /* ausgabe unterdrücken */
+>   job1.cfg.verbose = 0;
+353,354d109
+<   process_arguments(job, argn, argv);
+<   
+356,358c111,112
+<   if ( job->cfg.mode & 2 ) /* check for db-option flag */
+<     load_db(job);
+<     /* load_db uses readpnm() and would conflict with multi images */
+---
+>   if ( job1.cfg.mode & 2 ) /* check for db-option flag */
+>     load_db(job); /* uses readpnm() and would conflict with multi images */
+360c114,119
+<   while (multipnm==1) { /* multi-image loop */
+---
+>   int ls = 0;
+>   
+>   job_init_image(job); /* single image */
+>   if (read_picture(job)>=0) {
+>   
+>     pgm2asc(job);
+362c121,122
+<     job_init_image(job); /* single image */
+---
+>     int linecounter = 0;    
+>     const char *line;
+364c124,134
+<     mark_start(job);
+---
+>     strcpy(Output,"");
+>     line = getTextLine(&(job->res.linelist),linecounter++);
+>     while (line) {
+>       if (strlen(line)+ls>=100) break;
+>       strncat(Output, line, 100);
+>       ls=strlen(Output);
+>       line = getTextLine(&(job->res.linelist),linecounter++);
+>     }
+>   }
+>   free_textlines(&(job->res.linelist));
+>   job_free_image(job);
+366,370c136,146
+<     multipnm = read_picture(job);
+<     /* separation of main and rest for using as lib
+<        this will be changed later => introduction of set_option()
+<        for better communication to the engine  */
+<     if (multipnm<0) break; /* read error */
+---
+>   if(ls>0) {
+>     return 1;
+>   } else {
+>     return 0;
+>   }
+> }
+> 
+> int DLLIMPORT DoJob_ext(char *InputFile,int certainty,char *Output,char *charset)
+> {
+>   job_t job1, *job; /* fixme, dont want global variables for lib */
+>   job=OCR_JOB=&job1;
+372,373c148,153
+<     /* call main loop */
+<     pgm2asc(job);
+---
+>   job_init(job); /* init cfg and db */ 
+> 
+>   job1.cfg.cfilter = charset;
+> 
+>   //set certainty
+>   job1.cfg.certainty = certainty;
+375c155,168
+<     mark_end(job);
+---
+>   //input image file
+>   job1.src.fname = InputFile;  
+> 
+>   // ausgabe unterdrücken
+>   job1.cfg.verbose = 0;
+> 
+>   // load character data base (JS1002: now outside pgm2asc) 
+>   if ( job1.cfg.mode & 2 ) // check for db-option flag 
+>     load_db(job); // uses readpnm() and would conflict with multi images 
+>         
+>   int ls = 0;
+>   
+>   job_init_image(job); // single image 
+>   if (read_picture(job)>=0) {
+377c170
+<     print_output(job);
+---
+>     pgm2asc(job);
+379c172,173
+<     job_free_image(job);
+---
+>     int linecounter = 0;    
+>     const char *line;
+380a175,182
+>     strcpy(Output,"");
+>     line = getTextLine(&(job->res.linelist),linecounter++);
+>     while (line) {
+>       if (strlen(line)+ls>=100) break;
+>       strncat(Output, line, 100);
+>       ls=strlen(Output);
+>       line = getTextLine(&(job->res.linelist),linecounter++);
+>     }
+381a184,185
+>   free_textlines(&(job->res.linelist));
+>   job_free_image(job);
+383c187,191
+<   return ((multipnm<0)?multipnm:0); /* -1=255 on error, 0 ok */
+---
+>   if(ls>0) {
+>     return 1;
+>   } else {
+>     return 0;
+>   }
+diff B src/jconv.c src/jconv.c
+26a27
+> /*
+31a33
+> */  
+55,56c57,58
+<     else
+<       printf("unknown option: %s\n", argv[i]);
+---
+> /*    else 
+>       printf("unknown option: %s\n", argv[i]);*/
+67,68c69,70
+<   printf("# in=%s out=%s offs=%d,%d len=%d,%d vvv=%d\n",
+< 	 inam, onam, ox, oy, dx, dy, vvv);
+---
+>   //printf("# in=%s out=%s offs=%d,%d len=%d,%d vvv=%d\n",
+> 	// inam, onam, ox, oy, dx, dy, vvv);
+82,83c84,86
+<     printf("Error: unknown suffix\n");
+<     exit(1);
+---
+>     //printf("Error: unknown suffix\n");
+>     return(1);
+>     //exit(1);
+95c98
+<     printf("# shrinking PGM:   offs=%d,%d len=%d,%d\n", ox, oy, dx, dy);
+---
+>     //printf("# shrinking PGM:   offs=%d,%d len=%d,%d\n", ox, oy, dx, dy);
+143,144c146,147
+<   printf("# final dimension: offs=%d,%d len=%d,%d bpp=%d\n",
+< 	 ox, oy, dx, dy, bild.bpp);
+---
+>   //printf("# final dimension: offs=%d,%d len=%d,%d bpp=%d\n",
+> 	// ox, oy, dx, dy, bild.bpp);
+156c159
+<   printf("# write %s\n", onam);
+---
+>   //printf("# write %s\n", onam);
+165,166c168,169
+<   else
+<     printf("Error: unknown suffix");
+---
+>   /*else
+>     printf("Error: unknown suffix");*/
+diff B src/lines.c src/lines.c
+64c64
+<     fprintf(stderr,"\n#BUG: appending 0 to a line makes no sense!");
+---
+>     //fprintf(stderr,"\n#BUG: appending 0 to a line makes no sense!");
+72c72
+<     if( !temp ) { fprintf(stderr,"realloc failed!\n");
+---
+>     if( !temp ) { /*fprintf(stderr,"realloc failed!\n");*/ 
+108a109
+>     /*
+111c112
+<               dx, dy);
+---
+>               dx, dy);*/
+120a122
+>                 /*
+124a127
+>                     */
+127a131
+>     /*
+129c133
+<       fprintf(stderr, "# Minimum adjusted x: %d (min_indent)\n", min_indent);
+---
+>       fprintf(stderr, "# Minimum adjusted x: %d (min_indent)\n", min_indent);*/
+144c148
+<    
+---
+>  
+162c166
+<     fprintf(stderr,"malloc failed!\n"); // ToDo: index_to_error_list 
+---
+>     //fprintf(stderr,"malloc failed!\n"); // ToDo: index_to_error_list 
+166a171
+>   /*
+169c174
+< 
+---
+>   */
+177a183
+>     /*
+180a187
+>     */
+208c215,216
+<     if (box2->num_ac && box2->wac[0]<job->cfg.certainty) box2->c=UNKNOWN;
+---
+>     //if (box2->num_ac && box2->wac[0]<job->cfg.certainty) box2->c=UNKNOWN; << bug fixed below (*GSA*)
+>     if (box2->num_ac && box2->wac[0]<job->cfg.certainty && box2->c != box2->tac[0]) box2->c=UNKNOWN;
+311c319
+<             buffer = append_to_line(buffer, job->cfg.unrec_marker, &len);
+---
+>              buffer = append_to_line(buffer, job->cfg.unrec_marker, &len);
+343c351
+<             buffer=append_to_line(buffer,"\n",&len);
+---
+>           buffer=append_to_line(buffer,"\n",&len);
+361a370
+>   /*
+363a373
+>   */
+diff B src/list.c src/list.c
+214,215c214,215
+<   g_debug(fprintf(stderr, "LEV5: level++=%d current[]=%p\n",
+<      l->level, l->current);)
+---
+>   /*g_debug(fprintf(stderr, "LEV5: level++=%d current[]=%p\n",
+>      l->level, l->current);)*/
+217c217,218
+<     fprintf(stderr, " realloc failed! abort\n"); return(1);
+---
+>     //fprintf(stderr, " realloc failed! abort\n"); 
+>     return(1);
+233,234c234,235
+<   g_debug(fprintf(stderr, "LEV5: level--=%d current[]=%p\n", l->level, 
+<       l->current);)
+---
+>   /*g_debug(fprintf(stderr, "LEV5: level--=%d current[]=%p\n", l->level, 
+>       l->current);)*/
+312c313
+<   g_debug(fprintf(stderr, "LEV3: list_sort()\n");)
+---
+>   //g_debug(fprintf(stderr, "LEV3: list_sort()\n");)
+330c331
+<   g_debug(fprintf(stderr, "LEV3: list_and_data_free()\n");)
+---
+>   //g_debug(fprintf(stderr, "LEV3: list_and_data_free()\n");)
+diff B src/list.h src/list.h
+28c28
+< #define g_debug(a)	a
+---
+> #define g_debug(a)
+diff B src/Makefile src/Makefile
+7,10c7,8
+< # lib removed for simplification (v0.46)
+< # but Igor from OSRA an optical chemical structure recognition software 
+< #  wants it (v0.47 Mar09)
+< PGMASCLIB = Pgm2asc
+---
+> # lib removed for simplification
+> #PGMASCLIB = Pgm2asc
+12d9
+< # ToDo: need a better pgm2asc.h for lib users 
+14,15d10
+< # avoid german compiler messages
+< LANG=C
+47,52c42
+< # ar,ranlib detection removed from configure (simplicity)
+< #  but needed by some developpers (linux only) for for (make libs)
+< # RANLIB = @RANLIB@
+< # AR = @AR@
+< RANLIB = ranlib
+< AR = ar
+---
+> #RANLIB=@RANLIB@
+58c48
+< CPPFLAGS=-Wall -g -fexceptions -DDO_DEBUG=1 
+---
+> CPPFLAGS=
+61,62c51
+< LDFLAGS=-lm 
+< LIBS=-lnetpbm 
+---
+> LDFLAGS=-lm  -lnetpbm  -L.
+65,68d53
+< .SUFFIXES: .s .o .c .h
+< # do not look for files if help (etc) is given
+< .PHONY : doc clean install libs default
+< 
+74c59
+< # all: $(PROGRAM) lib$(PGMASCLIB).a
+---
+> # all: $(PROGRAM) $(LIBPGMASCLIB)
+81,85c66
+< # Aug2010
+< unicode.o: unicode_defs.h
+< list.o pgm2asc.o: list.h
+< 
+< #$(PROGRAM): lib$(PGMASCLIB).a gocr.o
+---
+> #$(PROGRAM): $(LIBPGMASCLIB) gocr.o
+88,105c69,75
+< 	#$(CC) -o $@ $(LDFLAGS) gocr.o ./lib$(PGMASCLIB).a $(LIBS)
+< 	$(CC) -o $@ $(LDFLAGS) gocr.o $(LIBOBJS) $(LIBS)
+< 	# if test -r $(PROGRAM); then cp $@ ../bin; fi
+< 
+< libs: lib$(PGMASCLIB).a lib$(PGMASCLIB).0.50.so
+< 
+< #lib$(PGMASCLIB).0.50.so: $(LIBOBJS)
+< #	$(CC) -fPIC -shared -Wl,-h$@ -o $@ $(LIBOBJS)
+< lib$(PGMASCLIB).0.50.so: $(LIBOBJS:%.o=%.c) Makefile
+< 	# .o must be build with -fPIC too (Aug2010 JS)
+< 	$(CC) $(CFLAGS) -fPIC -shared -Wl,-h$@ -o $@ $(LIBOBJS:%.o=%.c)
+< 	-rm -f lib$(PGMASCLIB).so  # set new link
+< 	-ln -s $@ lib$(PGMASCLIB).so
+< 
+< lib$(PGMASCLIB).a: $(LIBOBJS)
+< 	#	-rm -f $@
+< 	$(AR) cru $@ $(LIBOBJS)
+< 	$(RANLIB) $@
+---
+> 	#$(CC) -o $@ gocr.o ./lib$(PGMASCLIB).a $(LDFLAGS)
+> 	$(CC) -o $@ gocr.o $(LIBOBJS) $(LDFLAGS)
+> 	if test -r $(PROGRAM); then cp $@ ../bin; fi
+> #$(LIBPGMASCLIB): $(LIBOBJS)
+> #	-rm -f $@
+> #	$(AR) cru $@ $(LIBOBJS)
+> #	$(RANLIB) $@
+114c84
+< 	$(INSTALL) $(PROGRAM) $(DESTDIR)$(bindir)
+---
+> 	$(INSTALL) ../bin/$(PROGRAM) $(DESTDIR)$(bindir)
+116,121c86
+< 	if test -f lib$(PGMASCLIB).a; then\
+< 	 $(INSTALL) lib$(PGMASCLIB).a $(DESTDIR)$(libdir);\
+< 	 $(INSTALL) lib$(PGMASCLIB).0.50.so $(DESTDIR)$(libdir);\
+< 	 $(INSTALL) lib$(PGMASCLIB).so $(DESTDIR)$(libdir);\
+< 	fi
+< 	# ToDo: not sure that the link will be installed correctly
+---
+> 	#$(INSTALL) $(LIBPGMASCLIB) $(DESTDIR)$(libdir)
+128,131c93
+< 	-rm -f $(DESTDIR)$(libdir)/lib$(PGMASCLIB).a
+< 	-rm -f $(DESTDIR)$(libdir)/lib$(PGMASCLIB).0.50.so
+< 	-rm -f $(DESTDIR)$(libdir)/lib$(PGMASCLIB).so
+< 	# ToDo: set to old version.so ?
+---
+> 	#-rm -f $(DESTDIR)$(libdir)/$(LIBPGMASCLIB)
+138c100
+< 	-rm -f gocr libPgm2asc.*
+---
+> 	#-rm -f gocr libPgm2asc.a
+diff B src/Makefile.in src/Makefile.in
+7,10c7,8
+< # lib removed for simplification (v0.46)
+< # but Igor from OSRA an optical chemical structure recognition software 
+< #  wants it (v0.47 Mar09)
+< PGMASCLIB = Pgm2asc
+---
+> # lib removed for simplification
+> #PGMASCLIB = Pgm2asc
+12d9
+< # ToDo: need a better pgm2asc.h for lib users 
+14,15d10
+< # avoid german compiler messages
+< LANG=C
+47,52c42
+< # ar,ranlib detection removed from configure (simplicity)
+< #  but needed by some developpers (linux only) for for (make libs)
+< # RANLIB = @RANLIB@
+< # AR = @AR@
+< RANLIB = ranlib
+< AR = ar
+---
+> #RANLIB=@RANLIB@
+61,62c51
+< LDFLAGS=@LDFLAGS@
+< LIBS=@LIBS@
+---
+> LDFLAGS=@LDFLAGS@ @LIBS@ -L.
+65,68d53
+< .SUFFIXES: .s .o .c .h
+< # do not look for files if help (etc) is given
+< .PHONY : doc clean install libs default
+< 
+74c59
+< # all: $(PROGRAM) lib$(PGMASCLIB).a
+---
+> # all: $(PROGRAM) $(LIBPGMASCLIB)
+81,85c66
+< # Aug2010
+< unicode.o: unicode_defs.h
+< list.o pgm2asc.o: list.h
+< 
+< #$(PROGRAM): lib$(PGMASCLIB).a gocr.o
+---
+> #$(PROGRAM): $(LIBPGMASCLIB) gocr.o
+88,105c69,75
+< 	#$(CC) -o $@ $(LDFLAGS) gocr.o ./lib$(PGMASCLIB).a $(LIBS)
+< 	$(CC) -o $@ $(LDFLAGS) gocr.o $(LIBOBJS) $(LIBS)
+< 	# if test -r $(PROGRAM); then cp $@ ../bin; fi
+< 
+< libs: lib$(PGMASCLIB).a lib$(PGMASCLIB).@PACKAGE_VERSION@.so
+< 
+< #lib$(PGMASCLIB).@PACKAGE_VERSION@.so: $(LIBOBJS)
+< #	$(CC) -fPIC -shared -Wl,-h$@ -o $@ $(LIBOBJS)
+< lib$(PGMASCLIB).@PACKAGE_VERSION@.so: $(LIBOBJS:%.o=%.c) Makefile
+< 	# .o must be build with -fPIC too (Aug2010 JS)
+< 	$(CC) $(CFLAGS) -fPIC -shared -Wl,-h$@ -o $@ $(LIBOBJS:%.o=%.c)
+< 	-rm -f lib$(PGMASCLIB).so  # set new link
+< 	-ln -s $@ lib$(PGMASCLIB).so
+< 
+< lib$(PGMASCLIB).a: $(LIBOBJS)
+< 	#	-rm -f $@
+< 	$(AR) cru $@ $(LIBOBJS)
+< 	$(RANLIB) $@
+---
+> 	#$(CC) -o $@ gocr.o ./lib$(PGMASCLIB).a $(LDFLAGS)
+> 	$(CC) -o $@ gocr.o $(LIBOBJS) $(LDFLAGS)
+> 	if test -r $(PROGRAM); then cp $@ ../bin; fi
+> #$(LIBPGMASCLIB): $(LIBOBJS)
+> #	-rm -f $@
+> #	$(AR) cru $@ $(LIBOBJS)
+> #	$(RANLIB) $@
+114c84
+< 	$(INSTALL) $(PROGRAM) $(DESTDIR)$(bindir)
+---
+> 	$(INSTALL) ../bin/$(PROGRAM) $(DESTDIR)$(bindir)
+116,121c86
+< 	if test -f lib$(PGMASCLIB).a; then\
+< 	 $(INSTALL) lib$(PGMASCLIB).a $(DESTDIR)$(libdir);\
+< 	 $(INSTALL) lib$(PGMASCLIB).@PACKAGE_VERSION@.so $(DESTDIR)$(libdir);\
+< 	 $(INSTALL) lib$(PGMASCLIB).so $(DESTDIR)$(libdir);\
+< 	fi
+< 	# ToDo: not sure that the link will be installed correctly
+---
+> 	#$(INSTALL) $(LIBPGMASCLIB) $(DESTDIR)$(libdir)
+128,131c93
+< 	-rm -f $(DESTDIR)$(libdir)/lib$(PGMASCLIB).a
+< 	-rm -f $(DESTDIR)$(libdir)/lib$(PGMASCLIB).@PACKAGE_VERSION@.so
+< 	-rm -f $(DESTDIR)$(libdir)/lib$(PGMASCLIB).so
+< 	# ToDo: set to old version.so ?
+---
+> 	#-rm -f $(DESTDIR)$(libdir)/$(LIBPGMASCLIB)
+138c100
+< 	-rm -f gocr libPgm2asc.*
+---
+> 	#-rm -f gocr libPgm2asc.a
+diff B src/ocr0.c src/ocr0.c
+79c79
+< #define MM {IFV fprintf(stderr,"\nDBG %c L%04d (%d,%d): ",(char)c_ask,__LINE__,box1->x0,box1->y0);}
+---
+> #define MM {IFV {}; /*fprintf(stderr,"\nDBG %c L%04d (%d,%d): ",(char)c_ask,__LINE__,box1->x0,box1->y0);*/}
+96,99c96,99
+< #define Setac(box1,ac,ad)  { MM;IFV fprintf(stderr,"setac %d",ad);setac(box1,ac,ad); }
+< #define Break              { MM;IFV fprintf(stderr,"break"); break; }
+< #define MSG(x)             { MM;IFV x }
+< #define DBG(x) x
+---
+> #define Setac(box1,ac,ad)  setac(box1,ac,ad) //{ MM;IFV fprintf(stderr,"setac %d",ad);setac(box1,ac,ad); }
+> #define Break              break //{ MM;IFV fprintf(stderr,"break"); break; }
+> #define MSG(x)             //{ MM;IFV x }
+> #define DBG(x) //x
+132c132
+<       fprintf(stderr,"Error in "__FILE__" L%d: idx out of range",__LINE__);
+---
+>       //fprintf(stderr,"Error in "__FILE__" L%d: idx out of range",__LINE__);
+175,176d174
+<     DBG( IFV fprintf(stderr,"\nDBG deviation j1-j2 %2d %2d xy %3d %3d  %3d %3d d %5d dist %5d",
+<         j1,j2,r3x-box1->x0,r3y-box1->y0,x-box1->x0,y-box1->y0,d,dist);)
+216c214
+<       fprintf(stderr,"Error in "__FILE__" L%d: idx %d-%d out of range\n",__LINE__,j1,j2);
+---
+>       //fprintf(stderr,"Error in "__FILE__" L%d: idx %d-%d out of range\n",__LINE__,j1,j2);
+257,258c255
+<    DBG( wchar_t c_ask='"'; )
+< 
+---
+>    //DBG( wchar_t c_ask='"'; )
+295,296c292,293
+<      fprintf(stderr,"\n#testumlaut x= %d %d m1=%d m2=%d",x0,y0,m1-y0,m2-y0);
+<      fprintf(stderr," yu=%d yl=%d xl=%d xr=%d",yu-y0,yl-y0,xl-x0,xr-x0);
+---
+>      //fprintf(stderr,"\n#testumlaut x= %d %d m1=%d m2=%d",x0,y0,m1-y0,m2-y0);
+>      //fprintf(stderr," yu=%d yl=%d xl=%d xr=%d",yu-y0,yl-y0,xl-x0,xr-x0);
+374c371
+< 	   mod = GRAVE_ACCENT; // `` 
+---
+> 	   mod = GRAVE_ACCENT; // ` 
+377,378c374,375
+<      fprintf(stderr,"\n#testumlaut x= %d %d m1=%d m2=%d",x0,y0,m1-y0,m2-y0);
+<      fprintf(stderr," yu=%d yl=%d xl=%d xr=%d",yu-y0,yl-y0,xl-x0,xr-x0);
+---
+>      //fprintf(stderr,"\n#testumlaut x= %d %d m1=%d m2=%d",x0,y0,m1-y0,m2-y0);
+>      //fprintf(stderr," yu=%d yl=%d xl=%d xr=%d",yu-y0,yl-y0,xl-x0,xr-x0);
+396c393
+<            fprintf(stderr,"\n#DEBUG DOT_ABOVE %d %d %d %d",i1,i2,i3,i4);
+---
+>            ///fprintf(stderr,"\n#DEBUG DOT_ABOVE %d %d %d %d",i1,i2,i3,i4);
+465a463
+> /*
+471a470
+> */	
+478,479c477
+<      MSG(fprintf(stderr,"testumlaut mod=%s dots=%d y0+%d m=%d nac=%d",
+<        decode(mod,ASCII),r,box1->y0-y0,m,box1->num_ac);)
+---
+>      //MSG(fprintf(stderr,"umlaut mod=%s dots=%d y0o=%d",decode(mod,ASCII),r,y0);)
+499c497
+<       DBG( wchar_t c_ask='e'; )
+---
+>       //DBG( wchar_t c_ask='e'; )
+541c539
+<       DBG( wchar_t c_ask='e'; )
+---
+>       //DBG( wchar_t c_ask='e'; )
+665c663
+<      DBG( wchar_t c_ask='E'; )
+---
+>      //DBG( wchar_t c_ask='E'; )
+700c698
+<      MSG(fprintf(stderr,"i1-5 %d %d %d %d %d",i1,i2,i3,i4,i5);)
+---
+>      //MSG(fprintf(stderr,"i1-5 %d %d %d %d %d",i1,i2,i3,i4,i5);)
+765c763
+<       DBG( wchar_t c_ask='n'; )
+---
+>       //DBG( wchar_t c_ask='n'; )
+878c876
+<       DBG( wchar_t c_ask='M'; )
+---
+>       //DBG( wchar_t c_ask='M'; )
+894c892
+<       if (loop(bp,  0,dy-1, dx,cs,0,RI)>dy/8) { ad=ad*99/100;MSG({}) } // ~V 2010-10
+---
+>       if (loop(bp,  0,dy-1, dx,cs,0,RI)>dy/8) { ad=ad*99/100;/*MSG({})*/ } // ~V 2010-10
+1021c1019
+<       DBG( wchar_t c_ask='N'; )
+---
+>       //DBG( wchar_t c_ask='N'; )
+1055c1053
+<       MSG( fprintf(stderr,"i1= %d (%d,%d) left ^ from below", i1,x-x0,y-y0);)
+---
+>       //MSG( fprintf(stderr,"i1= %d (%d,%d) left ^ from below", i1,x-x0,y-y0);)
+1060,1061c1058,1059
+<       MSG( fprintf(stderr,"i3= %d (%d,%d) right ^ (ad=%d)",\
+<         i3, box1->frame_vector[i3][0]-x0,box1->frame_vector[i3][1]-y0,ad);)
+---
+>       /*MSG( fprintf(stderr,"i3= %d (%d,%d) right ^ (ad=%d)",\
+>         i3, box1->frame_vector[i3][0]-x0,box1->frame_vector[i3][1]-y0,ad);)*/
+1071c1069
+<       MSG(fprintf(stderr," i1-a2 %d a1_serif-i1 %d ad=%d",dbg[0],dbg[1],ad);)
+---
+>       //MSG(fprintf(stderr," i1-a2 %d a1_serif-i1 %d ad=%d",dbg[0],dbg[1],ad);)
+1076c1074
+<       MSG( fprintf(stderr,"ad %d", ad); )
+---
+>       //MSG( fprintf(stderr,"ad %d", ad); )
+1082,1083c1080,1081
+<       MSG( fprintf(stderr,"i2= %d (%d,%d) lowest right v from top",\
+<         i2, box1->frame_vector[i2][0]-x0,box1->frame_vector[i2][1]-y0);)
+---
+>       /*MSG( fprintf(stderr,"i2= %d (%d,%d) lowest right v from top",\
+>         i2, box1->frame_vector[i2][0]-x0,box1->frame_vector[i2][1]-y0);)*/
+1100c1098
+<       MSG( fprintf(stderr," i2-a0 %d a3-i2 %d ad %d",dbg[2],dbg[3], ad); )
+---
+>       //MSG( fprintf(stderr," i2-a0 %d a3-i2 %d ad %d",dbg[2],dbg[3], ad); )
+1105c1103
+<       MSG( fprintf(stderr,"ad %d", ad); )
+---
+>       //MSG( fprintf(stderr,"ad %d", ad); )
+1107c1105
+<       MSG( fprintf(stderr,"check against melted tu"); )
+---
+>       //MSG( fprintf(stderr,"check against melted tu"); )
+1112c1110
+<       MSG( fprintf(stderr,"tu ad %d", ad); )
+---
+>       //MSG( fprintf(stderr,"tu ad %d", ad); )
+1115c1113
+<       MSG( fprintf(stderr,"i2-i1<=dx/8 ad %d", ad); )
+---
+>       //MSG( fprintf(stderr,"i2-i1<=dx/8 ad %d", ad); )
+1123c1121
+<       MSG( fprintf(stderr,"i2-i1<=dy/8 ad %d", ad); )
+---
+>       //MSG( fprintf(stderr,"i2-i1<=dy/8 ad %d", ad); )
+1126c1124
+<       MSG( \
+---
+>       /*MSG( \
+1130c1128
+<         dbg[0],dbg[1],dbg[2],dbg[3],sq(1024/4),sq(1024),ad);)
+---
+>         dbg[0],dbg[1],dbg[2],dbg[3],sq(1024/4),sq(1024),ad);)*/
+1132c1130
+<       MSG( fprintf(stderr,"ad %d", ad); )
+---
+>       //MSG( fprintf(stderr,"ad %d", ad); )
+1134c1132
+<       MSG( fprintf(stderr,"ad %d", ad); )
+---
+>       //MSG( fprintf(stderr,"ad %d", ad); )
+1136c1134
+<       MSG( fprintf(stderr,"ad %d", ad); )
+---
+>       //MSG( fprintf(stderr,"ad %d", ad); )
+1138c1136
+<       MSG( fprintf(stderr,"ad %d", ad); )
+---
+>       //MSG( fprintf(stderr,"ad %d", ad); )
+1161c1159
+<      DBG( wchar_t c_ask='h'; )
+---
+>      //DBG( wchar_t c_ask='h'; )
+1198c1196
+<      MSG(fprintf(stderr,"i1-7 %d %d %d %d %d %d %d",i1,i2,i3,i4,i5,i6,i7);)
+---
+>      //MSG(fprintf(stderr,"i1-7 %d %d %d %d %d %d %d",i1,i2,i3,i4,i5,i6,i7);)
+1239c1237,1238
+<           MSG(fprintf(stderr,"ad=%d",ad);) }
+---
+>           //MSG(fprintf(stderr,"ad=%d",ad);) 
+>         }
+1242c1241,1242
+<         MSG(fprintf(stderr,"ad=%d",ad);) }
+---
+>         //MSG(fprintf(stderr,"ad=%d",ad);) 
+>       }
+1246c1246,1247
+<         ad=94*ad/100; MSG(fprintf(stderr,"ad=%d",ad);) }
+---
+>         ad=94*ad/100; //MSG(fprintf(stderr,"ad=%d",ad);) 
+>       }
+1250c1251,1252
+<         MSG(fprintf(stderr,"ad=%d",ad);) }
+---
+>         //MSG(fprintf(stderr,"ad=%d",ad);) 
+>       }
+1253c1255,1256
+<         MSG(fprintf(stderr,"ad=%d",ad);) }
+---
+>         //MSG(fprintf(stderr,"ad=%d",ad);) 
+>       }
+1256c1259,1260
+<         MSG(fprintf(stderr,"ad=%d",ad);) }
+---
+>         //MSG(fprintf(stderr,"ad=%d",ad);) 
+>       }
+1260c1264,1265
+<         MSG(fprintf(stderr,"ad=%d",ad);) }
+---
+>         //MSG(fprintf(stderr,"ad=%d",ad);) 
+>       }
+1284c1289
+<       DBG( wchar_t c_ask='H'; )
+---
+>       //DBG( wchar_t c_ask='H'; )
+1353c1358
+<       MSG( fprintf(stderr,"i123 %d %d %d",i1,i2,i3); )
+---
+>       //MSG( fprintf(stderr,"i123 %d %d %d",i1,i2,i3); )
+1375c1380
+<      DBG( wchar_t c_ask='k'; )
+---
+>      //DBG( wchar_t c_ask='k'; )
+1412c1417
+<      MSG(fprintf(stderr,"i1-8 %d %d %d %d %d %d %d %d ad %d i %d",i1,i2,i3,i4,i5,i6,i7,i8,ad,i);)
+---
+>      //MSG(fprintf(stderr,"i1-8 %d %d %d %d %d %d %d %d ad %d i %d",i1,i2,i3,i4,i5,i6,i7,i8,ad,i);)
+1414,1416c1419,1420
+<      if (x1-box1->frame_vector[i][0]<dx/3) { ad=99*ad/100; MSG({}) }
+<      if (x1-box1->frame_vector[i][0]<dx/2) { ad=99*ad/100; MSG({}) }
+< 
+---
+>      if (x1-box1->frame_vector[i][0]<dx/3) { ad=99*ad/100; /*MSG({})*/ }
+>      if (x1-box1->frame_vector[i][0]<dx/2) { ad=99*ad/100; /*MSG({})*/ }
+1417a1422
+>      //MSG(fprintf(stderr,"i1-7 ad %d %d %d %d %d %d %d %d",i1,i2,i3,i4,i5,i6,i7,ad);)
+1451c1456
+<       if (x + loop(bp,dx-1-x,j,dx,cs,1,LE)/2 <dx/2){ ad=98*ad/100; MSG({}) }
+---
+>       if (x + loop(bp,dx-1-x,j,dx,cs,1,LE)/2 <dx/2){ ad=98*ad/100; /*MSG({})*/ }
+1475c1480
+<       if( 2*y0>(box1->m1+box1->m2) ) { ad=99*ad/100; MSG({}) }
+---
+>       if( 2*y0>(box1->m1+box1->m2) ) ad=99*ad/100;
+1495c1500
+<       DBG( wchar_t c_ask='K'; )
+---
+>       //DBG( wchar_t c_ask='K'; )
+1570a1576
+> /*
+1574a1581
+> */       
+1630c1637
+<      DBG( wchar_t c_ask='f'; )
+---
+>      //DBG( wchar_t c_ask='f'; )
+1662c1669
+<      MSG(fprintf(stderr,"i1-9 %d %d %d %d %d %d %d %d %d",i1,i2,i3,i4,i5,i6,i7,i8,i9);)
+---
+> //     MSG(fprintf(stderr,"i1-9 %d %d %d %d %d %d %d %d %d",i1,i2,i3,i4,i5,i6,i7,i8,i9);)
+1698c1705
+<       MSG(fprintf(stderr,"j=%d i=%d y=%d x=%d",j,i,y,x);)
+---
+>       //MSG(fprintf(stderr,"j=%d i=%d y=%d x=%d",j,i,y,x);)
+1705,1706c1712,1713
+<       MSG(fprintf(stderr,"xy= %d %d  %d %d",x0,y0,\
+<                  box1->frame_vector[i3][0]-x0,box1->frame_vector[i3][1]-y0);)
+---
+>       /*MSG(fprintf(stderr,"xy= %d %d  %d %d",x0,y0,\
+>                  box1->frame_vector[i3][0]-x0,box1->frame_vector[i3][1]-y0);)*/
+1781c1788,1789
+<            MSG(fprintf(stderr,"ad=%d",ad);) }
+---
+>            //MSG(fprintf(stderr,"ad=%d",ad);) 
+>          }
+1783c1791,1792
+<            MSG(fprintf(stderr,"ad=%d",ad);) }
+---
+>            //MSG(fprintf(stderr,"ad=%d",ad);) 
+>          }
+1789c1798,1799
+<         MSG(fprintf(stderr,"ad=%d",ad);) }
+---
+>         //MSG(fprintf(stderr,"ad=%d",ad);) 
+>       }
+1794c1804,1805
+<         MSG(fprintf(stderr,"ad=%d",ad);) }
+---
+>         //MSG(fprintf(stderr,"ad=%d",ad);) 
+>        }
+1798c1809,1810
+<         MSG(fprintf(stderr,"ad=%d",ad);) }
+---
+>         //MSG(fprintf(stderr,"ad=%d",ad);) 
+>       }
+1819c1831
+<       DBG( wchar_t c_ask='B'; )
+---
+>       //DBG( wchar_t c_ask='B'; )
+1903c1915
+<       DBG( wchar_t c_ask='b'; )
+---
+>       //DBG( wchar_t c_ask='b'; )
+1946c1958
+<       DBG( wchar_t c_ask='D'; )
+---
+>       //DBG( wchar_t c_ask='D'; )
+2013c2025
+<       DBG( wchar_t c_ask='d'; )
+---
+>       //DBG( wchar_t c_ask='d'; )
+2044c2056
+<       MSG(fprintf(stderr,"hole[0].y0,y1= %d %d",sdata->holes.hole[0].y0,sdata->holes.hole[0].y1););
+---
+>       //MSG(fprintf(stderr,"hole[0].y0,y1= %d %d",sdata->holes.hole[0].y0,sdata->holes.hole[0].y1););
+2069c2081
+<       DBG( wchar_t c_ask='F'; )
+---
+>       //DBG( wchar_t c_ask='F'; )
+2172c2184
+<       DBG( wchar_t c_ask='u'; )
+---
+>       //DBG( wchar_t c_ask='u'; )
+2263c2275
+<       DBG( wchar_t c_ask='u'; )
+---
+>       //DBG( wchar_t c_ask='u'; )
+2317c2329
+<       DBG( wchar_t c_ask='v'; )
+---
+>       //DBG( wchar_t c_ask='v'; )
+2430c2442
+<       DBG( wchar_t c_ask='r'; )
+---
+>       //DBG( wchar_t c_ask='r'; )
+2483c2495
+<       if( num_cross(dx-1,dx-1,0,3*dy/4,bp,cs)>1) {ad=95*ad/100;MSG({})} // ~f
+---
+>       if( num_cross(dx-1,dx-1,0,3*dy/4,bp,cs)>1 ) ad=95*ad/100; // ~f
+2486c2498
+<        
+---
+> 
+2494c2506
+<        { ad=97*ad/100;MSG(fprintf(stderr,"ad %d",ad);) }      
+---
+>        { ad=97*ad/100;/*MSG(fprintf(stderr,"ad %d",ad);)*/ }      
+2504c2516
+<       DBG( wchar_t c_ask='R'; )
+---
+>       //DBG( wchar_t c_ask='R'; )
+2586c2598
+<       DBG( wchar_t c_ask='m'; )
+---
+>       //DBG( wchar_t c_ask='m'; )
+2596c2608
+<       if (i>3) { ad=99*ad/100; MSG(fprintf(stderr,"ad=%d",ad);) }
+---
+>       if (i>3) { ad=99*ad/100; /*MSG(fprintf(stderr,"ad=%d",ad);)*/ }
+2632c2644
+<       MSG(fprintf(stderr,"y=%d x=%d %d %d %d",y,i1,i2,i3,i4);)
+---
+>       //MSG(fprintf(stderr,"y=%d x=%d %d %d %d",y,i1,i2,i3,i4);)
+2707c2719
+<       DBG( wchar_t c_ask='T'; )
+---
+>       //DBG( wchar_t c_ask='T'; )
+2714,2715c2726,2727
+<       i1= loop (bp,     dx/8, 0,dy,cs,0,DO); // left side
+<       i2= loop (bp,dx-1-dx/8, 0,dy,cs,0,DO); // right side
+---
+>       i1= loop (bp,     dx/8,0,dy,cs,0,DO); // left side
+>       i2= loop (bp,dx-1-dx/8,0,dy,cs,0,DO); // right side
+2718c2730
+<       if (abs(i1-i2)>=dy/8) { ad=ad*99/100;MSG({}) } // ~ ocr-b '?' 2010-10
+---
+>       if (abs(i1-i2)>=dy/8) { ad=ad*99/100;/*MSG({})*/ } // ~ ocr-b '?' 2010-10
+2733c2745
+<         MSG(fprintf(stderr,"ij1 %2d %2d",i,j);)
+---
+>         //MSG(fprintf(stderr,"ij1 %2d %2d",i,j);)
+2736c2748
+<         MSG(fprintf(stderr,"ij2 %2d %2d",i,j);)
+---
+>         //MSG(fprintf(stderr,"ij2 %2d %2d",i,j);)
+2778c2790
+<       DBG( wchar_t c_ask='t'; )
+---
+>       //DBG( wchar_t c_ask='t'; )
+2883c2895
+<       if (i-x>1) Break; // l
+---
+>       if (i-x>1) Break; // l 
+2910c2922
+<         MSG(fprintf(stderr,"ad= %d",ad);)
+---
+>         //MSG(fprintf(stderr,"ad= %d",ad);)
+2933c2945
+<       DBG( wchar_t c_ask='s'; )
+---
+>       //DBG( wchar_t c_ask='s'; )
+2948c2960
+<       if (x>3*dx/4) Break; if(x>dx/2) { ad=98*ad/100; MSG({})}
+---
+>       if (x>3*dx/4) Break; if(x>dx/2) { ad=98*ad/100; /*MSG({})*/}
+2950c2962
+<       MSG(fprintf(stderr,"~3 upper right gap (i1=%d,dy/4)",i1);)
+---
+>       //MSG(fprintf(stderr,"~3 upper right gap (i1=%d,dy/4)",i1);)
+3009c3021
+<       if (gchar) { ad=98*ad/100; MSG(fprintf(stderr,"gchar=bad");) }
+---
+>       if (gchar) { ad=98*ad/100; /*MSG(fprintf(stderr,"gchar=bad");)*/ }
+3039c3051
+<       DBG( wchar_t c_ask='g'; )
+---
+>       //DBG( wchar_t c_ask='g'; )
+3090c3102
+<       DBG( wchar_t c_ask='G'; )
+---
+>       //DBG( wchar_t c_ask='G'; )
+3125c3137
+<       MSG(fprintf(stderr,"xy= %d %d",x-x0,y-y0);)
+---
+>       //MSG(fprintf(stderr,"xy= %d %d",x-x0,y-y0);)
+3128c3140
+<       MSG(fprintf(stderr,"xy= %d %d",x-x0,y-y0);)
+---
+>       //MSG(fprintf(stderr,"xy= %d %d",x-x0,y-y0);)
+3158c3170
+<       MSG(fprintf(stderr,"h-bar y dx %d %d  ad= %d",i1,i,ad);)
+---
+>       //MSG(fprintf(stderr,"h-bar y dx %d %d  ad= %d",i1,i,ad);)
+3177c3189
+<       DBG( wchar_t c_ask='g'; )
+---
+>       //DBG( wchar_t c_ask='g'; )
+3247c3259
+<       DBG( wchar_t c_ask='x'; )
+---
+>       //DBG( wchar_t c_ask='x'; )
+3274c3286
+<       MSG(fprintf(stderr,"left  gap i132 %d %d %d",i1,i3,i2);)
+---
+>       //MSG(fprintf(stderr,"left  gap i132 %d %d %d",i1,i3,i2);)
+3280c3292
+<       MSG(fprintf(stderr,"right gap i132 %d %d %d",i1,i3,i2);)
+---
+>       //MSG(fprintf(stderr,"right gap i132 %d %d %d",i1,i3,i2);)
+3302c3314
+<       MSG(fprintf(stderr," 0-X %d %d dist= %d/%d",x-x0,y-y0,ld,2*sq(1024/4));)
+---
+>       //MSG(fprintf(stderr," 0-X %d %d dist= %d/%d",x-x0,y-y0,ld,2*sq(1024/4));)
+3306c3318
+<       MSG(fprintf(stderr," X-1 %d %d dist= %d/%d",x-x0,y-y0,ld,2*sq(1024/4));)
+---
+>       //MSG(fprintf(stderr," X-1 %d %d dist= %d/%d",x-x0,y-y0,ld,2*sq(1024/4));)
+3322c3334
+<       MSG(fprintf(stderr," 1-X %d %d dist= %d/%d",x-x0,y-y0,ld,2*sq(1024/4));)
+---
+>       //MSG(fprintf(stderr," 1-X %d %d dist= %d/%d",x-x0,y-y0,ld,2*sq(1024/4));)
+3326c3338
+<       MSG(fprintf(stderr," X-2 %d %d dist= %d/%d",x-x0,y-y0,ld,2*sq(1024/4));)
+---
+>       //MSG(fprintf(stderr," X-2 %d %d dist= %d/%d",x-x0,y-y0,ld,2*sq(1024/4));)
+3347c3359
+<       MSG(fprintf(stderr," 2-X %d %d dist= %d/%d",x-x0,y-y0,ld,2*sq(1024/4));)
+---
+>       //MSG(fprintf(stderr," 2-X %d %d dist= %d/%d",x-x0,y-y0,ld,2*sq(1024/4));)
+3351c3363
+<       MSG(fprintf(stderr," X-3 %d %d dist= %d/%d",x-x0,y-y0,ld,2*sq(1024/4));)
+---
+>       //MSG(fprintf(stderr," X-3 %d %d dist= %d/%d",x-x0,y-y0,ld,2*sq(1024/4));)
+3367c3379
+<       MSG(fprintf(stderr," 3-X %d %d dist= %d/%d",x-x0,y-y0,ld,2*sq(1024/4));)
+---
+>       //MSG(fprintf(stderr," 3-X %d %d dist= %d/%d",x-x0,y-y0,ld,2*sq(1024/4));)
+3371c3383
+<       MSG(fprintf(stderr," X-0 %d %d dist= %d/%d",x-x0,y-y0,ld,2*sq(1024/4));)
+---
+>       //MSG(fprintf(stderr," X-0 %d %d dist= %d/%d",x-x0,y-y0,ld,2*sq(1024/4));)
+3385c3397
+<       DBG( wchar_t c_ask='x'; )
+---
+>       //DBG( wchar_t c_ask='x'; )
+3415c3427
+<       DBG( wchar_t c_ask='y'; )
+---
+>       //DBG( wchar_t c_ask='y'; )
+3436c3448
+<       g_debug(fprintf(stderr," debug_yY: \n"
+---
+>       /*g_debug(fprintf(stderr," debug_yY: \n"
+3440,3442c3452,3454
+<       "  \e-d   \n");)
+<       g_debug(fprintf(stderr,"a-e: %d %d  %d %d  %d %d  %d %d",
+<              xa,ya,xb,yb,xc,yc,xd,yd);)
+---
+>       "  \e-d   \n");)*/
+>       /*g_debug(fprintf(stderr,"a-e: %d %d  %d %d  %d %d  %d %d",
+>              xa,ya,xb,yb,xc,yc,xd,yd);)*/
+3457c3469
+<       DBG( wchar_t c_ask='y'; )
+---
+>       //DBG( wchar_t c_ask='y'; )
+3498c3510
+<       MSG( fprintf(stderr," debug_yY: \n"
+---
+>       /*MSG( fprintf(stderr," debug_yY: \n"
+3504a3517
+>       */
+3554c3567
+<       DBG( wchar_t c_ask='z'; ) /* for debugging purpose */
+---
+>       //DBG( wchar_t c_ask='z'; ) /* for debugging purpose */
+3579a3593
+>       /*
+3583a3598
+>       */
+3600c3615
+<       MSG(fprintf(stderr,"i23xy= %d %d  %d %d  ad %d",x-x0,y-y0,box1->frame_vector[i3][0]-x0,box1->frame_vector[i3][1]-y0,ad);)
+---
+>       //MSG(fprintf(stderr,"i23xy= %d %d  %d %d  ad %d",x-x0,y-y0,box1->frame_vector[i3][0]-x0,box1->frame_vector[i3][1]-y0,ad);)
+3637c3652
+<       MSG( fprintf(stderr,"i45xy %d %d d %d ad %d upper right bow?",i4,i5,d,ad); )
+---
+>       //MSG( fprintf(stderr,"i45xy %d %d d %d ad %d upper right bow?",i4,i5,d,ad); )
+3655c3670
+<       MSG(fprintf(stderr,"left diag line? d= %d krit= 2..3*%d",d,sq(1024/4));) 
+---
+>       //MSG(fprintf(stderr,"left diag line? d= %d krit= 2..3*%d",d,sq(1024/4));) 
+3661c3676
+<       MSG( fprintf(stderr," i12 %d %d ad %d", i1, i2, ad); )
+---
+>       //MSG( fprintf(stderr," i12 %d %d ad %d", i1, i2, ad); )
+3666c3681
+<       MSG( \
+---
+>       /*MSG( \
+3670c3685
+<         dbg[0], dbg[1], dbg[2], dbg[3], sq(1024)/16, ad);)
+---
+>         dbg[0], dbg[1], dbg[2], dbg[3], sq(1024)/16, ad);)*/
+3696c3711
+<       DBG( wchar_t c_ask='w'; )
+---
+>       //DBG( wchar_t c_ask='w'; )
+3728c3743
+<         MSG(fprintf(stderr,"ad=%d",ad);)
+---
+>         //MSG(fprintf(stderr,"ad=%d",ad);)
+3758,3759c3773,3774
+<      MSG( fprintf(stderr,"a-e: %d %d  %d %d  %d %d  %d %d  %d %d",
+<           xa,1,xb,yb,xc,ya,xd,yb,xe,1);)
+---
+>      /*MSG( fprintf(stderr,"a-e: %d %d  %d %d  %d %d  %d %d  %d %d",
+>           xa,1,xb,yb,xc,ya,xd,yb,xe,1);)*/
+3776c3791
+<       MSG(fprintf(stderr,"ad=%d",ad);)
+---
+>       //MSG(fprintf(stderr,"ad=%d",ad);)
+3781c3796
+<       MSG(fprintf(stderr,"ad=%d",ad);)
+---
+>       //MSG(fprintf(stderr,"ad=%d",ad);)
+3790c3805
+<       DBG( wchar_t c_ask='w'; )
+---
+>       //DBG( wchar_t c_ask='w'; )
+3841c3856
+<       DBG( wchar_t c_ask='A'; )
+---
+>       //DBG( wchar_t c_ask='A'; )
+3868c3883
+<       if (y>5*dy/6) { MSG(fprintf(stderr,"x,y,i1,i2= %d %d %d %d",x,y,i1,i2);) }
+---
+>       //if (y>5*dy/6) { MSG(fprintf(stderr,"x,y,i1,i2= %d %d %d %d",x,y,i1,i2);) }
+3914c3929
+<       DBG( wchar_t c_ask='a'; )
+---
+>       //DBG( wchar_t c_ask='a'; )
+3951c3966
+<       MSG(fprintf(stderr,"i12 %d %d y=%d %d", i1, i2, box1->frame_vector[i2][1]-y0, y1-dy/4-1-y0 );)
+---
+>       //MSG(fprintf(stderr,"i12 %d %d y=%d %d", i1, i2, box1->frame_vector[i2][1]-y0, y1-dy/4-1-y0 );)
+3959c3974
+<       MSG(fprintf(stderr,"i34 %d %d = hole",i3,i4);)
+---
+>       //MSG(fprintf(stderr,"i34 %d %d = hole",i3,i4);)
+3961c3976
+<       MSG(fprintf(stderr,"i5 %d y %d",i5,box1->frame_vector[i5][1]-y0);)
+---
+>       //MSG(fprintf(stderr,"i5 %d y %d",i5,box1->frame_vector[i5][1]-y0);)
+3979c3994
+<       DBG( wchar_t c_ask='a'; )
+---
+>       //DBG( wchar_t c_ask='a'; )
+4046c4061
+<       DBG( wchar_t c_ask='a'; )
+---
+>       //DBG( wchar_t c_ask='a'; )
+4114c4129
+<       DBG( wchar_t c_ask='A'; )
+---
+>       //DBG( wchar_t c_ask='A'; )
+4192c4207
+<       DBG( wchar_t c_ask='c'; )
+---
+>       //DBG( wchar_t c_ask='c'; )
+4337c4352
+<       DBG( wchar_t c_ask='L'; )
+---
+>       //DBG( wchar_t c_ask='L'; )
+4385c4399
+<       DBG( wchar_t c_ask='l'; )
+---
+>       //DBG( wchar_t c_ask='l'; )
+4460c4474
+<       MSG( fprintf(stderr,"ad= %d", ad); )
+---
+>       //MSG( fprintf(stderr,"ad= %d", ad); )
+4519c4533
+<         MSG( fprintf(stderr,"ad= %d", ad); )
+---
+>         //MSG( fprintf(stderr,"ad= %d", ad); )
+4613c4627
+<           MSG( fprintf(stderr,"ad= %d", ad); )
+---
+>           //MSG( fprintf(stderr,"ad= %d", ad); )
+4651c4665
+<       MSG( fprintf(stderr,"ad= %d", ad); )
+---
+>       //MSG( fprintf(stderr,"ad= %d", ad); )
+4681c4695
+<       DBG( wchar_t c_ask='o'; )
+---
+>       //DBG( wchar_t c_ask='o'; )
+4744c4758
+<          { ad=99*ad/100; MSG(fprintf(stderr,"ad=%d",ad);) } // \it a
+---
+>          { ad=99*ad/100; /*MSG(fprintf(stderr,"ad=%d",ad);)*/ } // \it a
+4747c4761
+<          { ad=98*ad/100; MSG(fprintf(stderr,"ad=%d",ad);) } // \it a
+---
+>          { ad=98*ad/100; /*MSG(fprintf(stderr,"ad=%d",ad);)*/ } // \it a
+4762d4775
+<         DBG( c_ask='O'; )
+4764d4776
+<         DBG( c_ask='0'; )
+4771c4783
+<       DBG( c_ask=bc; )
+---
+>       //DBG( c_ask=bc; )
+4773c4785
+<       DBG( c_ask='0'; )
+---
+>       //DBG( c_ask='0'; )
+4792c4804
+<       DBG( wchar_t c_ask='p'; )
+---
+>       //DBG( wchar_t c_ask='p'; )
+4864c4876
+<       DBG( wchar_t c_ask='Q'; )
+---
+>       //DBG( wchar_t c_ask='Q'; )
+4940c4952
+<       DBG( wchar_t c_ask='q'; )
+---
+>       //DBG( wchar_t c_ask='q'; )
+4999c5011
+<       DBG( wchar_t c_ask='i'; )
+---
+>       //DBG( wchar_t c_ask='i'; )
+5063c5075
+<       if (2*y>=ya+  y1) { ad=98*ad/100;	MSG(fprintf(stderr,"wide gap");)}
+---
+>       if (2*y>=ya+  y1) { ad=98*ad/100;	/*MSG(fprintf(stderr,"wide gap");*/)}
+5072c5084
+<       MSG(fprintf(stderr," ya m1 yb %d %d %d", ya-box1->y0, box1->m1-y0, yb-box1->y0);)
+---
+>       //MSG(fprintf(stderr," ya m1 yb %d %d %d", ya-box1->y0, box1->m1-y0, yb-box1->y0);)
+5146c5158
+<       DBG( wchar_t c_ask='j'; )
+---
+>       //DBG( wchar_t c_ask='j'; )
+5221c5233
+<       DBG( wchar_t c_ask='I'; )
+---
+>       //DBG( wchar_t c_ask='I'; )
+5330c5342
+<       if(i1+1<i5 && !hchar){ ad=65*ad/100; MSG({}) } // ~ slanted I
+---
+>       if(i1+1<i5 && !hchar){ ad=65*ad/100; /*MSG({})*/ } // ~ slanted I
+5338,5339c5350,5351
+<          { ad=99*ad/100; MSG(fprintf(stderr,"ad=%d",ad);) } // ToDo: improve it
+<       if(!hchar){ ad=96*ad/100; MSG({}) } // ~bad_small_r
+---
+>          { ad=99*ad/100; /*MSG(fprintf(stderr,"ad=%d",ad);)*/ } // ToDo: improve it
+>       if(!hchar){ ad=96*ad/100; /*MSG({})*/ } // ~bad_small_r
+5342,5343c5354,5356
+<          || (dx<3 && get_bw(x0  ,x1  ,y1+1,box1->m4,box1->p,cs,1) == 1))
+<          { ad=96*ad/100; MSG(fprintf(stderr,"ad=%d",ad);) }
+---
+>          || (dx<3 && get_bw(x0  ,x1  ,y1+1,box1->m4,box1->p,cs,1) == 1)) {
+>           ad=96*ad/100;
+>         }
+5359d5371
+<       MSG(fprintf(stderr,"xy= %3d %3d i= %3d ad=%d",x,y,i,ad);)
+5361,5363c5373,5374
+<       if (j>1 && (2*i>3*j || 3*i<2*j )) ad=99*ad/100; // 2010-10-10 invalid2010
+<       if (j>1 && (  i>2*j || 2*i<  j )) ad=97*ad/100; //  j>0 to j>1
+<       MSG(fprintf(stderr,"xy= %3d %3d j= %3d ad=%d",x,y,j,ad);)
+---
+>       if (j>0 && (2*i>3*j || 3*i<2*j )) ad=99*ad/100;
+>       if (j>0 && (  i>2*j || 2*i<  j )) ad=97*ad/100;
+5366c5377
+<         { ad=99*ad/100;MSG(fprintf(stderr,"ad=%d",ad);) } // ~1
+---
+>         { ad=99*ad/100;/*MSG(fprintf(stderr,"ad=%d",ad);)*/ } // ~1
+5368c5379
+<          -loop(bp,   0,0,dx,cs,0,RI)>dx/4) {ad=96*ad/100;MSG({})} // ~l 5x7
+---
+>          -loop(bp,   0,0,dx,cs,0,RI)>dx/4) ad=96*ad/100; // ~l 5x7
+5375c5386
+<         { ad=99*ad/100; MSG(fprintf(stderr,"ad=%d",ad);) }
+---
+>         { ad=99*ad/100; /*MSG(fprintf(stderr,"ad=%d",ad);)*/ }
+5377c5388
+<       if (box1->m3 && 2*y1<=box1->m2+box1->m3) {ad=96*ad/100;MSG({})} // '
+---
+>       if (box1->m3 && 2*y1<=box1->m2+box1->m3) ad=96*ad/100; // '
+5379c5390
+<       if (dx<3 && dy>10 && box1->m4==0) { ad=ad*95/100;MSG({})} // just a vertical line?
+---
+>       if (dx<3 && dy>10 && box1->m4==0) { ad=ad*95/100;/*MSG({})*/} // just a vertical line?
+5388c5399
+<       DBG( wchar_t c_ask='J'; )
+---
+>       //DBG( wchar_t c_ask='J'; )
+5425c5436
+<       MSG(fprintf(stderr," i1-i7 %d %d %d %d %d %d %d",i1,i2,i3,i4,i5,i6,i7);)
+---
+>       //MSG(fprintf(stderr," i1-i7 %d %d %d %d %d %d %d",i1,i2,i3,i4,i5,i6,i7);)
+5468c5479
+<       MSG(fprintf(stderr," i7,i1 %d %d linedist= %d/%d",i7,i1,ld,2*sq(1024/4));)
+---
+>       //MSG(fprintf(stderr," i7,i1 %d %d linedist= %d/%d",i7,i1,ld,2*sq(1024/4));)
+5476c5487
+<       MSG(fprintf(stderr," i4,i5 %d %d linedist= %d/%d",i4,i5,ld,2*sq(1024/4));)
+---
+>       //MSG(fprintf(stderr," i4,i5 %d %d linedist= %d/%d",i4,i5,ld,2*sq(1024/4));)
+5504c5515
+<       //   0           - indizes 0,1,i1,i2 pointing to edges of the char
+---
+>       //   0            - indizes 0,1,i1,i2 pointing to edges of the char
+5511c5522
+<       DBG( wchar_t c_ask='>'; )
+---
+>       //DBG( wchar_t c_ask='>'; )
+5532a5544
+>       i1=j;
+5535c5547
+<       MSG(fprintf(stderr,"x %d %d dist= %d/%d",x-x0,y-y0,d,sq(1024/4));)
+---
+>       //MSG(fprintf(stderr,"x %d %d dist= %d/%d",x-x0,y-y0,d,sq(1024/4));)
+5537c5549
+<       MSG(fprintf(stderr,"ad=%d", ad);)
+---
+>       //MSG(fprintf(stderr,"ad=%d", ad);)
+5541c5553
+<       MSG(fprintf(stderr,"x %d %d dist= %d/%d",x-x0,y-y0,d,sq(1024/4));)
+---
+>       //MSG(fprintf(stderr,"x %d %d dist= %d/%d",x-x0,y-y0,d,sq(1024/4));)
+5543c5555
+<       MSG(fprintf(stderr,"ad=%d", ad);)
+---
+>       //MSG(fprintf(stderr,"ad=%d", ad);)
+5562c5573
+<       MSG(fprintf(stderr,"x %d %d dist= %d/%d",x-x0,y-y0,d,sq(1024/4));)
+---
+>       //MSG(fprintf(stderr,"x %d %d dist= %d/%d",x-x0,y-y0,d,sq(1024/4));)
+5564,5565c5575
+<       MSG(fprintf(stderr,"ad=%d", ad);)
+< 
+---
+>       //MSG(fprintf(stderr,"ad=%d", ad);)
+5572c5582
+<       MSG(fprintf(stderr,"x %d %d dist= %d/%d",x-x0,y-y0,d,sq(1024/4));)
+---
+>       //MSG(fprintf(stderr,"x %d %d dist= %d/%d",x-x0,y-y0,d,sq(1024/4));)
+5574c5584
+<       MSG(fprintf(stderr,"ad=%d", ad);)
+---
+>       //MSG(fprintf(stderr,"ad=%d", ad);)
+5592c5602
+<       DBG( wchar_t c_ask='/'; )
+---
+>       //DBG( wchar_t c_ask='/'; )
+5616c5626,5627
+<       // out_x(box1);printf("() %d %d %d %d %d %d %d\n",i,i1,i2,i3,i4,i5,i6);
+---
+>       //  
+>       //  out_x(box1);printf("() %d %d %d %d %d %d %d\n",i,i1,i2,i3,i4,i5,i6);
+5618c5629
+<       // ~lI     
+---
+>       // ~lI      
+5625d5635
+<       
+5647c5657
+<       DBG( wchar_t c_ask='('; )
+---
+>       //DBG( wchar_t c_ask='('; )
+5725c5735
+<       DBG( wchar_t c_ask=']'; )
+---
+>       //DBG( wchar_t c_ask=']'; )
+5751c5761
+<       DBG( wchar_t c_ask=']'; )
+---
+>       //DBG( wchar_t c_ask=']'; )
+5767c5777
+<       MSG( fprintf(stderr," aa %d %d  %d %d  %d %d  %d %d d %d %d %d %d",\
+---
+>       /*MSG( fprintf(stderr," aa %d %d  %d %d  %d %d  %d %d d %d %d %d %d",\
+5770c5780
+<         aa[0][2],aa[1][2],aa[2][2],aa[3][2]);)
+---
+>         aa[0][2],aa[1][2],aa[2][2],aa[3][2]);)*/
+5803c5813
+<       DBG( wchar_t c_ask='['; )
+---
+>       //DBG( wchar_t c_ask='['; )
+5821c5831
+<       DBG( wchar_t c_ask='{'; )
+---
+>       //DBG( wchar_t c_ask='{'; )
+5854c5864
+<       DBG( wchar_t c_ask='}'; )
+---
+>       //DBG( wchar_t c_ask='}'; )
+5928c5938
+<       DBG( wchar_t c_ask='S'; )
+---
+>       //DBG( wchar_t c_ask='S'; )
+5998c6008
+<       DBG( wchar_t c_ask='+'; )
+---
+>       //DBG( wchar_t c_ask='+'; )
+6021c6031
+<       DBG( wchar_t c_ask='$'; )
+---
+>       //DBG( wchar_t c_ask='$'; )
+6060c6070
+<       DBG( wchar_t c_ask='$'; )
+---
+>       //DBG( wchar_t c_ask='$'; )
+6094c6104
+<       DBG( wchar_t c_ask='&'; )
+---
+>       //DBG( wchar_t c_ask='&'; )
+6125c6135
+<       DBG( wchar_t c_ask='&'; )
+---
+>       //DBG( wchar_t c_ask='&'; )
+6147c6157
+<       DBG( wchar_t c_ask='?'; )
+---
+>       //DBG( wchar_t c_ask='?'; )
+6180c6190
+<       DBG( wchar_t c_ask='!'; )
+---
+>       //DBG( wchar_t c_ask='!'; )
+6212c6222
+<       DBG( wchar_t c_ask='*'; )
+---
+>       //DBG( wchar_t c_ask='*'; )
+6238c6248
+<       MSG(fprintf(stderr,"%d %d %d %d %d %d %d",dbg[0],dbg[1],dbg[2],dbg[3],dbg[4],dbg[5],dbg[6]);)
+---
+>       //MSG(fprintf(stderr,"%d %d %d %d %d %d %d",dbg[0],dbg[1],dbg[2],dbg[3],dbg[4],dbg[5],dbg[6]);)
+6244c6254
+<       DBG( wchar_t c_ask='*'; )
+---
+>       //DBG( wchar_t c_ask='*'; )
+6260c6270
+<       MSG(fprintf(stderr,"%d %d %d %d %d %d",dbg[0],dbg[1],dbg[2],dbg[3],dbg[4],dbg[5]);)
+---
+>       //MSG(fprintf(stderr,"%d %d %d %d %d %d",dbg[0],dbg[1],dbg[2],dbg[3],dbg[4],dbg[5]);)
+6266c6276
+<       DBG( wchar_t c_ask='*'; )
+---
+>       //DBG( wchar_t c_ask='*'; )
+6284c6294
+<       MSG(fprintf(stderr,"%d %d %d %d %d %d",dbg[0],dbg[1],dbg[2],dbg[3],dbg[4],dbg[5]);)
+---
+>       //MSG(fprintf(stderr,"%d %d %d %d %d %d",dbg[0],dbg[1],dbg[2],dbg[3],dbg[4],dbg[5]);)
+6291c6301
+<       DBG( wchar_t c_ask='@'; )
+---
+>       //DBG( wchar_t c_ask='@'; )
+6343c6353
+<       DBG( wchar_t c_ask='$'; )
+---
+>       //DBG( wchar_t c_ask='$'; )
+6385c6395
+<       DBG( wchar_t c_ask='f'; )
+---
+>       //DBG( wchar_t c_ask='f'; )
+6454c6464
+<       DBG( wchar_t c_ask=LATIN_SMALL_LETTER_AE; )
+---
+>       //DBG( wchar_t c_ask=LATIN_SMALL_LETTER_AE; )
+6486c6496
+<       DBG( wchar_t c_ask=LATIN_CAPITAL_LETTER_AE; )
+---
+>       //DBG( wchar_t c_ask=LATIN_CAPITAL_LETTER_AE; )
+6531c6541
+<       DBG( wchar_t c_ask=LATIN_SMALL_LETTER_O_WITH_STROKE; )
+---
+>       //DBG( wchar_t c_ask=LATIN_SMALL_LETTER_O_WITH_STROKE; )
+6570c6580
+<       DBG( wchar_t c_ask=CENT_SIGN; )
+---
+>       //DBG( wchar_t c_ask=CENT_SIGN; )
+6607c6617
+<       DBG( wchar_t c_ask='&'; )
+---
+>       //DBG( wchar_t c_ask='&'; )
+6631c6641
+<       DBG( wchar_t c_ask='c'; )
+---
+>       //DBG( wchar_t c_ask='c'; )
+6661c6671
+<       DBG( wchar_t c_ask='#'; )
+---
+>       //DBG( wchar_t c_ask='#'; )
+6695c6705
+<       DBG( wchar_t c_ask='#'; )
+---
+>       //DBG( wchar_t c_ask='#'; )
+6705c6715
+<       DBG( wchar_t c_ask='|'; )
+---
+>       //DBG( wchar_t c_ask='|'; )
+6725c6735
+<       DBG( wchar_t c_ask='|'; )
+---
+>       //DBG( wchar_t c_ask='|'; )
+6745c6755
+<       DBG( wchar_t c_ask='%'; )
+---
+>       //DBG( wchar_t c_ask='%'; )
+6792c6802
+<         if (ad==100) {ad=ad*99/100;MSG(fprintf(stderr,"ad= %d",ad);)}
+---
+>         if (ad==100) {ad=ad*99/100;/*MSG(fprintf(stderr,"ad= %d",ad);)*/}
+6818c6828
+<         if (ad==100) {ad=ad*99/100;MSG(fprintf(stderr,"ad= %d",ad);)}
+---
+>         if (ad==100) {ad=ad*99/100;/*MSG(fprintf(stderr,"ad= %d",ad);)*/}
+6859c6869
+<       DBG( wchar_t c_ask=GREEK_CAPITAL_LETTER_OMEGA; )
+---
+>       //DBG( wchar_t c_ask=GREEK_CAPITAL_LETTER_OMEGA; )
+6981c6992
+< 
+---
+>    /*
+6989c7000,7001
+<    DBG( IFV fprintf(stderr,"\n# holes %d gchar=%d hchar=%d",sdata.holes.num, gchar, hchar);)
+---
+>    */
+>    //DBG( IFV fprintf(stderr,"\n# holes %d gchar=%d hchar=%d",sdata.holes.num, gchar, hchar);)
+6993c7005
+<       DBG( wchar_t c_ask='-'; )
+---
+>       //DBG( wchar_t c_ask='-'; )
+7013c7025
+<       DBG( wchar_t c_ask='='; )
+---
+>       //DBG( wchar_t c_ask='='; )
+7028c7040
+<       DBG( wchar_t c_ask=':'; )
+---
+>       //DBG( wchar_t c_ask=':'; )
+7041c7053
+<       MSG(fprintf(stderr,"gap dot.dy12 %d %d ad %d",i1,i2,ad);)
+---
+>       //MSG(fprintf(stderr,"gap dot.dy12 %d %d ad %d",i1,i2,ad);)
+7048c7060
+<       MSG(fprintf(stderr,"gap dot.dy12 %d %d ad %d",i1,i2,ad);)
+---
+>       //MSG(fprintf(stderr,"gap dot.dy12 %d %d ad %d",i1,i2,ad);)
+7054,7055c7066,7067
+<    if ( 2*y0>   box1->m2+box1->m1 )	// ~i
+<    if ( 4*y1>=3*box1->m3+box1->m2 )      // ~:
+---
+>    if( 2*y0>   box1->m2+box1->m1 )	// ~i
+>    if( 4*y1>=3*box1->m3+box1->m2 )      // ~:
+7058c7070
+<       DBG( wchar_t c_ask=';'; )
+---
+>       //DBG( wchar_t c_ask=';'; )
+7083c7095
+<       DBG( wchar_t c_ask='.'; )
+---
+>       //DBG( wchar_t c_ask='.'; )
+7094c7106
+<      MSG( fprintf(stderr,"d= %3d ad= %3d", d, ad); )
+---
+>      //MSG( fprintf(stderr,"d= %3d ad= %3d", d, ad); )
+7110,7112c7122,7123
+<      || get_bw(0,dx/2,dy/2,dy-1,bp,cs,1)==0)
+<     && box1->dots==0 ){  // ocr-a-,
+<       DBG( wchar_t c_ask=','; )
+---
+>      || get_bw(0,dx/2,dy/2,dy-1,bp,cs,1)==0) ){  // ocr-a-,
+>       //DBG( wchar_t c_ask=','; )
+7117,7118c7128
+<       if (2*dy >= box1->m4-box1->m1)
+<         {ad=98*ad/100;MSG(fprintf(stderr,"ad= %d",ad);)}
+---
+>       if( 2*dy >= box1->m4-box1->m1) ad=98*ad/100;
+7126c7136
+<         MSG(fprintf(stderr,"ad= %d",ad);)        
+---
+>         //MSG(fprintf(stderr,"ad= %d",ad);)        
+7139c7149
+<       DBG( wchar_t c_ask='\''; )
+---
+>       //DBG( wchar_t c_ask='\''; )
+7141,7142c7151,7152
+<       if (3*y1>=  box1->m2+2*box1->m3) { ad=96*ad/100; MSG({}) }
+<       if (2*y1>=  box1->m2+  box1->m3) { ad=99*ad/100; MSG({}) }
+---
+>       if (3*y1>=  box1->m2+2*box1->m3) { ad=96*ad/100; /*MSG({})*/ }
+>       if (2*y1>=  box1->m2+  box1->m3) { ad=99*ad/100; /*MSG({})*/ }
+7144,7145c7154,7155
+<         if (2*y1>=  box1->m2+  box1->m3) { ad=96*ad/100; MSG({}) } // ~!
+<         if (3*y1>=2*box1->m2+  box1->m3) { ad=96*ad/100; MSG({}) }
+---
+>         if (2*y1>=  box1->m2+  box1->m3) { ad=96*ad/100; /*MSG({})*/ } // ~!
+>         if (3*y1>=2*box1->m2+  box1->m3) { ad=96*ad/100; /*MSG({})*/ }
+7147c7157
+<           { ad=98*ad/100; MSG({}) }
+---
+>           { ad=98*ad/100; /*MSG({})*/ }
+7151,7152c7162,7163
+<         DBG( c_ask='\"'; )
+<         MSG(fprintf(stderr,"double quote detected");)
+---
+>         //DBG( c_ask='\"'; )
+>         //MSG(fprintf(stderr,"double quote detected");)
+7159c7170
+<         if (dx>dy) { ad=96*ad/100; MSG({}) }
+---
+>         if (dx>dy) { ad=96*ad/100; /*MSG({})*/ }
+7169d7179
+<                   
+7182c7192
+<       DBG( wchar_t c_ask='"'; )
+---
+>       //DBG( wchar_t c_ask='"'; )
+7184,7185c7194,7195
+<       if (2*y1 >= box1->m4)              { ad=98*ad/100; MSG({}) }
+<       if (4*y0 <= box1->m2 + 3*box1->m3) { ad=99*ad/100; MSG({}) }
+---
+>       if (2*y1 >= box1->m4)              { ad=98*ad/100; /*MSG({})*/ }
+>       if (4*y0 <= box1->m2 + 3*box1->m3) { ad=99*ad/100; /*MSG({})*/ }
+7204c7214
+<       DBG( wchar_t c_ask='~'; )
+---
+>       //DBG( wchar_t c_ask='~'; )
+7212c7222
+<     && 3*y1<2*box1->m2+box1->m3
+---
+>     && 3*y1<2*box1->m2+box1->m3 
+7217c7227
+<       DBG( wchar_t c_ask='^'; )
+---
+>       //DBG( wchar_t c_ask='^'; )
+7304c7314
+<    if(box1->num_ac==0 && bc!=UNKNOWN) fprintf(stderr,"<!--ERROR 576-->");
+---
+>    //if(box1->num_ac==0 && bc!=UNKNOWN) fprintf(stderr,"<!--ERROR 576-->");
+diff B src/ocr0n.c src/ocr0n.c
+38,39c38,39
+< #define IFV if(OCR_JOB->cfg.verbose&4)
+< #define MM {IFV fprintf(stderr,"\nDBG %c L%04d (%d,%d): ",(char)c_ask,__LINE__,box1->x0,box1->y0);}
+---
+> #define IFV if(JOB->cfg.verbose&4)
+> #define MM {} // {IFV fprintf(stderr,"\nDBG %c L%04d (%d,%d): ",(char)c_ask,__LINE__,box1->x0,box1->y0);}
+57,60c57,60
+< #define Setac(box1,ac,ad)  { MM;IFV fprintf(stderr,"setac %d",ad);setac(box1,ac,ad); }
+< #define Break              { MM;IFV fprintf(stderr,"break"); break; }
+< #define MSG(x)             { MM;IFV x }
+< #define DBG(x) x
+---
+> #define Setac(box1,ac,ad)  setac(box1,ac,ad) // MM;IFV fprintf(stderr,"setac %d",ad);setac(box1,ac,ad); }
+> #define Break              break //{ MM;IFV fprintf(stderr,"break"); break; }
+> #define MSG(x)             {}// MM;IFV x }
+> #define DBG(x) //x
+86c86
+<       DBG( char c_ask='5'; )
+---
+>       //DBG( char c_ask='5'; )
+118c118
+<       MSG( fprintf(stderr,"i1,i3=%d,%d i2,y=%d,%d (upper+lower center)",i1,i3,i2,y);)
+---
+>       //MSG( fprintf(stderr,"i1,i3=%d,%d i2,y=%d,%d (upper+lower center)",i1,i3,i2,y);)
+179c179
+<       MSG(fprintf(stderr,"~S ad=%d",ad);)
+---
+>       //MSG(fprintf(stderr,"~S ad=%d",ad);)
+184c184
+<       MSG(fprintf(stderr,"~S ad=%d",ad);)
+---
+>       //MSG(fprintf(stderr,"~S ad=%d",ad);)
+193c193
+<       MSG(fprintf(stderr,"~S ad=%d",ad);)
+---
+>       //MSG(fprintf(stderr,"~S ad=%d",ad);)
+198c198
+<       MSG(fprintf(stderr,"~S ad=%d",ad);)
+---
+>       //MSG(fprintf(stderr,"~S ad=%d",ad);)
+202c202
+<       if (box1->m2 && y0>=box1->m2 && ad<100 && ad>96) {ad=96;MSG({})} // s
+---
+>       if (box1->m2 && y0>=box1->m2 && ad<100 && ad>96) {ad=96;/*MSG({})*/} // s
+210c210
+<       DBG( char c_ask='1'; )
+---
+>       //DBG( char c_ask='1'; )
+239c239,240
+<           else      ad=99*ad/100; MSG(fprintf(stderr,"ad= %d",ad);) }
+---
+>           else      ad=99*ad/100; //MSG(fprintf(stderr,"ad= %d",ad);) 
+>         }
+251c252
+<         MSG(fprintf(stderr,"ocr-a-1 detected ad= %d", ad);)
+---
+>         //MSG(fprintf(stderr,"ocr-a-1 detected ad= %d", ad);)
+275c276,277
+<         MSG(fprintf(stderr,"i12 %d %d ad= %d", i1,i2,ad);) }
+---
+>         //MSG(fprintf(stderr,"i12 %d %d ad= %d", i1,i2,ad);) 
+>       }
+277c279,280
+<         MSG(fprintf(stderr,"i12 %d %d ad= %d", i1,i2,ad);) }
+---
+>         //MSG(fprintf(stderr,"i12 %d %d ad= %d", i1,i2,ad);) 
+>       }
+279c282
+<       MSG(fprintf(stderr,"i12 %d %d ad= %d", i1,i2,ad);)
+---
+>       //MSG(fprintf(stderr,"i12 %d %d ad= %d", i1,i2,ad);)
+288c291
+<       MSG(fprintf(stderr,"ad= %d", ad);)
+---
+>       //MSG(fprintf(stderr,"ad= %d", ad);)
+294c297,298
+<         MSG(fprintf(stderr,"i1i %d %d ad= %d", i1,i,ad);) }
+---
+>         //MSG(fprintf(stderr,"i1i %d %d ad= %d", i1,i,ad);) 
+>       }
+296c300,301
+<         MSG(fprintf(stderr,"i1i %d %d ad= %d", i1,i,ad);) }
+---
+>         //MSG(fprintf(stderr,"i1i %d %d ad= %d", i1,i,ad);) 
+>       }
+298c303
+<       MSG(fprintf(stderr,"i12 %d %d ad= %d", i1,i2,ad);)
+---
+>       //MSG(fprintf(stderr,"i12 %d %d ad= %d", i1,i2,ad);)
+306c311
+<         else { if (ad>99) ad=ad*99/100; MSG({}) } // ~l but gocr0801_bad5
+---
+>         else { if (ad>99) ad=ad*99/100; /*MSG({})*/ } // ~l but gocr0801_bad5
+310c315
+<       else if (j>x && !i4 && ad>99) { ad=ad*99/100; MSG({}) }
+---
+>       else if (j>x && !i4 && ad>99) { ad=ad*99/100; /*MSG({})*/ }
+316c321
+<       MSG(fprintf(stderr,"1l check ad= %d", ad);)
+---
+>       //MSG(fprintf(stderr,"1l check ad= %d", ad);)
+336c341
+<       MSG(fprintf(stderr,"1l check i= %d y= %d ad= %d", i, y, ad);)
+---
+>       //MSG(fprintf(stderr,"1l check i= %d y= %d ad= %d", i, y, ad);)
+366c371
+<         MSG(fprintf(stderr,"23 check ad= %d", ad);)
+---
+>         //MSG(fprintf(stderr,"23 check ad= %d", ad);)
+373c378
+<           i=loop(bp,dx-1-dx/8,dy-1-i,dx,cs,0,LE);
+---
+>           i=loop(bp,dx-1-dx/8,dy-1-i,dy,cs,0,LE);
+378c383
+<             MSG(fprintf(stderr,"5x9 2 check ad= %d", ad);)
+---
+>             //MSG(fprintf(stderr,"5x9 2 check ad= %d", ad);)
+393c398
+<       MSG(fprintf(stderr,"ad= %d", ad);)
+---
+>       //MSG(fprintf(stderr,"ad= %d", ad);)
+410c415
+<       DBG( char c_ask='2'; )
+---
+>       //DBG( char c_ask='2'; )
+488c493
+<       DBG( wchar_t c_ask='2'; )
+---
+>       //DBG( wchar_t c_ask='2'; )
+537c542
+<         MSG(fprintf(stderr,"7-segment-type");)
+---
+>         //MSG(fprintf(stderr,"7-segment-type");)
+539c544
+<         MSG( fprintf(stderr,"upper bow not z-like? ad %d", ad); )
+---
+>         //MSG( fprintf(stderr,"upper bow not z-like? ad %d", ad); )
+547,548c552,553
+<       MSG( fprintf(stderr,"i1-7 %d %d %d %d %d %d %d ad %d",
+<            i1,i2,i3,i4,i5,i6,i7,ad); )
+---
+>       /*MSG( fprintf(stderr,"i1-7 %d %d %d %d %d %d %d ad %d",
+>            i1,i2,i3,i4,i5,i6,i7,ad); )*/
+557c562
+<       MSG( fprintf(stderr,"ad %d", ad); )
+---
+>       //MSG( fprintf(stderr,"ad %d", ad); )
+560c565
+<       MSG( fprintf(stderr,"ad %d", ad); )
+---
+>       //MSG( fprintf(stderr,"ad %d", ad); )
+563c568
+<       MSG( fprintf(stderr,"ad %d", ad); )
+---
+>       //MSG( fprintf(stderr,"ad %d", ad); )
+567c572
+<       MSG( fprintf(stderr,"ad %d", ad); )
+---
+>       //MSG( fprintf(stderr,"ad %d", ad); )
+572c577
+<       MSG( fprintf(stderr,"ad %d", ad); )
+---
+>       //MSG( fprintf(stderr,"ad %d", ad); )
+575c580
+<       MSG( fprintf(stderr,"ad %d", ad); )
+---
+>       //MSG( fprintf(stderr,"ad %d", ad); )
+578c583
+<       MSG( fprintf(stderr,"ad %d", ad); )
+---
+>       //MSG( fprintf(stderr,"ad %d", ad); )
+586c591
+<       MSG(fprintf(stderr,"i1-i2 %d %d dist= %d/%d",i1,i2,ld,2*sq(1024/4));)
+---
+>       //MSG(fprintf(stderr,"i1-i2 %d %d dist= %d/%d",i1,i2,ld,2*sq(1024/4));)
+602c607
+<       DBG( char c_ask='3'; )
+---
+>       //DBG( char c_ask='3'; )
+642c647
+<         MSG(fprintf(stderr,"7-segment-type");)   
+---
+>         //MSG(fprintf(stderr,"7-segment-type");)   
+646c651
+<       MSG(fprintf(stderr,"i1-8 %d %d %d %d %d %d %d %d",i1,i2,i3,i4,i5,i6,i7,i8);)
+---
+>       //MSG(fprintf(stderr,"i1-8 %d %d %d %d %d %d %d %d",i1,i2,i3,i4,i5,i6,i7,i8);)
+711c716
+<       MSG(fprintf(stderr,"left white gaps (%d,%d) (%d,%d)",i3,i1,i4,i2);)
+---
+>       //MSG(fprintf(stderr,"left white gaps (%d,%d) (%d,%d)",i3,i1,i4,i2);)
+730c735
+<       DBG( wchar_t c_ask='4'; )
+---
+>       //DBG( wchar_t c_ask='4'; )
+737c742
+<         MSG( fprintf(stderr," low-left-dist= %d < max= %d", aa[1][2], d); )
+---
+>         //MSG( fprintf(stderr," low-left-dist= %d < max= %d", aa[1][2], d); )
+791c796
+<         MSG(fprintf(stderr,"triangle type top-left i=%d",i);)
+---
+>         //MSG(fprintf(stderr,"triangle type top-left i=%d",i);)
+799c804
+<         MSG(fprintf(stderr,"open type");)
+---
+>         //MSG(fprintf(stderr,"open type");)
+804c809
+<       MSG(fprintf(stderr,"i1-7 %d %d %d %d %d %d %d 2up %d",i1,i2,i3,i4,i5,i6,i7,i2up);)
+---
+>       //MSG(fprintf(stderr,"i1-7 %d %d %d %d %d %d %d 2up %d",i1,i2,i3,i4,i5,i6,i7,i2up);)
+861c866
+<       MSG(fprintf(stderr,"i1-i2up %d %d dist= %d/%d",i1,i2up,ld,2*sq(1024/4));)
+---
+>       //MSG(fprintf(stderr,"i1-i2up %d %d dist= %d/%d",i1,i2up,ld,2*sq(1024/4));)
+864c869
+<       MSG(fprintf(stderr,"i2up-i2 %d %d dist= %d/%d",i2up,i2,ld,2*sq(1024/4));)
+---
+>       //MSG(fprintf(stderr,"i2up-i2 %d %d dist= %d/%d",i2up,i2,ld,2*sq(1024/4));)
+868c873
+<       MSG(fprintf(stderr,"i2-i3 %d %d dist= %d/%d",i2,i3,ld,2*sq(1024/4));)
+---
+>       //MSG(fprintf(stderr,"i2-i3 %d %d dist= %d/%d",i2,i3,ld,2*sq(1024/4));)
+872c877
+<       MSG(fprintf(stderr,"i3-i4 %d %d dist= %d/%d",i3,i4,ld,2*sq(1024/4));)
+---
+>       //MSG(fprintf(stderr,"i3-i4 %d %d dist= %d/%d",i3,i4,ld,2*sq(1024/4));)
+876c881
+<       MSG(fprintf(stderr,"i6-i7 %d %d dist= %d/%d",i6,i7,ld,2*sq(1024/4));)
+---
+>       //MSG(fprintf(stderr,"i6-i7 %d %d dist= %d/%d",i6,i7,ld,2*sq(1024/4));)
+893c898
+<       DBG( char c_ask='4'; )
+---
+>       //DBG( char c_ask='4'; )
+984c989
+<       DBG( char c_ask='6'; )
+---
+>       //DBG( char c_ask='6'; )
+1013,1014c1018,1019
+<       MSG( fprintf(stderr,"hole[0].x0,x1 %d %d", sdata->holes.hole[0].x0,
+<            sdata->holes.hole[0].x1); )
+---
+>       /*MSG( fprintf(stderr,"hole[0].x0,x1 %d %d", sdata->holes.hole[0].x0,
+>            sdata->holes.hole[0].x1); )*/
+1049c1054
+<       DBG( char c_ask='7'; )
+---
+>       //DBG( char c_ask='7'; )
+1063c1068
+<          MSG( fprintf(stderr,"xy= %d %d",x,y); )
+---
+>          //MSG( fprintf(stderr,"xy= %d %d",x,y); )
+1074c1079
+<       MSG( fprintf(stderr,"7: ad= %d",ad); )
+---
+>       //MSG( fprintf(stderr,"7: ad= %d",ad); )
+1077c1082
+<       MSG( fprintf(stderr,"7: ad= %d",ad); )
+---
+>       //MSG( fprintf(stderr,"7: ad= %d",ad); )
+1080c1085
+<       MSG( fprintf(stderr,"7: ad= %d",ad); )
+---
+>       //MSG( fprintf(stderr,"7: ad= %d",ad); )
+1093c1098
+<       DBG( char c_ask='8'; )
+---
+>       //DBG( char c_ask='8'; )
+1138c1143
+<       MSG(fprintf(stderr,"center bar at y= %d %d x=%d+%d i1=%d",i-y0,i2-y0,x,j,i1);)
+---
+>       //MSG(fprintf(stderr,"center bar at y= %d %d x=%d+%d i1=%d",i-y0,i2-y0,x,j,i1);)
+1185c1190
+<       DBG( char c_ask='9'; )
+---
+>       //DBG( char c_ask='9'; )
+1207c1212
+<       MSG( fprintf(stderr,"bow-y0= %d",i-y0); )
+---
+>       //MSG( fprintf(stderr,"bow-y0= %d",i-y0); )
+1269c1274
+<       DBG( char c_ask='0'; )
+---
+>       //DBG( char c_ask='0'; )
+1360c1365
+<       DBG( char c_ask='0'; )
+---
+>       //DBG( char c_ask='0'; )
+1442c1447
+<       DBG( char c_ask='0'; )
+---
+>       //DBG( char c_ask='0'; )
+1487c1492
+<         if (y>dy/4) { ad=ad*99/100;MSG(fprintf(stderr,"ad=%d",ad);) }
+---
+>         if (y>dy/4) { ad=ad*99/100;/*MSG(fprintf(stderr,"ad=%d",ad);)*/ }
+1515c1520
+<         ad=98*ad/100;MSG(fprintf(stderr,"ad=%d",ad);) }
+---
+>         ad=98*ad/100;/*MSG(fprintf(stderr,"ad=%d",ad);)*/ }
+1520c1525
+<       if (i>0) { ad=ad*98/100; MSG(fprintf(stderr,"i=%d ad=%d",i,ad);) }
+---
+>       if (i>0) { ad=ad*98/100; /*MSG(fprintf(stderr,"i=%d ad=%d",i,ad);)*/ }
+diff B src/ocr1.c src/ocr1.c
+80a81
+>   /*
+83c84,85
+<   }  
+---
+>   } 
+>   */ 
+diff B src/otsu.c src/otsu.c
+95,96c95,96
+<       if (*np > gmax) gmax=*np;
+<       if (*np < gmin) gmin=*np;
+---
+>       if(*np > gmax) gmax=*np;
+>       if(*np < gmin) gmin=*np;
+108,109c108,109
+<   if ((vvv&1)) // Debug
+<     fprintf(stderr,"# threshold: max_contrast= %d\n", maxc);
+---
+>   //if ((vvv&1)) // Debug
+>   //  fprintf(stderr,"# threshold: max_contrast= %d\n", maxc);
+147c147
+<     fprintf (stderr, "NOT NORMAL, thresholdValue = 160\n");
+---
+>     //fprintf (stderr, "NOT NORMAL, thresholdValue = 160\n");
+173c173
+< 
+---
+>   /*
+175c175,176
+<     fprintf(stderr,"# threshold: value ihist chist mass_dipol_moment trigg\n");
+---
+>      fprintf(stderr,"# threshold: value ihist chist mass_dipol_moment\n");
+>   */
+194a196
+>     /*
+198c200
+<        sb*256/(dx*dy)/(dx*dy),  /* normalized dipol moment */
+---
+>        sb*256/(dx*dy)/(dx*dy),  // normalized dipol moment
+199a202
+>     */
+214c217
+<     fprintf(stderr,"# threshold: Value >gmax\n");
+---
+>     //fprintf(stderr,"# threshold: Value >gmax\n");
+218c221
+<     fprintf(stderr,"# threshold: Value<=gmin\n");
+---
+>     //fprintf(stderr,"# threshold: Value<=gmin\n");
+222a226
+>   /*
+227c231
+< 
+---
+>   */
+230a235
+>     /*
+232a238
+>     */
+280a287
+>     /*
+282a290
+>     */
+292a301
+>         /*
+294a304
+>         */
+diff B src/output.c src/output.c
+35a36
+> /*
+39c40
+<   if (px) { /* overwrite rest of arguments */
+---
+>   if (px) { // overwrite rest of arguments
+45c46
+<     if(cs==0) cs=OCR_JOB->cfg.cs;
+---
+>     if(cs==0) cs=JOB->cfg.cs;
+47c48
+<                     " nrun=%d p=%p", /* ToDo: r,nrun is obsolete */
+---
+>                     " nrun=%d p=%p", // ToDo: r,nrun is obsolete
+49c50
+< 	  px->x - px->x0, px->y - px->y0, OCR_JOB->tmp.n_run, (void*)px);
+---
+> 	  px->x - px->x0, px->y - px->y0, JOB->tmp.n_run, (void*)px);
+64c65
+<         /* print only the first vectors of each frame */
+---
+>         // print only the first vectors of each frame
+71c72
+<     if (px->num_ac){ /* output table of chars and its probabilities */
+---
+>     if (px->num_ac){ // output table of chars and its probabilities
+74c75
+<       /* output the (xml-)string (picture position, barcodes, glyphs, ...) */
+---
+>       // output the (xml-)string (picture position, barcodes, glyphs, ...)
+86c87
+<   ty=dy/40+1; /* step, usually 1, but greater on large maps */
+---
+>   ty=dy/40+1; // step, usually 1, but greater on large maps 
+90,91c91,92
+<   for(y=yy0;y<yy0+dy;y+=ty) { /* reduce the output to max 78x40 */
+<     /* first image is the copied and modified bitmap of the box */
+---
+>   for(y=yy0;y<yy0+dy;y+=ty) { // reduce the output to max 78x40
+>     // first image is the copied and modified bitmap of the box
+93c94
+<     for(x=x0;x<x0+dx;x+=tx){  /* by merging sub-pixels */
+---
+>     for(x=x0;x<x0+dx;x+=tx){  // by merging sub-pixels 
+95c96
+<       for(y2=y;y2<y+ty && y2<y0+dy;y2++) /* sub-pixels */
+---
+>       for(y2=y;y2<y+ty && y2<y0+dy;y2++) // sub-pixels
+101c102
+<       if (px->num_frames) { /* mark vectors */
+---
+>       if (px->num_frames) { // mark vectors
+103c104
+<         if (c1!='$' && c1!='S') /* dont mark twice */
+---
+>         if (c1!='$' && c1!='S') // dont mark twice
+112c113
+<     /* 2nd image is the boxframe in the original bitmap */
+---
+>     // 2nd image is the boxframe in the original bitmap
+114,115c115,116
+<     if (dx<40) /* do it only, if we have enough place */
+<     for(x=x0;x<x0+dx;x+=tx){  /* by merging sub-pixels */
+---
+>     if (dx<40) // do it only, if we have enough place
+>     for(x=x0;x<x0+dx;x+=tx){  // by merging sub-pixels
+117c118
+<       for(y2=y;y2<y+ty && y2<y0+dy;y2++) /* sub-pixels */
+---
+>       for(y2=y;y2<y+ty && y2<y0+dy;y2++) // sub-pixels
+124c125
+<     /* mark lines with < */
+---
+>     // mark lines with <
+127c128
+<     if (y==y0 || y==yy0+dy-1)  c2='-';  /* boxmarks */
+---
+>     if (y==y0 || y==yy0+dy-1)  c2='-';  // boxmarks 
+130a132
+>   */
+136c138
+<   out_b(px,NULL,0, 0, 0, 0, OCR_JOB->cfg.cs);
+---
+>   //out_b(px,NULL,0, 0, 0, 0, JOB->cfg.cs);
+141a144
+> /*
+143,144c146,148
+<   /*FIXME jb static*/static char *c1="OXXXXxx@.,,,,,,,";
+<   pix *b=&OCR_JOB->src.p;
+---
+>   //FIXME jb static  
+>   static char *c1="OXXXXxx@.,,,,,,,";
+>   pix *b=&JOB->src.p;
+148c152
+<   ty=(box1->y1-box1->y0)/40+1; /* step, usually 1, but greater on large maps */
+---
+>   ty=(box1->y1-box1->y0)/40+1; // step, usually 1, but greater on large maps
+150c154
+<   for(i=0;i<dy;i+=ty) { /* reduce the output to max 78x40??? */
+---
+>   for(i=0;i<dy;i+=ty) { // reduce the output to max 78x40???
+153c157
+<     fprintf(stderr,"%c", c1[ ((getpixel(b,x,y)<OCR_JOB->cfg.cs)?0:8)+marked(b,x,y) ] );
+---
+>     fprintf(stderr,"%c", c1[ ((getpixel(b,x,y)<JOB->cfg.cs)?0:8)+marked(b,x,y) ] );
+157c161
+<     fprintf(stderr,"%c", c1[ ((getpixel(b,x,y)<OCR_JOB->cfg.cs)?0:8)+marked(b,x,y) ] );
+---
+>     fprintf(stderr,"%c", c1[ ((getpixel(b,x,y)<JOB->cfg.cs)?0:8)+marked(b,x,y) ] );
+158a163
+> */  
+165a171
+>   /*
+172,173c178,179
+<   for_each_data(&(job->res.boxlist)) {
+<     box2 = (struct box *) list_get_current(&(job->res.boxlist));
+---
+>   for_each_data(&(JOB->res.boxlist)) {
+>     box2 = (struct box *) list_get_current(&(JOB->res.boxlist));
+180,181c186,187
+<             || (strchr(lc, '_') && box2->c==UNKNOWN) /* for compability */
+<             || j<box2->num_ac ){  /* also list alternative chars */
+---
+>             || (strchr(lc, '_') && box2->c==UNKNOWN) // for compability
+>             || j<box2->num_ac ){  // also list alternative chars 
+189c195
+< 	      (int)box2->c,   /* wchar_t -> char ???? */
+---
+> 	      (int)box2->c,   // wchar_t -> char ???? 
+191c197
+<       if (job->cfg.verbose & 4) out_x(box2);
+---
+>       if (JOB->cfg.verbose & 4) out_x(box2);
+194c200
+<   } end_for_each(&(job->res.boxlist));
+---
+>   } end_for_each(&(JOB->res.boxlist));
+196c202,203
+<   return 0;
+---
+>   */
+>   return 0;  
+208a216
+>   /*
+214c222
+<   if ( opt & 8 ) {		/* clear debug bits in image */
+---
+>   if ( opt & 8 ) {		// clear debug bits in image 
+224c232
+<   /* mark longest line which was used to estimate the rotation angle */
+---
+>   // mark longest line which was used to estimate the rotation angle
+233c241
+<       if((x&7)<5 && !(x&1))  /* dotted line */
+---
+>       if((x&7)<5 && !(x&1))  // dotted line
+237c245
+<   ic = ((opt & 2) ? 1 : 2); /* obsolete */
+---
+>   ic = ((opt & 2) ? 1 : 2); // obsolete
+240c248
+<     /* mark boxes in 32=0x40=blue */
+---
+>     // mark boxes in 32=0x40=blue
+242,244c250,252
+<     /* mark chars with green left and under line */
+<     col = 4; /* green */
+<     if (box2->c == UNKNOWN  && (opt & 3)) col=2; /* red */
+---
+>     // mark chars with green left and under line 
+>     col = 4; // green
+>     if (box2->c == UNKNOWN  && (opt & 3)) col=2; // red 
+251c259
+<     /* mark pictures by green cross */
+---
+>     // mark pictures by green cross 
+266,267c274,275
+<       /* or read from outside??? */
+<       for (i = 0; i < lines->num; i++) { /* mark lines by 0x08 = blue */
+---
+>       // or read from outside??? 
+>       for (i = 0; i < lines->num; i++) { // mark lines by 0x08 = blue 
+273c281
+< 	    /* box arround m2-m3 */
+---
+> 	    // box arround m2-m3 
+275c283
+<             yr  = y; /* y.rotated */
+---
+>             yr  = y; // y.rotated 
+279,281c287,289
+<             if (*np<160) continue; /* do not touch dark pixels */
+<             if ((*np&6)!=0) continue; /* only change white pixels */
+<             put(pp, x, yr, 255, 6); /* UPN: 255 and 6 or */
+---
+>             if (*np<160) continue; // do not touch dark pixels
+>             if ((*np&6)!=0) continue; // only change white pixels 
+>             put(pp, x, yr, 255, 6); // UPN: 255 and 6 or 
+289a298
+>   */
+diff B src/pcx.c src/pcx.c
+31c31
+< #define ERR(x) { fprintf(stderr,"ERROR "__FILE__" L%d: " x "\n",__LINE__);exit(1);}
+---
+> #define ERR(x) {}// fprintf(stderr,"ERROR "__FILE__" L%d: " x "\n",__LINE__);exit(1);}
+46,49c46,49
+<   f1=fopen(name,"rb"); if(!f1) ERR("open");
+<   if(fread(h,1,128,f1)!=128)ERR("read PCX header");    /* 128 Byte lesen -> h[] */
+<   if(h[0]!=10)ERR("no ZSoft sign");	/* ZSoft sign */
+<   if(h[2]>  1)ERR("unknown coding");	/* run length encoding */
+---
+>   f1=fopen(name,"rb"); if(!f1) return; //ERR("open");
+>   if(fread(h,1,128,f1)!=128)return; //ERR("read PCX header");    /* 128 Byte lesen -> h[] */
+>   if(h[0]!=10)return; //ERR("no ZSoft sign");	/* ZSoft sign */
+>   if(h[2]>  1)return;//ERR("unknown coding");	/* run length encoding */
+51c51
+<   if(bits!=1 && bits!=8)ERR("only 1 or 8 bits supported");
+---
+>   if(bits!=1 && bits!=8)return;//ERR("only 1 or 8 bits supported");
+54a55
+>   /*
+59a61
+>   */
+67c69
+<    fseek(f1,-3*256,2); if(fread(pal,3,256,f1)!=256)ERR("read palette");
+---
+>    fseek(f1,-3*256,2); if(fread(pal,3,256,f1)!=256)return;//ERR("read palette");
+72c74
+<   if(pic==NULL)ERR("no memory");	/* no memory */
+---
+>   if(pic==NULL)return;//ERR("no memory");	/* no memory */
+77c79
+<       b1=1; bb=read_b(f1); b2=bb; if(b1==192)fprintf(stderr,"?");
+---
+>       b1=1; bb=read_b(f1); b2=bb; //if(b1==192)fprintf(stderr,"?");
+79c81
+<       if(err){fprintf(stderr,"\nread error x=%d y=%d\n",x,y);x=nx;y=ny;break;}
+---
+>       if(err){/*fprintf(stderr,"\nread error x=%d y=%d\n",x,y);*/x=nx;y=ny;break;}
+91c93
+<   if(vvv)fprintf(stderr,"\n");
+---
+>   //if(vvv)fprintf(stderr,"\n");
+141,144c143,146
+<   f1=fopen(name,"wb"); if(!f1) fprintf(stderr," error opening file\n");
+<   if(!f1)ERR("open");		/* open-error */
+<   if(fwrite(h,1,54+4*256,f1)!=54+4*256)ERR("write head"); 
+<   if(vvv) fprintf(stderr,"# write BMP x=%d y=%d\n",nx,ny);
+---
+>   f1=fopen(name,"wb"); //if(!f1) fprintf(stderr," error opening file\n");
+>   if(!f1)return;//ERR("open");		/* open-error */
+>   if(fwrite(h,1,54+4*256,f1)!=54+4*256)return;//ERR("write head"); 
+>   //if(vvv) fprintf(stderr,"# write BMP x=%d y=%d\n",nx,ny);
+146c148
+<     if(((int)fwrite(pic+p.x*y,1,p.x,f1))!=p.x)ERR("write");
+---
+>     if(((int)fwrite(pic+p.x*y,1,p.x,f1))!=p.x)return;//ERR("write");
+148c150
+<     if(((int)fwrite(rest,1,nx-p.x,f1))!=nx-p.x)ERR("write");
+---
+>     if(((int)fwrite(rest,1,nx-p.x,f1))!=nx-p.x)return;//ERR("write");
+diff B src/pgm2asc.c src/pgm2asc.c
+53c53
+< #include "config.h"
+---
+> //#include "config.h"
+80a81
+> /*
+83a85
+> */
+277c279
+<     fprintf(stderr,"\nDBG: There is something wrong with setas()!");
+---
+>     //fprintf(stderr,"\nDBG: There is something wrong with setas()!");
+281c283,285
+<     fprintf(stderr,"\nDBG: setas(NULL) makes no sense!"); return 0; }
+---
+>     //fprintf(stderr,"\nDBG: setas(NULL) makes no sense!"); 
+>     return 0; 
+>   }
+283,284c287,288
+<     fprintf(stderr,"\nDBG: setas(\"\") makes no sense!"
+<                    " x= %d %d", b->x0, b->y0);
+---
+>     //fprintf(stderr,"\nDBG: setas(\"\") makes no sense!"
+>     //               " x= %d %d", b->x0, b->y0);
+303c307
+<       fprintf(stderr, "\nDBG setas compose was useless %d %d",b->x0,b->y0);
+---
+>       //fprintf(stderr, "\nDBG setas compose was useless %d %d",b->x0,b->y0);
+350c354
+<     fprintf(stderr,"\nDBG: This is a bad call to setac()!");
+---
+>     //fprintf(stderr,"\nDBG: This is a bad call to setac()!");
+355c359
+<     fprintf(stderr,"\nDBG: setac(0) makes no sense!");
+---
+>     //fprintf(stderr,"\nDBG: setac(0) makes no sense!");
+369,371c373,375
+<       if(job->cfg.verbose & 7) 
+<         fprintf(stderr, "\nDBG %s setac (%d,%d): compose was useless, wac=%d",
+<                 decode(ac,ASCII), b->x0, b->y0, weight);
+---
+>       //if(job->cfg.verbose & 7) 
+>       //  fprintf(stderr, "\nDBG %s setac (%d,%d): compose was useless, wac=%d",
+>       //          decode(ac,ASCII), b->x0, b->y0, weight);
+418c422
+<     fprintf(stderr,"\n#DEBUG: There is something wrong with testac()!");
+---
+>     //fprintf(stderr,"\n#DEBUG: There is something wrong with testac()!");
+467,468c471,473
+<     fprintf(stderr, "insufficient memory");
+<     exit(1);
+---
+>     //fprintf(stderr, "insufficient memory");
+>     //exit(1);
+>     return 0;
+594c599,602
+<   if (!buf) { fprintf(stderr,"malloc failed (frame_nn)\n");return 0;}
+---
+>   if (!buf) { 
+>     //fprintf(stderr,"malloc failed (frame_nn)\n");
+>     return 0;
+>   }
+599c607
+<   g_debug(fprintf(stderr,"\nframe_nn   x=%4d y=%4d",x,y);)
+---
+>   //g_debug(fprintf(stderr,"\nframe_nn   x=%4d y=%4d",x,y);)
+657c665
+<   g_debug(fprintf(stderr," maxstack= %4d pixels= %6d",maxstack,rc);)
+---
+>   //g_debug(fprintf(stderr," maxstack= %4d pixels= %6d",maxstack,rc);)
+660c668
+<     fprintf(stderr,"# Warning: frame_nn stack oerflow\n");
+---
+>     //fprintf(stderr,"# Warning: frame_nn stack oerflow\n");
+681c689
+<   g_debug(fprintf(stderr," start frame:");)
+---
+>   //g_debug(fprintf(stderr," start frame:");)
+684c692
+<     g_debug(fprintf(stderr," ln=%d diag=%d cs=%d x=%d y=%d - go to border\n",ln,diag,cs,x,y);)
+---
+>     //g_debug(fprintf(stderr," ln=%d diag=%d cs=%d x=%d y=%d - go to border\n",ln,diag,cs,x,y);)
+696c704
+<     g_debug(fprintf(stderr," ln=%d diag=%d cs=%d x=%d y=%d\n",ln,diag,cs,x,y);)
+---
+>     //g_debug(fprintf(stderr," ln=%d diag=%d cs=%d x=%d y=%d\n",ln,diag,cs,x,y);)
+706c714
+<       g_debug(fprintf(stderr," x=%3d y=%3d d=%d i=%d p=%3d rc=%d\n",x,y,d,i,getpixel(p,x,y),rc);)
+---
+>       //g_debug(fprintf(stderr," x=%3d y=%3d d=%d i=%d p=%3d rc=%d\n",x,y,d,i,getpixel(p,x,y),rc);)
+735c743
+<   g_debug(fprintf(stderr," rot=%d\n",rot);)
+---
+>   //g_debug(fprintf(stderr," rot=%d\n",rot);)
+788c796
+< #define g_debug(x) x
+---
+> #define g_debug(x)
+823c831
+< 
+---
+> /*
+827c835
+<                   
+---
+>   */                
+829c837
+<     fprintf(stderr,"ERROR frame_vector: no border\n");
+---
+>     //fprintf(stderr,"ERROR frame_vector: no border\n");
+860c868
+<     g_debug(fprintf(stderr,"\nLEV3: x= %3d %3d d= %d rot= %2d  %3d",x,y,d,rot,i2);)
+---
+>     //g_debug(fprintf(stderr,"\nLEV3: x= %3d %3d d= %d rot= %2d  %3d",x,y,d,rot,i2);)
+864c872
+<       g_debug(fprintf(stderr,"\nLEV2: markB xy= %3d %3d ", x, y);)
+---
+>       //g_debug(fprintf(stderr,"\nLEV2: markB xy= %3d %3d ", x, y);)
+899c907
+<       g_debug(fprintf(stderr," stored @ %3d steps= %d", i2-1, steps);)
+---
+>       //g_debug(fprintf(stderr," stored @ %3d steps= %d", i2-1, steps);)
+913c921
+<         g_debug(fprintf(stderr,"\nLEV2: markW xy= %3d %3d ", nx, ny);)
+---
+>         //g_debug(fprintf(stderr,"\nLEV2: markW xy= %3d %3d ", nx, ny);)
+949c957
+<   g_debug(fprintf(stderr,"\nLEV2 o= %3d %3d  x= %3d %3d  r=%d v=%d",ox,oy,x,y,rot,vol);)
+---
+>   //g_debug(fprintf(stderr,"\nLEV2 o= %3d %3d  x= %3d %3d  r=%d v=%d",ox,oy,x,y,rot,vol);)
+951c959
+<   g_debug(fprintf(stderr," steps= %3d vectors= %3d",rc,i2);)
+---
+>   //g_debug(fprintf(stderr," steps= %3d vectors= %3d",rc,i2);)
+984c992
+<     fprintf( stderr, "\nFATAL: malloc(%d) failed, skip num_hole", dx*dy );
+---
+>     //fprintf( stderr, "\nFATAL: malloc(%d) failed, skip num_hole", dx*dy );
+1005c1013
+<   g_debug(out_b(NULL,&b,0,0,b.x,b.y,cs);)
+---
+>   //g_debug(out_b(NULL,&b,0,0,b.x,b.y,cs);)
+1061c1069
+<     fprintf( stderr, "\nFATAL: malloc(%d) failed, skip num_obj",(x1-x0+1)*(y1-y0+1) );
+---
+>     //fprintf( stderr, "\nFATAL: malloc(%d) failed, skip num_obj",(x1-x0+1)*(y1-y0+1) );
+1147c1155
+<      fprintf(stderr,"\n#  distance rc=%d good=%d bad=%d",rc,rgood,rbad);
+---
+>      //fprintf(stderr,"\n#  distance rc=%d good=%d bad=%d",rc,rgood,rbad);
+1224c1232
+<    if (!b.p) fprintf(stderr,"Warning: malloc failed L%d\n",__LINE__);
+---
+>    //if (!b.p) fprintf(stderr,"Warning: malloc failed L%d\n",__LINE__);
+1275,1277c1283,1285
+<        if(OCR_JOB->cfg.verbose & 7) 
+<          fprintf(stderr, "\nDBG whatletter: compose(%s) was useless (%d,%d)",
+<            decode(bc,ASCII), box1->x0, box1->y0);
+---
+>        //if(OCR_JOB->cfg.verbose & 7) 
+>          //fprintf(stderr, "\nDBG whatletter: compose(%s) was useless (%d,%d)",
+>          //  decode(bc,ASCII), box1->x0, box1->y0);
+1302,1303c1310,1311
+<   if (job->cfg.verbose)
+<     fprintf(stderr,"# scan_boxes");
+---
+>   //if (job->cfg.verbose)
+>     //fprintf(stderr,"# scan_boxes");
+1317c1325
+< 	continue;
+---
+> 	    continue;
+1319c1327
+< 	continue;
+---
+>      	continue;
+1344c1352
+<       g_debug(fprintf(stderr,"\n# ... scan xy= %3d %3d rc= %2d", x, y, rc);)
+---
+>       //g_debug(fprintf(stderr,"\n# ... scan xy= %3d %3d rc= %2d", x, y, rc);)
+1346,1347c1354,1356
+<       if (box3->num_frames && !box3->num_frame_vectors[0])
+<         fprintf(stderr,"\nERROR scan_boxes: no vector in frame (%d,%d)",x,y);
+---
+>       //if (box3->num_frames && !box3->num_frame_vectors[0])
+>         //fprintf(stderr,"\nERROR scan_boxes: no vector in frame (%d,%d)",x,y);
+> 
+1359a1370
+>     /*
+1363a1375
+>     */
+1428c1440
+<   if(job->cfg.verbose){ fprintf(stderr,"# check for word pitch"); }
+---
+>   //if(job->cfg.verbose){ fprintf(stderr,"# check for word pitch"); }
+1431c1443,1444
+<     if(job->cfg.verbose){ fprintf(stderr,"\n#  line %2d\n# ...",l1); }
+---
+>   //  if(job->cfg.verbose){ fprintf(stderr,"\n#  line %2d\n# ...",l1); }
+> 
+1473a1489
+>         /*
+1480c1496
+<             mono_em_min, mono_em_max, char_width_max);
+---
+>             mono_em_min, mono_em_max, char_width_max);*/
+1493a1510
+>         /*
+1500c1517
+<             mono_em_min, mono_em_max, char_width_max);
+---
+>             mono_em_min, mono_em_max, char_width_max);*/
+1545a1563
+>          /* 
+1549c1567
+<             pre1->x0, pre1->x1, box2->x0, box2->x1);
+---
+>             pre1->x0, pre1->x1, box2->x0, box2->x1);*/
+1566a1585
+>          /* 
+1570c1589
+<             pre2->x0, pre2->x1, box2->x0, box2->x1);
+---
+>             pre2->x0, pre2->x1, box2->x0, box2->x1);*/
+1593a1613
+>     /*
+1598c1618,1619
+<         mono_em_min, mono_em_max, monospaced);
+---
+>         mono_em_min, mono_em_max, monospaced);*/
+>     /*    
+1600c1621
+<       if (job->cfg.verbose && l1==0) /* only for all lines */
+---
+>       if (job->cfg.verbose && l1==0) // only for all lines
+1602a1624
+>     */
+1603a1626
+>     /*
+1609a1633
+>     */
+1644,1646c1668,1670
+<           if ((job->cfg.verbose&(32+16))==48)
+<             fprintf(stderr," L%02d best_p= %3d + maxdiff=%3d\n# ...",
+<               l1, pdists[best_p], max);
+---
+>           //if ((job->cfg.verbose&(32+16))==48)
+>             //fprintf(stderr," L%02d best_p= %3d + maxdiff=%3d\n# ...",
+>             //  l1, pdists[best_p], max);
+1654,1656c1678,1680
+<             if ((job->cfg.verbose&(32+16))==48)
+<               fprintf(stderr," L%02d best_p=%3d ni_min=%3d\n# ...",
+<                 l1, pdists[best_p], ni_min);
+---
+>             //if ((job->cfg.verbose&(32+16))==48)
+>             //  fprintf(stderr," L%02d best_p=%3d ni_min=%3d\n# ...",
+>             //    l1, pdists[best_p], ni_min);
+1662a1687
+>       /*
+1668a1694
+>       */
+1683a1710
+>       /*
+1692a1720
+>       */
+1701c1729
+<     }
+---
+>      }
+1705,1709c1733,1735
+<   if (job->cfg.verbose)
+<     fprintf(stderr," overall space width is %d %s\n",
+<         spc, ((monospaced)?"monospaced":"proportional"));
+< 
+< 
+---
+>   //if (job->cfg.verbose)
+>   //  fprintf(stderr," overall space width is %d %s\n",
+>   //      spc, ((monospaced)?"monospaced":"proportional"));
+1723c1749
+<   if (job->cfg.verbose) { fprintf(stderr,"# count subboxes\n# ..."); }
+---
+>   //if (job->cfg.verbose) { fprintf(stderr,"# count subboxes\n# ..."); }
+1750a1777
+>     /*
+1754a1782
+>     */
+1757a1786
+>   /*
+1760c1789,1791
+<       ii, num_mini, num_same/2 /* counted twice */, cnt);
+---
+>       ii, num_mini, num_same/2 // counted twice
+>       , cnt);
+>   */
+1779a1811
+>     /*
+1781a1814
+>     */    
+1823a1857
+>             /*
+1830a1865
+>             */    
+1848a1884
+>     /*
+1851a1888
+>     */    
+1881a1919
+>     /*
+1884a1923
+>     */
+1890a1930
+>       
+1938c1983
+<             fprintf(stderr,"\n# next two boxes are candidates for joining");
+---
+>             //fprintf(stderr,"\n# next two boxes are candidates for joining");
+1957c2002
+<               && 2*box4->x1>=x0+x1 	/* test if box4 is around box2 */
+---
+>               && 2*box4->x1>=x0+x1 	/* test if box4 is around box2 */   
+1990a2036
+>             /*
+1995c2041,2042
+<                 box4->x1-box4->x0+1, box4->y1-box4->y0+1,join_reason[do_join]);
+---
+>                 box4->x1-box4->x0+1, box4->y1-box4->y0+1,join_reason[do_join]);*/
+> 
+2002c2049
+< #if 0
+---
+> #if 0       /*
+2005c2052
+<                 x0, y0, x1-x0+1, y1-y0+1);
+---
+>                 x0, y0, x1-x0+1, y1-y0+1);*/
+2025c2072
+<         if (box4!=box2 && box4->c != PICTURE)
+---
+>         if(box4!=box2 && box4->c != PICTURE)
+2032a2080
+>             /*
+2037a2086
+>             */    
+2060c2109
+<       	if (box4!=box2 && box4->c != PICTURE)
+---
+>       	if(box4!=box2 && box4->c != PICTURE)
+2066c2115,2116
+<             if (job->cfg.verbose & 7)
+---
+>       	    /*
+>             if (job->cfg.verbose & 7)            
+2070a2121
+>             */
+2084c2135,2136
+<     } end_for_each(&(job->res.boxlist)); 
+---
+>     } end_for_each(&(job->res.boxlist));
+>     /* 
+2087a2140
+>     */
+2107c2160
+<     if(job->cfg.verbose)fprintf(stderr,"# packing");
+---
+>     //if(job->cfg.verbose)fprintf(stderr,"# packing");
+2114c2167
+<       if(job->cfg.verbose)fprintf(stderr,"\r# packing %5d",i);
+---
+>       //if(job->cfg.verbose)fprintf(stderr,"\r# packing %5d",i);
+2138c2191
+<     if(job->cfg.verbose)fprintf(stderr," %d different chars",i);
+---
+>     //if(job->cfg.verbose)fprintf(stderr," %d different chars",i);
+2159a2213
+>       /*
+2163a2218
+>       */
+2168a2224
+>       /*
+2170c2226,2227
+<       fprintf(stderr," no %d char %4d %5d times sum=%d\n",i,box2->num,j,k);   
+---
+>       fprintf(stderr," no %d char %4d %5d times sum=%d\n",i,box2->num,j,k);
+>       */   
+2172c2229
+<     if(job->cfg.verbose)fprintf(stderr," ok\n");
+---
+>     //if(job->cfg.verbose)fprintf(stderr," ok\n");
+2188a2246
+>   /*
+2190a2249
+>   */  
+2202a2262
+>   /*
+2204a2265
+>   */  
+2222c2283
+< 	cc=ocr_db(box2, job);
+---
+>       	cc=ocr_db(box2, job);
+2231c2292
+< 
+---
+>     /*
+2235a2297
+>     */
+2240c2302
+<   if(job->cfg.verbose)fprintf(stderr," %d of %d chars unidentified\n",i,ii);
+---
+>   //if(job->cfg.verbose)fprintf(stderr," %d of %d chars unidentified\n",i,ii);
+2256a2319
+>   /*
+2258a2322
+>   */
+2292a2357
+> 	     /*
+2298a2364
+>       */
+2304a2371
+>   /*
+2306a2374
+>   */
+2332a2401
+>   /*
+2334a2404
+>   */
+2373a2444
+>         /*
+2378a2450
+>         */
+2429a2502
+>           /*
+2433a2507
+>           */
+2446a2521
+>         /*
+2449a2525
+>         */
+2456a2533
+>           /*
+2459a2537
+>           */
+2472a2551
+>           /*
+2475a2555
+>           */
+2484c2564
+< 
+---
+>           /*
+2491a2572
+>           */
+2505a2587
+>           /*
+2507a2590
+>           */
+2515c2598
+<   if (job->cfg.verbose) fprintf(stderr,", numC %d\n",job->res.numC); 
+---
+>   //if (job->cfg.verbose) fprintf(stderr,", numC %d\n",job->res.numC); 
+2526c2609
+<   if(job->cfg.verbose)fprintf(stderr,"# divide vertical glued boxes");
+---
+>   //if(job->cfg.verbose)fprintf(stderr,"# divide vertical glued boxes");
+2546a2630
+>       /*
+2550a2635
+>       */
+2561c2646,2647
+<           fprintf(stderr,"ERROR list_ins\n"); };
+---
+>           //fprintf(stderr,"ERROR list_ins\n"); 
+>       };
+2565c2651
+<   if(job->cfg.verbose)fprintf(stderr,", numC %d\n",job->res.numC); 
+---
+>   //if(job->cfg.verbose)fprintf(stderr,", numC %d\n",job->res.numC); 
+2585a2672
+>   /*
+2596a2684
+>   */
+2626a2715
+>   /*
+2628a2718
+>   */
+2649c2739
+<       fprintf(stderr,"\n#  ... found DOUBLE_LOW_9_QUOTATION_MARK");
+---
+>       //fprintf(stderr,"\n#  ... found DOUBLE_LOW_9_QUOTATION_MARK");
+2655,2658c2745,2748
+<      if (job->cfg.verbose)
+<        fprintf(stderr, "\n#  change [%d] %s   %3d      to %s %3d at %3d %3d",
+<        box2->num_ac, "\"", box2->wac[0],
+<        decode(box2->c,ASCII), box2->wac[0], box2->x0, box2->y0);
+---
+>      //if (job->cfg.verbose)
+>      //  fprintf(stderr, "\n#  change [%d] %s   %3d      to %s %3d at %3d %3d",
+>      //  box2->num_ac, "\"", box2->wac[0],
+>      //  decode(box2->c,ASCII), box2->wac[0], box2->x0, box2->y0);
+2813a2904
+>   /*
+2815a2907
+>   */
+2839a2932
+>   /*
+2841a2935
+>   */
+2881,2884c2977,2980
+<     if ((job->cfg.verbose&48)==48)
+<       fprintf(stderr,"\n# DBG L%02d %d mono=%d  %d pitch= %2d"
+<         " pdist= %2d nl %d spc %d", maxline, box2->line, thismono,
+<         job->res.lines.mono[ box2->line], thispitch, pdist, num_nl, num_spc);
+---
+>     //if ((job->cfg.verbose&48)==48)
+>       //fprintf(stderr,"\n# DBG L%02d %d mono=%d  %d pitch= %2d"
+>       //  " pdist= %2d nl %d spc %d", maxline, box2->line, thismono,
+>       //  job->res.lines.mono[ box2->line], thispitch, pdist, num_nl, num_spc);
+2919a3016
+>       /*
+2925,2926c3023,3025
+<         /* out_x(box3); */
+<       }
+---
+> 
+>         // out_x(box3); 
+>       }*/
+2930c3029
+<   if( job->cfg.verbose&1 ) fprintf(stderr,"\n# ... found %d spaces\n",i);
+---
+>   //if( job->cfg.verbose&1 ) fprintf(stderr,"\n# ... found %d spaces\n",i);
+2939a3039
+>   // pix *pp=&job->src.p;
+2943c3043
+<   if (job->cfg.verbose&1) fprintf(stderr,"# add_line_info to boxes ...");
+---
+>   //if( job->cfg.verbose&1 ) fprintf(stderr,"# add line infos to boxes ...");
+2994c3094,3095
+<   if (job->cfg.verbose&1)
+---
+>   /*
+>   if( job->cfg.verbose&1 )
+2996a3098
+>   */
+3046a3151
+> /*
+3056a3162,3163
+> */
+> 
+3072a3180
+>   /*
+3074a3183
+>   */
+3091,3092c3201,3202
+<     fprintf( stderr,"# no boxes found - stopped\n" );
+<     if(job->cfg.verbose&32) debug_img("out01",job,8);
+---
+>     //fprintf( stderr,"# no boxes found - stopped\n" );
+>     //if(job->cfg.verbose&32) debug_img("out01",job,8);
+3114c3223
+<   detect_barcode( job );  /* mark barcode */
+---
+> //  detect_barcode( job );  /* mark barcode */
+3140c3250
+<   if (job->cfg.verbose&32) debug_img("out10",job,4+8);
+---
+>   //if (job->cfg.verbose&32) debug_img("out10",job,4+8);
+3186c3296,3297
+<   } end_for_each(&(job->res.boxlist)); 
+---
+>   } end_for_each(&(job->res.boxlist));
+>   /* 
+3188a3300
+>   */
+3192c3304
+<   if (job->cfg.verbose&32) debug_img("out20",job,1+4+8);
+---
+>   //if (job->cfg.verbose&32) debug_img("out20",job,1+4+8);
+3206a3319
+>   /*
+3208a3322
+>   */
+3231c3345,3346
+<   } end_for_each(&(job->res.boxlist)); 
+---
+>   } end_for_each(&(job->res.boxlist));
+>   /* 
+3233a3349
+>   */
+3239c3355,3356
+<     } end_for_each(&(job->res.boxlist)); 
+---
+>     } end_for_each(&(job->res.boxlist));
+>     /* 
+3241a3359
+>     */
+3243,3244c3361
+<   if(job->cfg.verbose)
+<     fprintf(stderr,"\n");
+---
+>   //if(job->cfg.verbose) fprintf(stderr,"\n");
+3252c3369
+<   if( job->cfg.verbose&32 ) debug_img("out30",job,2+4);
+---
+>   //if( job->cfg.verbose&32 ) debug_img("out30",job,2+4);
+diff B src/pixel.c src/pixel.c
+134a135
+> /*
+137a139
+> */      
+467a470
+> /*
+478a482
+> */  
+500a505
+>       /*
+505a511
+>       */
+515a522
+>     /*
+523a531
+>     */
+diff B src/pnm.c src/pnm.c
+58,61c58,61
+< #define EE()         fprintf(stderr,"\nERROR "__FILE__" L%d: ",__LINE__)
+< #define E0(x0)       {EE();fprintf(stderr,x0 "\n");      }
+< #define F0(x0)       {EE();fprintf(stderr,x0 "\n");      exit(1);}
+< #define F1(x0,x1)    {EE();fprintf(stderr,x0 "\n",x1);   exit(1);}
+---
+> #define EE()         {} //fprintf(stderr,"\nERROR "__FILE__" L%d: ",__LINE__)
+> #define E0(x0)       {} //{EE();fprintf(stderr,x0 "\n");      }
+> #define F0(x0)       {return(1);}//EE();fprintf(stderr,x0 "\n");      exit(1);}
+> #define F1(x0,x1)    {return(1);}//EE();fprintf(stderr,x0 "\n",x1);   exit(1);}
+130,131c130,131
+<     if( feof(f1)   )		E0("read feof");
+<     if( ferror(f1) )		F0("read ferror");
+---
+>     if( feof(f1)   )		return '\0'; //E0("read feof");
+>     if( ferror(f1) )		return '\0'; //F0("read ferror");
+165,166c165
+<         if (!fp)
+<           F1("opening file %s", name);
+---
+>         if (!fp) return(-1); //F1("opening file %s", name);
+172c171
+<           fprintf(stderr, "# popen( %s )\n", buf);
+---
+>           //fprintf(stderr, "# popen( %s )\n", buf);
+186c185
+<         F0("sorry, compile with HAVE_POPEN to use pipes");
+---
+>         return(-1); //F0("sorry, compile with HAVE_POPEN to use pipes");
+188,189c187
+<         if (!fp)
+<           F1("opening pipe %s", buf);
+---
+>         if (!fp) return(-1); //F1("opening pipe %s", buf);
+212a211
+>   /*
+215c214
+<         inpam.format, /* magic1*256+magic2 */
+---
+>         inpam.format, // magic1*256+magic2  
+223,226c222,224
+<   if ( (1.*(p->x*p->y))!=((1.*p->x)*p->y) )
+<     F0("Error integer overflow");
+<   if ( !(p->p = (unsigned char *)malloc(p->x*p->y)) )
+<     F1("Error at malloc: p->p: %d bytes", p->x*p->y);
+---
+>   */
+>   if ( (1.*(p->x*p->y))!=((1.*p->x)*p->y) ) return 0; //F0("Error integer overflow");
+>   if ( !(p->p = (unsigned char *)malloc(p->x*p->y)) ) return(0); //F1("Error at malloc: p->p: %d bytes", p->x*p->y);
+248a247
+>   /*
+250a250
+>   */  
+274c274
+<     if( !isdigit(c1) ) F0("unexpected char");
+---
+>     if( !isdigit(c1) ) return 0; //F0("unexpected char");
+311c311
+<         f1=fopen(name,"rb"); if (!f1) F1("opening file %s",name);
+---
+>         f1=fopen(name,"rb"); if (!f1) return(0); //F1("opening file %s",name);
+314c314
+<         if (vvv) { fprintf(stderr,"# popen( %s )\n",buf); }
+---
+>         //if (vvv) { fprintf(stderr,"# popen( %s )\n",buf); }
+323c323
+<         F0("only PNM files supported (compiled without HAVE_POPEN)");
+---
+>         return(-1); //F0("only PNM files supported (compiled without HAVE_POPEN)");
+325c325
+<         if (!f1) F1("opening pipe %s",buf);
+---
+>         if (!f1) return(0); //F1("opening pipe %s",buf);
+328c328
+<     c1=fgetc(f1); if (feof(f1)) { E0("unexpected EOF"); return -1; }
+---
+>     c1=fgetc(f1); if (feof(f1)) { /*E0("unexpected EOF");*/ return -1; }
+330c330
+<   c2=fgetc(f1);   if (feof(f1)) { E0("unexpected EOF"); return -1; }
+---
+>   c2=fgetc(f1);   if (feof(f1)) { /*E0("unexpected EOF");*/ return -1; }
+336c336
+<     fprintf(stderr,"\nread-PNM-error: file number is %2d,"
+---
+>     /*fprintf(stderr,"\nread-PNM-error: file number is %2d,"
+339a340
+>     */
+353c354
+<         if( !isspace(c1) )F0("unexpected character");
+---
+>         if( !isspace(c1) ) return(-1); //F0("unexpected character");
+359a361
+>   /*
+361a364
+>   */
+363c366,367
+<     /* nx=(nx+7)&~7;*/ if(vvv)fprintf(stderr," PBM2PGM nx %d",(nx+7)&~7);
+---
+>     /* nx=(nx+7)&~7;*/ 
+>     //if(vvv)fprintf(stderr," PBM2PGM nx %d",(nx+7)&~7);
+369,370c373
+<   if ( (1.*(nx*ny))!=((1.*nx)*ny) )
+<     F0("Error integer overflow");
+---
+>   if ( (1.*(nx*ny))!=((1.*nx)*ny) ) return(-1); //F0("Error integer overflow");
+372c375,376
+<   if(pic==NULL)F0("memory failed");			// no memory
+---
+>   if(pic==NULL) return (-1); //F0("memory failed");			// no memory
+>   
+378c382,383
+<         fprintf(stderr," ERROR reading at head+%d*%d\n", bps, i); break; } }
+---
+>         //fprintf(stderr," ERROR reading at head+%d*%d\n", bps, i); 
+>         return (-1); /*break; */ } }
+386c391,392
+<          fprintf(stderr," ERROR reading at head+3*%d*%d\n", bps, i); break; } }
+---
+>          //fprintf(stderr," ERROR reading at head+3*%d*%d\n", bps, i); 
+>          return (-1); /*break;*/ } }
+399c405
+<     else if( !isspace(c1) )F0("unexpected char");
+---
+>     else if( !isspace(c1) ) return(-1); //F0("unexpected char");
+403c409
+<     if(ny!=(int)fread(pic,dx>>3,ny,f1))F0("read");	// read all bytes
+---
+>     if(ny!=(int)fread(pic,dx>>3,ny,f1)) return(-1); //F0("read");	// read all bytes
+415c421
+<     if (vvv) fprintf(stderr," min=%d max=%d", minc, maxc);
+---
+>     //if (vvv) fprintf(stderr," min=%d max=%d", minc, maxc);
+418c424
+<   if (vvv) fprintf(stderr,"\n");  
+---
+>   //if (vvv) fprintf(stderr,"\n");  
+421c427
+<     if (vvv) fprintf(stderr,"# PNM EOF\n");
+---
+>     //if (vvv) fprintf(stderr,"# PNM EOF\n");
+437c443
+<   f1=fopen(nam,"wb");if(!f1)F0("open");		// open-error
+---
+>   f1=fopen(nam,"wb");if(!f1) return(0); //F0("open");		// open-error
+445c451
+<   if(p->y!=(int)fwrite(p->p,p->x,p->y,f1))F0("write");	// write all lines
+---
+>   if(p->y!=(int)fwrite(p->p,p->x,p->y,f1)) return(0); //F0("write");	// write all lines
+478c484
+<     f1 = popen(buf, "w"); if(f1) f1t=1; else E0("popen pnmtopng");
+---
+>     f1 = popen(buf, "w"); if(f1) f1t=1; //else E0("popen pnmtopng");
+485c491
+<     f1 = popen(buf, "w"); if(f1) f1t=1; else E0("popen gzip -c");
+---
+>     f1 = popen(buf, "w"); if(f1) f1t=1; //else E0("popen gzip -c");
+493c499
+<   if (!f1) F0("open"); /* open-error */
+---
+>   if (!f1) return(0); //F0("open"); /* open-error */
+508c514
+<     if ( 1!=(int)fwrite(rgb,3,1,f1) ) { E0("write"); y=p->y; break; }
+---
+>     if ( 1!=(int)fwrite(rgb,3,1,f1) ) { /*E0("write");*/ y=p->y; break; }
+511c517
+<   if ( p->y!=(int)fwrite(p->p,3*p->x,p->y,f1) ) E0("write");
+---
+>   //if ( p->y!=(int)fwrite(p->p,3*p->x,p->y,f1) ) E0("write");
+532c538
+<   f1=fopen(nam,"wb");if(!f1)F0("open");		// open-error
+---
+>   f1=fopen(nam,"wb");if(!f1) return(0); //F0("open");		// open-error
+534c540
+<   if(p->y!=(int)fwrite(p->p,dx>>3,p->y,f1))F0("write");	// write all lines
+---
+>   //if(p->y!=(int)fwrite(p->p,dx>>3,p->y,f1))F0("write");	// write all lines
+diff B src/pnm.h src/pnm.h
+14c14
+< #include "config.h"
+---
+> //#include "config.h"
+diff B src/progress.c src/progress.c
+22c22
+<       fprintf(stderr,"could not open %s for progress output\n",fname);
+---
+>       //fprintf(stderr,"could not open %s for progress output\n",fname);
+58a59
+>     /*
+62a64
+>     */
+74a77
+>     /*
+78,79c81,82
+<             (int)(now - pc->starttime),  /* time gone since start */
+<             (int)(now - pc->starttime)*pc->maxcount/(counter), /* estimated */
+---
+>             (int)(now - pc->starttime),  // time gone since start 
+>             (int)(now - pc->starttime)*pc->maxcount/(counter), // estimated 
+80a84
+>     */
+diff B src/remove.c src/remove.c
+91,92c91,93
+<     if (vvv) fprintf(stderr, "# remove.c remove_dust():");
+<     if (vvv) fprintf(stderr, "\n#  dust size detection, vol num"
+---
+>     //if (vvv) fprintf(stderr, "# remove.c remove_dust(): ");
+>     /*
+>     if (vvv) fprintf(stderr, "\n# dust size detection, vol num"
+94a96
+>     */  
+97c99
+<       if (vvv) fprintf(stderr,"\n#  dust size histogram %3d %5d",i,histo[i]);
+---
+>       //if (vvv) fprintf(stderr,"\n# dust size histogram %3d %5d",i,histo[i]);
+107c109
+<     if (vvv) fprintf(stderr," break");
+---
+>     //if (vvv) fprintf(stderr," break");
+111c113
+<         fprintf(stderr,"\n#  dust size histogram %3d %5d",j,histo[j]);
+---
+>         //fprintf(stderr,"\n# dust size histogram %3d %5d",j,histo[j]);
+123c125,126
+<     if (vvv) fprintf(stderr,"\n#  auto dust size = %d nC= %3d .. %3d"
+---
+>     /* 
+>     if (vvv) fprintf(stderr,"\n# auto dust size = %d nC= %3d .. %3d"
+127a131
+>    */
+130a135
+>     /*
+132,134c137,139
+<        fprintf(stderr,"#  remove dust of size %2d",job->cfg.dust_size);
+<        /* Warning: better use (1/(x*y))^2 as 1/((x*y)^2),
+<         * because (x*y)^2 may overflow */
+---
+>        fprintf(stderr,"# remove dust of size %2d",job->cfg.dust_size);
+>        // Warning: better use (1/(x*y))^2 as 1/((x*y)^2),
+>        // because (x*y)^2 may overflow 
+139a145
+>     */
+170c176
+<     if(vvv)fprintf(stderr," %3d cluster removed, nC= %3d\n",i,job->res.numC);
+---
+>     //if(vvv)fprintf(stderr," %3d cluster removed, nC= %3d\n",i,job->res.numC);
+190a197
+>   /*
+192c199
+<      i,cs,job->res.numC);
+---
+>      i,cs,job->res.numC); */
+210c217
+<     if(vvv){ fprintf(stderr,"# smooth_borders of big chars 7x16 cs=%d",cs); }
+---
+>     //if(vvv){ fprintf(stderr,"# smooth_borders of big chars 7x16 cs=%d",cs); }
+269a277
+> /*
+272a281
+> */              
+280c289
+<     if(vvv)fprintf(stderr," ... %3d changes in %d of %d\n",ii,n1,n2);
+---
+>     //if(vvv)fprintf(stderr," ... %3d changes in %d of %d\n",ii,n1,n2);
+311a321
+>   /*
+314a325
+>   */
+322a334
+>   /*
+325a338
+>   */
+346a360
+>   /*
+349a364
+>   */
+377a393
+>   /*
+380a397
+>   */
+388a406
+>   /*
+391a410
+>   */
+441a461
+>   /*
+443a464
+>   */
+451,452c472,473
+<       fprintf(stderr," found picture at %4d %4d size %4d %4d\n# ...",
+<          box4->x0, box4->y0, box4->x1-box4->x0+1, box4->y1-box4->y0+1 );
+---
+>       //fprintf(stderr," found picture at %4d %4d size %4d %4d\n# ...",
+>       //   box4->x0, box4->y0, box4->x1-box4->x0+1, box4->y1-box4->y0+1 );
+455a477
+>   /*
+458a481
+>   */
+486c509
+<   if(vvv){ fprintf(stderr,"# searching melted serifs ..."); }
+---
+>   //if(vvv){ fprintf(stderr,"# searching melted serifs ..."); }
+504a528
+>       /*
+507a532
+>       */
+511a537
+>       /*
+513a540
+>       */  
+530c557
+< 	  fprintf(stderr,"\n"); 
+---
+> 	  //fprintf(stderr,"\n"); 
+532,533c559,560
+< 	  fprintf(stderr,"# melted serifs corrected on %d %d j1=%d j3=%d",
+< 	    j2-x0, y, j1-x0, j3-x0);
+---
+> 	  //fprintf(stderr,"# melted serifs corrected on %d %d j1=%d j3=%d",
+> 	  //  j2-x0, y, j1-x0, j3-x0);
+557c584
+< 	  if(vvv&4) fprintf(stderr," => splitted");
+---
+> 	  //if(vvv&4) fprintf(stderr," => splitted");
+580a608
+>       /*
+582c610
+<         fprintf(stderr, "\n#  lower serif x0,y0,j1-x0+x,y1-y %4d %4d %3d + %2d %2d",
+---
+>         fprintf(stderr, "\n#  lower serif x0,y0,j1-x0+x,y1-y %4d %4d %2d+%2d %2d",
+583a612
+>       */
+588c617
+<       if (vvv&1) fprintf(stderr, " ok1");
+---
+>       //if (vvv&1) fprintf(stderr, " ok1");
+605a635
+> 	/*  
+609c639
+< 	  fprintf(stderr,"# melted serifs corrected on %d %d j1=%d j3=%d",j2-x0,y-y0,j1-x0,j3-x0);
+---
+> 	  //fprintf(stderr,"# melted serifs corrected on %d %d j1=%d j3=%d",j2-x0,y-y0,j1-x0,j3-x0);
+610a641
+> 	*/  
+628c659
+< 	  if(vvv&4) fprintf(stderr," => splitted");
+---
+> 	  //if(vvv&4) fprintf(stderr," => splitted");
+637c668
+<   if(vvv)fprintf(stderr," %3d cluster corrected, %d new boxes\n",i,ii);
+---
+>   //if(vvv)fprintf(stderr," %3d cluster corrected, %d new boxes\n",i,ii);
+645d675
+<   //  job_t *job=OCR_JOB;
+650a681
+>   /*
+652a684
+>   */  
+670d701
+< 	 if (vvv) fprintf(stderr,"\n#  remove1 %3d %3d ", x0, y0);
+705c736
+< 	 if (vvv) fprintf(stderr,"\n#  remove2 %3d %3d ", x0, y0);
+---
+> 	      //if (vvv) fprintf(stderr,"\n#  remove2 %3d %3d ", x0, y0);
+709a741
+>   /*
+712a745
+>   */
+diff B src/tga.c src/tga.c
+49c49
+<   f1=fopen(name,"rb"); if(!f1) fprintf(stderr," error opening file\n");
+---
+>   f1=fopen(name,"rb"); //if(!f1) fprintf(stderr," error opening file\n");
+61c61
+<   fprintf(stderr,"# TGA version=%d x=%d y=%d", h[2],nx,ny );
+---
+>   //fprintf(stderr,"# TGA version=%d x=%d y=%d", h[2],nx,ny );
+83c83
+<   fprintf(stderr," mode=%d\n",mode);
+---
+>   //fprintf(stderr," mode=%d\n",mode);
+diff B src/unicode.c src/unicode.c
+43a44
+>   /*
+49c50
+<     fprintf(stderr,"# Warning compose %04x + %04x>127\n",
+---
+>     fprintf(stderr,"# Warning compose %04x + %04x>127\n",    
+50a52
+>   */
+58c60
+<       fprintf( stderr, "COMPOSE: got APOSTROPHE instead of ACUTE_ACCENT");
+---
+>       //fprintf( stderr, "COMPOSE: got APOSTROPHE instead of ACUTE_ACCENT");
+91,92c93,94
+< 	default:
+<           if(warn)fprintf( stderr, " COMPOSE: ACUTE_ACCENT+%04x not defined\n",(int)main);
+---
+> 	default: {}
+>           //if(warn)fprintf( stderr, " COMPOSE: ACUTE_ACCENT+%04x not defined\n",(int)main);
+111,112c113,114
+< 	default:
+<           if(warn)fprintf( stderr, " COMPOSE: BREVE+%04x not defined\n",(int)main);
+---
+> 	default: {}
+>           //if(warn)fprintf( stderr, " COMPOSE: BREVE+%04x not defined\n",(int)main);
+135,136c137,138
+< 	default:
+<           if(warn)fprintf( stderr, " COMPOSE: CARON+%04x not defined\n",(int)main);
+---
+> 	default: {}
+>           //if(warn)fprintf( stderr, " COMPOSE: CARON+%04x not defined\n",(int)main);
+144,145c146,147
+< 	default:
+<           if(warn)fprintf( stderr, " COMPOSE: CEDILLA+%04x not defined\n",(int)main);
+---
+> 	default: {}
+>           //if(warn)fprintf( stderr, " COMPOSE: CEDILLA+%04x not defined\n",(int)main);
+162,163c164,165
+< 	default:
+<           if(warn)fprintf( stderr, " COMPOSE: TILDE+%04x not defined\n",(int)main);
+---
+> 	default: {}
+>           //if(warn)fprintf( stderr, " COMPOSE: TILDE+%04x not defined\n",(int)main);
+182,183c184,185
+< 	default:
+<           if(warn)fprintf( stderr, " COMPOSE: GRAVE_ACCENT+%04x not defined\n",(int)main);
+---
+> 	default: {}
+>           //if(warn)fprintf( stderr, " COMPOSE: GRAVE_ACCENT+%04x not defined\n",(int)main);
+189c191
+<       fprintf( stderr, "COMPOSE: got APOSTROPHE instead of ACUTE_ACCENT");
+---
+>       //fprintf( stderr, "COMPOSE: got APOSTROPHE instead of ACUTE_ACCENT");
+206,207c208,209
+< 	default:
+<           if(warn)fprintf( stderr, " COMPOSE: DIAERESIS+%04x (%c) not defined\n",(int)main,(char)main);
+---
+> 	default: {}
+>           //if(warn)fprintf( stderr, " COMPOSE: DIAERESIS+%04x (%c) not defined\n",(int)main,(char)main);
+238,239c240,241
+< 	default:
+<           if(warn)fprintf( stderr, " COMPOSE: CIRCUMFLEX_ACCENT+%04x not defined\n",(int)main);
+---
+> 	default: {}
+>           //if(warn)fprintf( stderr, " COMPOSE: CIRCUMFLEX_ACCENT+%04x not defined\n",(int)main);
+262,263c264,265
+<         default:
+<           if(warn)fprintf( stderr, " COMPOSE: MACRON+%04x not defined\n",(int)main);
+---
+>         default: {}
+>           //if(warn)fprintf( stderr, " COMPOSE: MACRON+%04x not defined\n",(int)main);
+288,289c290,291
+<         default:
+<           if(warn)fprintf( stderr, " COMPOSE: DOT_ABOVE+%04x not defined\n",(int)main);
+---
+>         default: {}
+>           //if(warn)fprintf( stderr, " COMPOSE: DOT_ABOVE+%04x not defined\n",(int)main);
+299,300c301,302
+<         default:
+<           if(warn)fprintf( stderr, " COMPOSE: RING_ABOVE+%04x not defined\n",(int)main);
+---
+>         default: {}
+>           //if(warn)fprintf( stderr, " COMPOSE: RING_ABOVE+%04x not defined\n",(int)main);
+312,313c314,315
+< 	default:
+<           if(warn)fprintf( stderr, " COMPOSE: %04x+e/E not defined\n",(int)main);
+---
+> 	default: {}
+>           //if(warn)fprintf( stderr, " COMPOSE: %04x+e/E not defined\n",(int)main);
+394,395c396,397
+< 	default:
+<           if(warn)fprintf( stderr, " COMPOSE: GREEK %04x not defined\n",(int)main);
+---
+> 	default: {}
+>           //if(warn)fprintf( stderr, " COMPOSE: GREEK %04x not defined\n",(int)main);
+399,400c401,402
+<     default:
+<       fprintf( stderr, " COMPOSE: modifier %04x not defined\n",(int)modifier);
+---
+>     default: {}
+>       //fprintf( stderr, " COMPOSE: modifier %04x not defined\n",(int)modifier);

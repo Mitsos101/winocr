@@ -1,0 +1,84 @@
+# Project: gocr_dll
+# Makefile created by Dev-C++ 5.4.0
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = box.o database.o detect.o job.o lines.o list.o ocr0.o ocr0n.o ocr1.o otsu.o output.o pgm2asc.o pixel.o pnm.o progress.o remove.o unicode.o gocr.o $(RES)
+LINKOBJ  = box.o database.o detect.o job.o lines.o list.o ocr0.o ocr0n.o ocr1.o otsu.o output.o pgm2asc.o pixel.o pnm.o progress.o remove.o unicode.o gocr.o $(RES)
+LIBS     = -L"./MinGW32/lib" -static-libstdc++ -static-libgcc --no-export-all-symbols --add-stdcall-alias 
+INCS     = -I"./MinGW32/include"
+CXXINCS  = -I"./MinGW32/include"
+BIN      = gocr.dll
+CXXFLAGS = $(CXXINCS) -DBUILDING_DLL=1 -Ofast -w -pedantic
+CFLAGS   = $(INCS) -DBUILDING_DLL=1 -Ofast -w -pedantic
+RM       = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+DLLWRAP=dllwrap.exe
+DEFFILE=libgocr.def
+STATICLIB=libgocr.a
+
+$(BIN): $(LINKOBJ)
+	$(DLLWRAP) --output-def $(DEFFILE) --implib $(STATICLIB) $(LINKOBJ) $(LIBS) -o $(BIN)
+
+box.o: box.c
+	$(CC) -c box.c -o box.o $(CFLAGS)
+
+database.o: database.c
+	$(CC) -c database.c -o database.o $(CFLAGS)
+
+detect.o: detect.c
+	$(CC) -c detect.c -o detect.o $(CFLAGS)
+
+job.o: job.c
+	$(CC) -c job.c -o job.o $(CFLAGS)
+
+lines.o: lines.c
+	$(CC) -c lines.c -o lines.o $(CFLAGS)
+
+list.o: list.c
+	$(CC) -c list.c -o list.o $(CFLAGS)
+
+ocr0.o: ocr0.c
+	$(CC) -c ocr0.c -o ocr0.o $(CFLAGS)
+
+ocr0n.o: ocr0n.c
+	$(CC) -c ocr0n.c -o ocr0n.o $(CFLAGS)
+
+ocr1.o: ocr1.c
+	$(CC) -c ocr1.c -o ocr1.o $(CFLAGS)
+
+otsu.o: otsu.c
+	$(CC) -c otsu.c -o otsu.o $(CFLAGS)
+
+output.o: output.c
+	$(CC) -c output.c -o output.o $(CFLAGS)
+
+pgm2asc.o: pgm2asc.c
+	$(CC) -c pgm2asc.c -o pgm2asc.o $(CFLAGS)
+
+pixel.o: pixel.c
+	$(CC) -c pixel.c -o pixel.o $(CFLAGS)
+
+pnm.o: pnm.c
+	$(CC) -c pnm.c -o pnm.o $(CFLAGS)
+
+progress.o: progress.c
+	$(CC) -c progress.c -o progress.o $(CFLAGS)
+
+remove.o: remove.c
+	$(CC) -c remove.c -o remove.o $(CFLAGS)
+
+unicode.o: unicode.c
+	$(CC) -c unicode.c -o unicode.o $(CFLAGS)
+
+gocr.o: gocr.c
+	$(CC) -c gocr.c -o gocr.o $(CFLAGS)

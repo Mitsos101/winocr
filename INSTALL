@@ -1,0 +1,36 @@
+
+Requirements
+------------
+1. You will need a C compiler for the DLLs. I have build the DLL's with Dev-C++ 5 from
+   http://www.bloodshed.net/devcpp.html
+   
+2. You will need an ObjectPascal compiler for the sample program that uses the DLL's.
+   I used Delphi 7 as I own a license for that but any Delphi compiler will do or even 
+   Lazarus (http://www.lazarus-ide.org/) or Free Pascal (http://www.freepascal.org/). 
+   The source is also not that hard to understand to convert 
+   it to any other language.       
+   
+3. Images in PPM format. See http://netpbm.sourceforge.net/doc/ppm.html
+   Any decent viewer will read or convert this for you like IrfanView.
+   
+4. You will need a Windows tool to apply the patches to the original sources. I used
+   WinMerge - http://winmerge.org/         
+
+Procedure
+---------
+1. Unpack the archive if you have not done so already:
+
+	unzip winocr[version].zip
+
+2. Apply the patches using WinMerg or any other tool of your choice. 
+   The *.patch files are in the folder where the two different OCR libs are 
+   together with the newly added files.  
+
+3. Compile the DLLs using Dev-C++ or any other compatible compiler.
+
+4. Compile the sample program using any of the mentioned compilers.
+
+5. Put the DLLs (goocr.dll and ocrad.dll) and GSA-Win-OCR.exe into one folder.
+
+6. Use the tool with: "GSA-Win-OCR sample.ppm" or any other sample image as 
+   argument.
